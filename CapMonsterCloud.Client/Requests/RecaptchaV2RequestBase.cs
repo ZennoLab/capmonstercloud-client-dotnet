@@ -52,9 +52,9 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// Set true if the site only accepts a portion of the tokens from CapMonster Cloud.
         /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/1832714243/What+if+the+site+only+accepts+a+portion+of+the+tokens+from+CapMonster+Cloud
         /// </summary>
-        [JsonProperty("nocache")]
-        public bool NoCache { get; set; }
+        [JsonProperty("nocache", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? NoCache { get; set; }
 
-        internal override bool UseNoCache => this.NoCache;
+        internal override bool UseNoCache => this.NoCache ?? false;
     }
 }
