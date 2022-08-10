@@ -1,6 +1,6 @@
 ﻿# Zennolab.CapMonsterCloud.Client
 
-C# Client library for CapMonsterCloud captcha recognition service
+C# Client library for [capmonster.cloud](https://capmonster.cloud/) captcha recognition service
 
 ## Installation
 
