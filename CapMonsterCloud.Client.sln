@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapMonsterCloud.Client", "C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3F31881F-8F44-4390-95F6-5079C37718A9}"
 	ProjectSection(SolutionItems) = preProject
+		logo.png = logo.png
 		README.md = README.md
 	EndProjectSection
 EndProject
