@@ -19,7 +19,7 @@ Via .NET CLI
         ClientKey = "<your capmonster.cloud API key>"
     };
 
-    using var cmCloudClient = new CapMonsterCloudClient(clientOptions);
+    var cmCloudClient = CapMonsterCloudClientFactory.Create(clientOptions);
 
     // solve RecaptchaV2 (without proxy)
     var recaptchaV2Request = new RecaptchaV2ProxylessRequest

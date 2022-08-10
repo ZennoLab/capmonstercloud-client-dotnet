@@ -12,39 +12,31 @@ namespace Zennolab.CapMonsterCloud
     /// <summary>
     /// capmonster.cloud Client
     /// </summary>
-    public partial class CapMonsterCloudClient : ICapMonsterCloudClient, IDisposable
+    public partial class CapMonsterCloudClient : ICapMonsterCloudClient
     {
         private const string TaskReady = "ready";
-        private static readonly TimeSpan HttpTimeout = TimeSpan.FromSeconds(21);
 
         private readonly ClientOptions _options;
-        private readonly HttpClient _httpClient;
 
         /// <summary>
         /// Creates new capmonster.cloud Client
         /// </summary>
         /// <param name="options">client options</param>
-        /// <param name="configureClient"><see cref="HttpClient"/> configurator</param>
-        public CapMonsterCloudClient(ClientOptions options, Action<HttpClient> configureClient = null)
+        /// <param name="httpClient"></param>
+        public CapMonsterCloudClient(ClientOptions options, HttpClient httpClient)
         {
             _options = options;
 
-            _httpClient = new HttpClient
-            {
-                BaseAddress = _options.ServiceUri,
-                Timeout = HttpTimeout
-            };
-
-            configureClient?.Invoke(_httpClient);
-
-            _httpClient.DefaultRequestHeaders.UserAgent.TryParseAdd(CreateUserAgentString());
+            HttpClient = httpClient;
         }
+
+        internal HttpClient HttpClient { get; }
 
         /// <inheritdoc/>
         /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
         public async Task<decimal> GetBalanceAsync(CancellationToken cancellationToken)
         {
-            var response = await _httpClient.PostAsync(
+            var response = await HttpClient.PostAsync(
                 "getBalance",
                 new StringContent(ToJson(
                     new { clientKey = _options.ClientKey })),
@@ -150,11 +142,17 @@ namespace Zennolab.CapMonsterCloud
             CancellationToken cancellationToken = default)
             => Solve<GeeTestResponse>(task, GeeTestTimeouts, cancellationToken);
 
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
         public Task<CaptchaResult<RecaptchaV2EnterpriseResponse>> SolveAsync(
             RecaptchaV2EnterpriseRequest task,
             CancellationToken cancellationToken)
             => Solve<RecaptchaV2EnterpriseResponse>(task, RecaptchaV2EnterpriseTimeouts, cancellationToken);
 
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
         public Task<CaptchaResult<RecaptchaV2EnterpriseResponse>> SolveAsync(
             RecaptchaV2EnterpriseProxylessRequest task,
             CancellationToken cancellationToken)
@@ -225,7 +223,7 @@ namespace Zennolab.CapMonsterCloud
                     softId = _options.SoftId ?? ClientOptions.DefaultSoftId
                 });
 
-            var response = await _httpClient.PostAsync("createTask", new StringContent(body), cancellationToken);
+            var response = await HttpClient.PostAsync("createTask", new StringContent(body), cancellationToken);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -252,7 +250,7 @@ namespace Zennolab.CapMonsterCloud
                     taskId
                 });
 
-            var response = await _httpClient.PostAsync("getTaskResult", new StringContent(body), cancellationToken);
+            var response = await HttpClient.PostAsync("getTaskResult", new StringContent(body), cancellationToken);
 
             if (response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable)
             {
@@ -303,17 +301,5 @@ namespace Zennolab.CapMonsterCloud
 
         private static TOut FromJson<TOut>(string json)
             => JsonConvert.DeserializeObject<TOut>(json);
-
-        /// <inheritdoc/>
-        public void Dispose()
-            => _httpClient?.Dispose();
-
-        private static string CreateUserAgentString()
-        {
-            var fileVersionInfo = System.Diagnostics.FileVersionInfo
-                .GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-            return $"{fileVersionInfo.ProductName}/{fileVersionInfo.ProductVersion}";
-        }
     }
 }
