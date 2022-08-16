@@ -1,3 +1,3 @@
 ﻿using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("cmnetcore.Client.Tests")] 
+[assembly: InternalsVisibleTo("Zennolab.CapMonsterCloud.Client.Tests")] 

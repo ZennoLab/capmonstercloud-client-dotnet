@@ -11,6 +11,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CapMonsterCloud.Client.Tests", "CapMonsterCloud.Client.Tests\CapMonsterCloud.Client.Tests.csproj", "{490E1BBC-51B6-4330-9D0A-85734DF113CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7872C742-81F3-42F9-BE20-FA94EBE1FE7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +25,16 @@ Global
 		{6796BDF4-893A-4E06-B042-85F71F3F5D08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6796BDF4-893A-4E06-B042-85F71F3F5D08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6796BDF4-893A-4E06-B042-85F71F3F5D08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{490E1BBC-51B6-4330-9D0A-85734DF113CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{490E1BBC-51B6-4330-9D0A-85734DF113CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{490E1BBC-51B6-4330-9D0A-85734DF113CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{490E1BBC-51B6-4330-9D0A-85734DF113CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{490E1BBC-51B6-4330-9D0A-85734DF113CE} = {7872C742-81F3-42F9-BE20-FA94EBE1FE7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7622D9AC-C4E1-45C3-A6AD-79E94AA182A8}
