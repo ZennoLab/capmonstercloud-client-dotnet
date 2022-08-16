@@ -3,5 +3,5 @@
 ################################################################################
 
 /.vs
-/CapMonsterCloud.Client/obj
-/CapMonsterCloud.Client/bin
+**/obj
+**/bin
