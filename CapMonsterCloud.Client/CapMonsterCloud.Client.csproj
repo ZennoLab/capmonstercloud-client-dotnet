@@ -6,7 +6,7 @@
     <RootNamespace>Zennolab.CapMonsterCloud</RootNamespace>
     <Company>Zennolab</Company>
     <Authors>Zennolab</Authors>
-    <Description>Client library for CapMonsterCloud captcha recognition service</Description>
+    <Description>Official C# client library for capmonster.cloud captcha recognition service</Description>
     <Copyright>Zennolab, 2022</Copyright>
     <RepositoryType>git</RepositoryType>
     <PackageTags>capmonster capmonster.cloud zennolab recaptcha funcaptcha hcaptcha captcha geetest</PackageTags>
@@ -15,7 +15,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.1.3</Version>
+    <Version>1.1.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
