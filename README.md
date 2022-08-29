@@ -49,3 +49,5 @@ Supported captcha recognition requests:
 - RecaptchaV2ProxylessRequest
 - RecaptchaV2Request
 - RecaptchaV3ProxylessRequest
+- RecaptchaV2EnterpriseProxylessRequest
+- RecaptchaV2EnterpriseRequest
