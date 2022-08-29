@@ -15,7 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.1.4</Version>
+    <Version>1.1.5</Version>
+    <PackageReleaseNotes>Fixed README: added RecaptchaV2EnterpriseRequest and RecaptchaV2EnterpriseProxylessRequest</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
