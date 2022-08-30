@@ -2,7 +2,8 @@ name: .NET
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - '**'
 
 jobs:
   build:
