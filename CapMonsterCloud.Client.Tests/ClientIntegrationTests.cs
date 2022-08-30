@@ -12,7 +12,7 @@ namespace Zennolab.CapMonsterCloud.Client
         private readonly static ClientOptions ClientOptions = new ClientOptions
         {
             ServiceUri = new Uri("https://api.capmonster.cloud"),
-            ClientKey = Environment.GetEnvironmentVariable("CapMonsterCloud_ClientKey")
+            ClientKey = Environment.GetEnvironmentVariable("CAPMONSTERCLOUD_CLIENTKEY")
         };
 
         [Test]
