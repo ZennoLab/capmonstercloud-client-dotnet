@@ -17,11 +17,15 @@ namespace Zennolab.CapMonsterCloud.Json
             var regexValidation = new Regex("^((.*)(=?){2};?)+$");
 
             if (regexValidation.IsMatch(value))
-                return value.Split(';').Select(item =>
+                try
                 {
-                    var keyValueItem = item.Split('=');
-                    return new KeyValuePair<string, string>(keyValueItem[0], keyValueItem[1]);
-                }).ToDictionary(x => x.Key, x => x.Value);
+                    return value.Split(';').Select(item =>
+                    {
+                        var keyValueItem = item.Split('=');
+                        return new KeyValuePair<string, string>(keyValueItem[0], keyValueItem[1]);
+                    }).ToDictionary(x => x.Key, x => x.Value);
+                }
+                catch (Exception) { }
 
             throw new JsonReaderException();
         }
