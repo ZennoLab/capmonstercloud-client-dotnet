@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.1.5</Version>
-    <PackageReleaseNotes>Fixed README: added RecaptchaV2EnterpriseRequest and RecaptchaV2EnterpriseProxylessRequest</PackageReleaseNotes>
+    <Version>1.1.6</Version>
+    <PackageReleaseNotes>Improved request models serialization\deserialization. HCaptchaRequest implements IProxyInfo</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
