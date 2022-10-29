@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Zennolab.CapMonsterCloud.Json
 {
@@ -12,7 +13,21 @@ namespace Zennolab.CapMonsterCloud.Json
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            var value = reader.Value?.ToString();
+            var regexValidation = new Regex("^((.*)(=?){2};?)+$");
+
+            if (regexValidation.IsMatch(value))
+                try
+                {
+                    return value.Split(';').Select(item =>
+                    {
+                        var keyValueItem = item.Split('=');
+                        return new KeyValuePair<string, string>(keyValueItem[0], keyValueItem[1]);
+                    }).ToDictionary(x => x.Key, x => x.Value);
+                }
+                catch (Exception) { }
+
+            throw new JsonReaderException();
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

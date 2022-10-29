@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.ComponentModel.DataAnnotations;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
@@ -9,7 +10,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <example>
     /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/1203240988/HCaptchaTask+hCaptcha+puzzle+solving
     /// </example>
-    public sealed class HCaptchaRequest : HCaptchaRequestBase
+    public sealed class HCaptchaRequest : HCaptchaRequestBase, IProxyInfo
     {
         /// <summary>
         /// Recognition task type
@@ -31,6 +32,7 @@ namespace Zennolab.CapMonsterCloud.Requests
 
         /// <inheritdoc/>
         [JsonProperty("proxyPort", Required = Required.Always)]
+        [Range(0, 65535)]
         public int ProxyPort { get; set; }
 
         /// <inheritdoc/>

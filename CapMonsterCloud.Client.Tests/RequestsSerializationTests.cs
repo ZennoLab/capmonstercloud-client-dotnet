@@ -44,7 +44,7 @@ namespace Zennolab.CapMonsterCloud.Client
         }
 
         [Test]
-        public void RecaptchaV2Request__ShouldSerialize([Values]ProxyType proxyType)
+        public void RecaptchaV2Request__ShouldSerialize([Values] ProxyType proxyType)
         {
             // Arrange
             var target = new RecaptchaV2Request
@@ -211,7 +211,7 @@ namespace Zennolab.CapMonsterCloud.Client
         }
 
         [Test]
-        public void HCaptchaProxylessRequest__ShouldSerialize([Values]bool invisible)
+        public void HCaptchaProxylessRequest__ShouldSerialize([Values] bool invisible)
         {
             // Arrange
             var target = new HCaptchaProxylessRequest
@@ -225,7 +225,7 @@ namespace Zennolab.CapMonsterCloud.Client
                 {
                     { "cookieA", "value#A" },
                     { "cookieB", "value#B" }
-                },
+                }
             };
 
             // Act
