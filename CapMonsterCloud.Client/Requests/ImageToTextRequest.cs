@@ -11,14 +11,8 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// </example>
     public sealed class ImageToTextRequest : CaptchaRequestBase
     {
-        /// <summary>
-        /// Recognition task type
-        /// </summary>
-        public const string TaskType = "ImageToTextTask";
-
-        /// <inheritdoc/>
-        [JsonProperty("type")]
-        public override string Type => TaskType;
+        /// <inheritdoc />
+        public override string Type => "ImageToTextTask";
 
         /// <summary>
         /// File body encoded in base64. Make sure to send it without line breaks.

@@ -1,4 +1,6 @@
-﻿namespace Zennolab.CapMonsterCloud.Requests
+﻿using Newtonsoft.Json;
+
+namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
     /// Base captcha recognition request
@@ -8,6 +10,7 @@
         /// <summary>
         /// Gets recognition task type
         /// </summary>
+        [JsonProperty("type", Required = Required.Always)]
         public abstract string Type { get; }
 
         internal virtual bool UseNoCache => false;
