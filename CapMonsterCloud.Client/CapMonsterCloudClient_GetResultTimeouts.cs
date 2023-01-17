@@ -68,5 +68,13 @@ namespace Zennolab.CapMonsterCloud
             RequestsInterval = TimeSpan.FromSeconds(1),
             Timeout = TimeSpan.FromSeconds(80)
         };
+
+        private static readonly GetResultTimeouts TurnstileTimeouts = new GetResultTimeouts
+        {
+            FirstRequestDelay = TimeSpan.FromSeconds(1),
+            FirstRequestNoCacheDelay = TimeSpan.FromSeconds(10),
+            RequestsInterval = TimeSpan.FromSeconds(1),
+            Timeout = TimeSpan.FromSeconds(80)
+        };
     }
 }

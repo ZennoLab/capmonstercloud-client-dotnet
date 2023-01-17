@@ -90,6 +90,33 @@ namespace Zennolab.CapMonsterCloud.Client
         }
 
         [Test]
+        public async Task SolveAsync_TurnstileProxyless_ShouldSolve()
+        {
+            // Arrange
+            var target = CapMonsterCloudClientFactory.Create(ClientOptions);
+
+            var request = new TurnstileProxylessRequest
+            {
+                WebsiteUrl = "https://tsinvisble.zlsupport.com",
+                WebsiteKey = "0x4AAAAAAABUY0VLtOUMAHxE",
+            };
+
+            var watch = new Stopwatch();
+            watch.Start();
+
+            // Act
+            var actual = await target.SolveAsync(request, default);
+
+            // Assert
+            watch.Stop();
+
+            _ = actual.Error.Should().BeNull();
+            _ = actual.Solution.Should().NotBeNull();
+
+            Console.WriteLine($"{watch.ElapsedMilliseconds}: solve result: {actual.Solution.Value}");
+        }
+
+        [Test]
         public async Task SolveAsync_IncorrectWebsiteUrl_ShouldThrowValidationException()
         {
             // Arrange
