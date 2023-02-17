@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
@@ -39,11 +41,12 @@ namespace Zennolab.CapMonsterCloud.Requests
         public string Data { get; set; }
 
         /// <summary>
-        /// Browser's User-Agent which is used in emulation.
+        /// Obsolete, use <see cref="HCaptchaResponse.UserAgent"/> instead. Browser's User-Agent which is used in emulation.
         /// </summary>
         /// <remarks>
         /// It is required that you use a signature of a modern browser.
         /// </remarks>
+        [Obsolete("UserAgent is deprecated, please use UserAgent from HCaptchaResponse instead.")]
         [JsonProperty("userAgent")]
         public string UserAgent { get; set; }
 
