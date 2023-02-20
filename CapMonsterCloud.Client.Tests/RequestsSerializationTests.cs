@@ -220,7 +220,6 @@ namespace Zennolab.CapMonsterCloud.Client
                 WebsiteKey = "472fc7af-86a4-4382-9a49-ca9090474471",
                 Invisible = invisible,
                 Data = "some data",
-                UserAgent = "PostmanRuntime/7.29.0",
                 Cookies = new Dictionary<string, string>
                 {
                     { "cookieA", "value#A" },
@@ -240,7 +239,7 @@ namespace Zennolab.CapMonsterCloud.Client
                     websiteKey = target.WebsiteKey,
                     isInvisible = invisible,
                     data = target.Data,
-                    userAgent = target.UserAgent,
+                    userAgent = default(string),
                     cookies = "cookieA=value#A;cookieB=value#B"
                 }));
         }
@@ -254,7 +253,6 @@ namespace Zennolab.CapMonsterCloud.Client
                 WebsiteUrl = "https://lessons.zennolab.com/captchas/hcaptcha/?level=easy",
                 WebsiteKey = "472fc7af-86a4-4382-9a49-ca9090474471",
                 Data = "some data",
-                UserAgent = "PostmanRuntime/7.29.0",
                 Cookies = new Dictionary<string, string>
                 {
                     { "cookieA", "value#A" },
@@ -284,7 +282,7 @@ namespace Zennolab.CapMonsterCloud.Client
                     websiteKey = target.WebsiteKey,
                     isInvisible = target.Invisible,
                     data = target.Data,
-                    userAgent = target.UserAgent,
+                    userAgent = default(string),
                     cookies = "cookieA=value#A;cookieB=value#B"
                 }));
         }

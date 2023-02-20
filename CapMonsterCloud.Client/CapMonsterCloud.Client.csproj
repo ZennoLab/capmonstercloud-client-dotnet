@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.2.0</Version>
-    <PackageReleaseNotes>Add turnstile support</PackageReleaseNotes>
+    <Version>1.3.0</Version>
+    <PackageReleaseNotes>Add respKey and userAgent to hcaptcha response</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

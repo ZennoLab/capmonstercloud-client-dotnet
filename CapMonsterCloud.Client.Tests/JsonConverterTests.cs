@@ -42,7 +42,6 @@ namespace Zennolab.CapMonsterCloud.Client
                 WebsiteKey = "472fc7af-86a4-4382-9a49-ca9090474471",
                 Invisible = false,
                 Data = "some data",
-                UserAgent = "PostmanRuntime/7.29.0",
                 Cookies = new Dictionary<string, string>
                 {
                     { "cookieA", "value#A" },
