@@ -47,7 +47,7 @@ namespace Zennolab.CapMonsterCloud
             }
 
             var responseBody = await response.Content.ReadAsStringAsync();
-            
+
             var result = FromJson<GetBalanceResponse>(responseBody);
             if (result == null)
             {
@@ -174,6 +174,22 @@ namespace Zennolab.CapMonsterCloud
             CancellationToken cancellationToken)
             => Solve<TurnstileResponse>(task, TurnstileTimeouts, cancellationToken);
 
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(
+            RecaptchaComplexImageTaskRequest taskRequest,
+            CancellationToken cancellationToken)
+            => Solve<GridComplexImageTaskResponse>(taskRequest, ImageToTextTimeouts, cancellationToken);
+
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(
+            HCaptchaComplexImageTaskRequest taskRequest,
+            CancellationToken cancellationToken)
+            => Solve<GridComplexImageTaskResponse>(taskRequest, ImageToTextTimeouts, cancellationToken);
+
         private async Task<CaptchaResult<TSolution>> Solve<TSolution>(
             CaptchaRequestBase task,
             GetResultTimeouts getResultTimeouts,
@@ -209,13 +225,14 @@ namespace Zennolab.CapMonsterCloud
                             default:
                                 break;
                         }
-                    } catch (OperationCanceledException)
+                    }
+                    catch (OperationCanceledException)
                     {
                         if (getResultTimeoutCts.IsCancellationRequested)
                         {
                             break;
                         }
-                        
+
                         throw;
                     }
 
@@ -313,7 +330,7 @@ namespace Zennolab.CapMonsterCloud
             => ErrorCodeConverter.Convert(errorCode);
 
         private static string ToJson(object data)
-            => JsonConvert.SerializeObject(data);
+            => JsonConvert.SerializeObject(data, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
         private static TOut FromJson<TOut>(string json)
             => JsonConvert.DeserializeObject<TOut>(json);

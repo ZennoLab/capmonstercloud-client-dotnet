@@ -1,0 +1,9 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=3bf802fa_002Dea55_002D41cd_002Db4e7_002Da7a771a7bbb9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="SolveAsync_RecaptchaComplexImageTask_ShouldSolve" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::490E1BBC-51B6-4330-9D0A-85734DF113CE::net5.0::Zennolab.CapMonsterCloud.Client.ClientIntegrationTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::490E1BBC-51B6-4330-9D0A-85734DF113CE::net5.0::Zennolab.CapMonsterCloud.Client.Tests.ErrorCodeConverterTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::490E1BBC-51B6-4330-9D0A-85734DF113CE::net5.0::Zennolab.CapMonsterCloud.Client.JsonConverterTests&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::490E1BBC-51B6-4330-9D0A-85734DF113CE::net5.0::Zennolab.CapMonsterCloud.Client.RequestsSerializationTests&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
