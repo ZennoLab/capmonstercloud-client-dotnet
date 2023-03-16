@@ -172,5 +172,27 @@ namespace Zennolab.CapMonsterCloud
         /// <returns>Captcha recognition result</returns>
         Task<CaptchaResult<TurnstileResponse>> SolveAsync(TurnstileProxylessRequest task, CancellationToken cancellationToken);
 
+        /// <summary>
+        /// Solve <see cref="ComplexImageTaskRequestBase.TaskType"/> task with 'recaptcha' class
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 10secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(RecaptchaComplexImageTaskRequest task, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Solve <see cref="ComplexImageTaskRequestBase.TaskType"/> task with 'hcaptcha' class
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 10 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(HCaptchaComplexImageTaskRequest task, CancellationToken cancellationToken);
+
     }
 }

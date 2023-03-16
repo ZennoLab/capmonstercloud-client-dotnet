@@ -1,7 +1,9 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Zennolab.CapMonsterCloud.Requests;
 
@@ -194,7 +196,7 @@ namespace Zennolab.CapMonsterCloud.Client
             _ = await act.Should().ThrowAsync<System.ComponentModel.DataAnnotations.ValidationException>()
                 .WithMessage("*The field MinScore must be between 0.1 and 0.9*");
         }
-        
+
         [Test]
         [TestCase(101)]
         [TestCase(102)]
@@ -263,6 +265,80 @@ namespace Zennolab.CapMonsterCloud.Client
             // Assert
             _ = await act.Should().ThrowAsync<System.ComponentModel.DataAnnotations.ValidationException>()
                 .WithMessage("*The field Gt must be a string with a minimum length of 1*");
+        }
+
+        [Test]
+        public async Task SolveAsync_RecaptchaComplexImageTask_ShouldSolve()
+        {
+            // Arrange
+            var target = CapMonsterCloudClientFactory.Create(ClientOptions);
+
+            var request = new RecaptchaComplexImageTaskRequest
+            {
+                WebsiteUrl = "https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=middle",
+                Metadata = new RecaptchaComplexImageTaskRequest.RecaptchaMetadata()
+                {
+                    Grid = RecaptchaComplexImageTaskRequest.RecaptchaMetadata.GridSize.Grid3x3,
+                    Task = "Click on traffic lights"
+                },
+                ImageUrls = new List<string>
+                {
+                    "https://i.postimg.cc/yYjg75Kv/payloadtraffic.jpg"
+                },
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36."
+            };
+
+            var watch = new Stopwatch();
+            watch.Start();
+
+            // Act
+            var actual = await target.SolveAsync(request, default);
+
+            // Assert
+            watch.Stop();
+
+            _ = actual.Error.Should().BeNull();
+            _ = actual.Solution.Should().NotBeNull();
+            _ = actual.Solution.Answer.Should().Match(answers => answers.Any(answer => answer));
+
+            Console.WriteLine($"{watch.ElapsedMilliseconds}: solve result: {string.Join(',', actual.Solution.Answer.Select(a => a.ToString()))}");
+        }
+
+        [Test]
+        public async Task SolveAsync_HCaptchaComplexImageTask_ShouldSolve()
+        {
+            // Arrange
+            var target = CapMonsterCloudClientFactory.Create(ClientOptions);
+
+            var request = new HCaptchaComplexImageTaskRequest()
+            {
+                WebsiteUrl = "https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=middle",
+                Metadata = new HCaptchaComplexImageTaskRequest.HCaptchaMetadata()
+                {
+                    Task = "Please click each image containing a mountain"
+                },
+                ImageUrls = new List<string>
+                {
+                    "https://i.postimg.cc/kg71cbRt/image-1.jpg",
+                    "https://i.postimg.cc/6381Zx2j/image.jpg"
+                },
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36."
+            };
+
+            var watch = new Stopwatch();
+            watch.Start();
+
+            // Act
+            var actual = await target.SolveAsync(request, default);
+
+            // Assert
+            watch.Stop();
+
+            _ = actual.Error.Should().BeNull();
+            _ = actual.Solution.Should().NotBeNull();
+            _ = actual.Solution.Answer.Should().Equal(false, true);
+
+            Console.WriteLine($"{watch.ElapsedMilliseconds}: solve result: {string.Join(',', actual.Solution.Answer.Select(a => a.ToString()))}");
         }
     }
 }
