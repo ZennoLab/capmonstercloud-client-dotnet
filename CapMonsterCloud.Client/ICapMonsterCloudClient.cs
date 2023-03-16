@@ -173,7 +173,7 @@ namespace Zennolab.CapMonsterCloud
         Task<CaptchaResult<TurnstileResponse>> SolveAsync(TurnstileProxylessRequest task, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Solve <see cref="RecaptchaComplexImageTaskRequest.TaskType"/> task with 'recaptcha' class
+        /// Solve <see cref="ComplexImageTaskRequestBase.TaskType"/> task with 'recaptcha' class
         /// </summary>
         /// <param name="task"></param>
         /// <param name="cancellationToken"></param>
@@ -184,7 +184,7 @@ namespace Zennolab.CapMonsterCloud
         Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(RecaptchaComplexImageTaskRequest task, CancellationToken cancellationToken);
 
         /// <summary>
-        /// Solve <see cref="RecaptchaComplexImageTaskRequest.TaskType"/> task with 'hcaptcha' class
+        /// Solve <see cref="ComplexImageTaskRequestBase.TaskType"/> task with 'hcaptcha' class
         /// </summary>
         /// <param name="task"></param>
         /// <param name="cancellationToken"></param>

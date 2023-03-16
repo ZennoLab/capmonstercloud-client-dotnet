@@ -15,16 +15,20 @@ namespace Zennolab.CapMonsterCloud.Requests
         public sealed class RecaptchaMetadata
         {
             private const string EnumPrefix = "Grid";
-            public enum GridSize
-            {
-                Grid3x3,
-                Grid4x4,
-                Grid1x1
-            }
 
             /// <summary>
             /// Image grid.
             /// </summary>
+            public enum GridSize
+            {
+#pragma warning disable CS1591
+                Grid3x3,
+                Grid4x4,
+                Grid1x1
+#pragma warning restore CS1591
+            }
+
+            /// <inheritdoc cref="GridSize"/>
             [JsonIgnore]
             public GridSize Grid
             {
