@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 
 namespace Zennolab.CapMonsterCloud
 {
@@ -79,10 +80,9 @@ namespace Zennolab.CapMonsterCloud
 
         private static string CreateUserAgentString()
         {
-            var fileVersionInfo = System.Diagnostics.FileVersionInfo
-                .GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-            return $"{fileVersionInfo.ProductName}/{fileVersionInfo.ProductVersion}";
+            var fileVersionInfo = Assembly.GetExecutingAssembly().GetName();
+            
+            return $"{fileVersionInfo.Name}/{fileVersionInfo.Version}";
         }
 
         /// <inheritdoc/>

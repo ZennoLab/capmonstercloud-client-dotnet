@@ -16,7 +16,7 @@ namespace Zennolab.CapMonsterCloud
         /// <param name="cancellationToken"></param>
         /// <returns>Current amount of money</returns>
         /// <exception cref="GetBalanceException"></exception>
-        Task<decimal> GetBalanceAsync(CancellationToken cancellationToken);
+        Task<decimal> GetBalanceAsync(CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="ImageToTextRequest.TaskType"/> task
@@ -27,7 +27,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 300ms to 6s period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<ImageToTextResponse>> SolveAsync(ImageToTextRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<ImageToTextResponse>> SolveAsync(ImageToTextRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="RecaptchaV2Request.TaskType"/> task
@@ -38,7 +38,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 180 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<RecaptchaV2Response>> SolveAsync(RecaptchaV2Request task, CancellationToken cancellationToken);
+        Task<CaptchaResult<RecaptchaV2Response>> SolveAsync(RecaptchaV2Request task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="RecaptchaV2ProxylessRequest.TaskType"/> task
@@ -49,7 +49,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 180 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<RecaptchaV2Response>> SolveAsync(RecaptchaV2ProxylessRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<RecaptchaV2Response>> SolveAsync(RecaptchaV2ProxylessRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="RecaptchaV3ProxylessRequest.TaskType"/> task
@@ -60,7 +60,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 180 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<RecaptchaV3Response>> SolveAsync(RecaptchaV3ProxylessRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<RecaptchaV3Response>> SolveAsync(RecaptchaV3ProxylessRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="FunCaptchaRequest.TaskType"/> task
@@ -71,7 +71,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 80 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<FunCaptchaResponse>> SolveAsync(FunCaptchaRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<FunCaptchaResponse>> SolveAsync(FunCaptchaRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="FunCaptchaProxylessRequest.TaskType"/> task
@@ -82,7 +82,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 80 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<FunCaptchaResponse>> SolveAsync(FunCaptchaProxylessRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<FunCaptchaResponse>> SolveAsync(FunCaptchaProxylessRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="HCaptchaRequest.TaskType"/> task
@@ -93,7 +93,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 180 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<HCaptchaResponse>> SolveAsync(HCaptchaRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<HCaptchaResponse>> SolveAsync(HCaptchaRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="HCaptchaProxylessRequest.TaskType"/> task
@@ -104,7 +104,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 180 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<HCaptchaResponse>> SolveAsync(HCaptchaProxylessRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<HCaptchaResponse>> SolveAsync(HCaptchaProxylessRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="GeeTestRequest.TaskType"/> task
@@ -115,7 +115,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 80 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<GeeTestResponse>> SolveAsync(GeeTestRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<GeeTestResponse>> SolveAsync(GeeTestRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="GeeTestProxylessRequest.TaskType"/> task
@@ -126,7 +126,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 80 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<GeeTestResponse>> SolveAsync(GeeTestProxylessRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<GeeTestResponse>> SolveAsync(GeeTestProxylessRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="RecaptchaV2EnterpriseRequest.TaskType"/> task
@@ -137,7 +137,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 180 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<RecaptchaV2EnterpriseResponse>> SolveAsync(RecaptchaV2EnterpriseRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<RecaptchaV2EnterpriseResponse>> SolveAsync(RecaptchaV2EnterpriseRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="RecaptchaV2EnterpriseProxylessRequest.TaskType"/> task
@@ -148,7 +148,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 180 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<RecaptchaV2EnterpriseResponse>> SolveAsync(RecaptchaV2EnterpriseProxylessRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<RecaptchaV2EnterpriseResponse>> SolveAsync(RecaptchaV2EnterpriseProxylessRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="TurnstileRequest.TaskType"/> task
@@ -159,7 +159,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 80 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<TurnstileResponse>> SolveAsync(TurnstileRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<TurnstileResponse>> SolveAsync(TurnstileRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="TurnstileProxylessRequest.TaskType"/> task
@@ -170,7 +170,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 - 80 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<TurnstileResponse>> SolveAsync(TurnstileProxylessRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<TurnstileResponse>> SolveAsync(TurnstileProxylessRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="ComplexImageTaskRequestBase.TaskType"/> task with 'recaptcha' class
@@ -181,7 +181,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(RecaptchaComplexImageTaskRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(RecaptchaComplexImageTaskRequest task, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Solve <see cref="ComplexImageTaskRequestBase.TaskType"/> task with 'hcaptcha' class
@@ -192,7 +192,7 @@ namespace Zennolab.CapMonsterCloud
         /// You will get response within 10 secs period depending on service workload.
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
-        Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(HCaptchaComplexImageTaskRequest task, CancellationToken cancellationToken);
+        Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(HCaptchaComplexImageTaskRequest task, CancellationToken cancellationToken = default);
 
     }
 }
