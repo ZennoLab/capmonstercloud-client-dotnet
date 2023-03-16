@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace Zennolab.CapMonsterCloud.Responses
 {
@@ -15,6 +16,7 @@ namespace Zennolab.CapMonsterCloud.Responses
         /// <example>
         /// [false,true,false,true,false,false,true,false,false]
         /// </example>
+        [JsonProperty("answer")]
         public ICollection<bool> Answer { get; set; }
     }
 }
