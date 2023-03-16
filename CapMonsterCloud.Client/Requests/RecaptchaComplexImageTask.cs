@@ -23,11 +23,8 @@ namespace Zennolab.CapMonsterCloud.Requests
             }
 
             /// <summary>
-            /// Image grid. Possible values:
+            /// Image grid.
             /// </summary>
-            /// <example>
-            /// Click on traffic lights
-            /// </example>
             [JsonIgnore]
             public GridSize Grid
             {
