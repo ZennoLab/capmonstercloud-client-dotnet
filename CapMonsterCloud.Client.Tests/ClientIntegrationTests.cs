@@ -312,7 +312,7 @@ namespace Zennolab.CapMonsterCloud.Client
 
             var request = new HCaptchaComplexImageTaskRequest()
             {
-                WebsiteUrl = "https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=middle",
+                WebsiteUrl = "https://lessons.zennolab.com/captchas/hcaptcha/?level=easy",
                 Metadata = new HCaptchaComplexImageTaskRequest.HCaptchaMetadata()
                 {
                     Task = "Please click each image containing a mountain"
@@ -337,6 +337,42 @@ namespace Zennolab.CapMonsterCloud.Client
             _ = actual.Error.Should().BeNull();
             _ = actual.Solution.Should().NotBeNull();
             _ = actual.Solution.Answer.Should().Equal(false, true);
+
+            Console.WriteLine($"{watch.ElapsedMilliseconds}: solve result: {string.Join(',', actual.Solution.Answer.Select(a => a.ToString()))}");
+        }
+
+        [Test]
+        public async Task SolveAsync_FunCaptchaComplexImageTask_ShouldSolve()
+        {
+            // Arrange
+            var target = CapMonsterCloudClientFactory.Create(ClientOptions);
+
+            var request = new FunCaptchaComplexImageTaskRequest()
+            {
+                WebsiteUrl = "https://lessons.zennolab.com/captchas/funcaptcha",
+                Metadata = new FunCaptchaComplexImageTaskRequest.FunCaptchaMetadata()
+                {
+                    Task = "Pick the image that is the correct way up"
+                },
+                ImageUrls = new List<string>
+                {
+                    "https://i.postimg.cc/s2ZDrHXy/fc1.jpg"
+                },
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36."
+            };
+
+            var watch = new Stopwatch();
+            watch.Start();
+
+            // Act
+            var actual = await target.SolveAsync(request, default);
+
+            // Assert
+            watch.Stop();
+
+            _ = actual.Error.Should().BeNull();
+            _ = actual.Solution.Should().NotBeNull();
+            _ = actual.Solution.Answer.Should().Equal(false, false, false, false, true, false);
 
             Console.WriteLine($"{watch.ElapsedMilliseconds}: solve result: {string.Join(',', actual.Solution.Answer.Select(a => a.ToString()))}");
         }

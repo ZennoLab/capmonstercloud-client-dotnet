@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.4.1</Version>
-    <PackageReleaseNotes>Add compleximagetask(rc+hc), bug fixes</PackageReleaseNotes>
+    <Version>1.5.0</Version>
+    <PackageReleaseNotes>Add compleximagetask funcaptcha</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
