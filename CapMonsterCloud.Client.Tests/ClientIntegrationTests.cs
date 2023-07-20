@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using Zennolab.CapMonsterCloud.Requests;
 
 namespace Zennolab.CapMonsterCloud.Client
@@ -375,6 +376,47 @@ namespace Zennolab.CapMonsterCloud.Client
             _ = actual.Solution.Answer.Should().Equal(false, false, false, false, true, false);
 
             Console.WriteLine($"{watch.ElapsedMilliseconds}: solve result: {string.Join(',', actual.Solution.Answer.Select(a => a.ToString()))}");
+        }
+
+        [Test]
+        public async Task SolveAsync_GeeTesV4Proxyless_ShouldSolve()
+        {
+            // Arrange
+            var target = CapMonsterCloudClientFactory.Create(ClientOptions);
+            
+            var request = new GeeTestProxylessRequest()
+            {
+                WebsiteUrl = "https://faucetpay.io/account/login",
+                Gt = "4eb8b0c2b27f3365b9244d9da81638c6",
+                Version = 4,
+                InitParameters = new { riskType = "slide" },
+                UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36."
+            };
+
+            var watch = new Stopwatch();
+            watch.Start();
+
+            // Act
+            var actual = await target.SolveAsync(request, default);
+
+            // Assert
+            watch.Stop();
+
+            _ = actual.Error.Should().BeNull();
+            _ = actual.Solution.Should().NotBeNull();
+            
+            _ = actual.Solution.Challenge.Should().BeNull();
+            _ = actual.Solution.Validate.Should().BeNull();
+            _ = actual.Solution.SecCode.Should().BeNull();
+            
+            _ = actual.Solution.CaptchaId.Should().NotBeNull();
+            _ = actual.Solution.LotNumber.Should().NotBeNull();
+            _ = actual.Solution.PassToken.Should().NotBeNull();
+            _ = actual.Solution.GenTime.Should().NotBeNull();
+            _ = actual.Solution.CaptchaOutput.Should().NotBeNull();
+
+            Console.WriteLine(
+                $"{watch.ElapsedMilliseconds}: solve result: {JsonConvert.SerializeObject(actual.Solution) }");
         }
     }
 }

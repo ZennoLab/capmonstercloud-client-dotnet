@@ -24,6 +24,20 @@ namespace Zennolab.CapMonsterCloud.Requests
         [JsonProperty("gt", Required = Required.Always)]
         [StringLength(int.MaxValue, MinimumLength = 1)]
         public string Gt { get; set; }
+        
+        /// <summary>
+        /// The GeeTest version.
+        /// </summary>
+        /// <example>4</example>
+        [JsonProperty("version")]
+        public int? Version { get; set; }
+        
+        /// <summary>
+        /// Init Parameters.
+        /// </summary>
+        /// <example>{ "riskType": "slide" }</example>
+        [JsonProperty("initParameters")]
+        public object InitParameters { get; set; }
 
         /// <summary>
         /// A dynamic key.
