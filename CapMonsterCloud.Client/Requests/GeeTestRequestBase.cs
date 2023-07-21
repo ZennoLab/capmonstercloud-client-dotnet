@@ -26,14 +26,14 @@ namespace Zennolab.CapMonsterCloud.Requests
         public string Gt { get; set; }
         
         /// <summary>
-        /// The GeeTest version.
+        /// Version number. The default value is 3. Versions 4 is supported.
         /// </summary>
         /// <example>4</example>
         [JsonProperty("version")]
         public int? Version { get; set; }
         
         /// <summary>
-        /// Init Parameters.
+        /// Additional initialization parameters for version 4.
         /// </summary>
         /// <example>{ "riskType": "slide" }</example>
         [JsonProperty("initParameters")]
