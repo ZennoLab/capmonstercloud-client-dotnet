@@ -34,17 +34,17 @@ namespace Zennolab.CapMonsterCloud.Requests
         internal override bool UseNoCache => this.NoCache ?? false;
         
         /// <summary>
-        /// Action field, which can be found in the callback function for loading captcha
-        /// Usually "managed" or "non-interactive"
-        /// </summary>
-        /// <example>managed</example>
-        public string CloudflareTaskType { get; set; }
-        
-        /// <summary>
         /// cf_clearance - if cookies are needed
         /// token - if token is needed
         /// </summary>
         /// <example>token</example>
+        public string CloudflareTaskType { get; set; }
+        
+        /// <summary>
+        /// Action field, which can be found in the callback function for loading captcha
+        /// Usually "managed" or "non-interactive"
+        /// </summary>
+        /// <example>managed</example>
         public string PageAction{ get; set; }
 
         /// <summary>
