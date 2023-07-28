@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <AssemblyName>Zennolab.CapMonsterCloud.Client</AssemblyName>
     <RootNamespace>Zennolab.CapMonsterCloud</RootNamespace>
     <Company>Zennolab</Company>
     <Authors>Zennolab</Authors>
     <Description>Official C# client library for capmonster.cloud captcha recognition service</Description>
-    <Copyright>Zennolab, 2022</Copyright>
+    <Copyright>Zennolab, 2023</Copyright>
     <RepositoryType>git</RepositoryType>
     <PackageTags>capmonster capmonster.cloud zennolab recaptcha funcaptcha hcaptcha captcha geetest</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
