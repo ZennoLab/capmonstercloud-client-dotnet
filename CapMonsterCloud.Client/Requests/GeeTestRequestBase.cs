@@ -24,6 +24,20 @@ namespace Zennolab.CapMonsterCloud.Requests
         [JsonProperty("gt", Required = Required.Always)]
         [StringLength(int.MaxValue, MinimumLength = 1)]
         public string Gt { get; set; }
+        
+        /// <summary>
+        /// Version number. The default value is 3. Versions 4 is supported.
+        /// </summary>
+        /// <example>4</example>
+        [JsonProperty("version")]
+        public int? Version { get; set; }
+        
+        /// <summary>
+        /// Additional initialization parameters for version 4.
+        /// </summary>
+        /// <example>{ "riskType": "slide" }</example>
+        [JsonProperty("initParameters")]
+        public object InitParameters { get; set; }
 
         /// <summary>
         /// A dynamic key.
@@ -36,7 +50,7 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// It is necessary to examine the requests and find the one in which this value is returned and,
         /// before each creation of the recognition task, execute this request and parse the <![CDATA[challenge]]> from it.
         /// </remarks>
-        [JsonProperty("challenge", Required = Required.Always)]
+        [JsonProperty("challenge")]
         public string Challenge { get; set; }
 
         /// <summary>

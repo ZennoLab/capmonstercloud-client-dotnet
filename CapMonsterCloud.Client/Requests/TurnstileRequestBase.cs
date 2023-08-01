@@ -32,5 +32,40 @@ namespace Zennolab.CapMonsterCloud.Requests
         public bool? NoCache { get; set; }
 
         internal override bool UseNoCache => this.NoCache ?? false;
+        
+        /// <summary>
+        /// cf_clearance - if cookies are needed
+        /// token - if token is needed
+        /// </summary>
+        /// <example>token</example>
+        public string CloudflareTaskType { get; set; }
+        
+        /// <summary>
+        /// Action field, which can be found in the callback function for loading captcha
+        /// Usually "managed" or "non-interactive"
+        /// </summary>
+        /// <example>managed</example>
+        public string PageAction{ get; set; }
+
+        /// <summary>
+        /// cData
+        /// </summary>
+        /// <example>7ea32c865ef0b936</example>
+        public string Data { get; set; }
+
+        /// <summary>
+        /// chlPageData
+        /// </summary>
+        /// <example>3gAFo2l2MbhCQ3F...Ua3pPVFkzTnk0Mk1ERT0=</example>
+        public string PageData { get; set; }
+        
+        /// <summary>
+        /// Browser's User-Agent which is used in emulation.
+        /// </summary>
+        /// <remarks>
+        /// It is required that you use a signature of a modern browser
+        /// </remarks>
+        [JsonProperty("userAgent")]
+        public string UserAgent { get; set; }
     }
 }
