@@ -47,7 +47,7 @@ namespace Zennolab.CapMonsterCloud
         public static ICapMonsterCloudClient Create(ClientOptions options)
             => Create(options, httpMessageHandlerFactory: null, configureClient: null);
 
-        private static ICapMonsterCloudClient Create(
+        internal static ICapMonsterCloudClient Create(
             ClientOptions options,
             Func<HttpMessageHandler> httpMessageHandlerFactory,
             Action<HttpClient> configureClient)
