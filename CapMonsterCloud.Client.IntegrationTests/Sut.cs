@@ -21,7 +21,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
         public List<(RequestType, string)> actualRequests = new();
 
-        public Sut CreatedSut(string clientKey)
+        public Sut CreateSut(string clientKey)
         {
             var clientOptions = new ClientOptions
             {
@@ -32,7 +32,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
             httpMessageHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
             var httpClient = httpMessageHandler.CreateClient();
 
-            cloudClient = CapMonsterCloudClientFactory.Create(
+            var cloudClientFactory = new CapMonsterCloudClientFactory(
                 clientOptions,
                 () => httpMessageHandler.Object,
                 (_) =>
@@ -41,6 +41,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     httpClient.BaseAddress = clientOptions.ServiceUri;
                 });
 
+            cloudClient = cloudClientFactory.Create();
+                
             return this;
         }
 

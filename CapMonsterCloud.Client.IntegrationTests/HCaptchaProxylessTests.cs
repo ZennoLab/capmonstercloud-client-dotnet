@@ -51,7 +51,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                             gRecaptchaResponse = captchaSolution.Value,
                             respKey = captchaSolution.RespKey,
                             userAgent = captchaSolution.UserAgent,
-                            coockies = captchaRequest.Cookies,
+                            cookies = captchaRequest.Cookies,
                         },
                         errorId = 0,
                         errorCode = (string)null!,
@@ -67,7 +67,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 Solution = captchaSolution
             };
 
-            var sut = new Sut().CreatedSut(clientKey);
+            var sut = new Sut().CreateSut(clientKey);
             sut.SetupHttpServer(actualResponses);
 
             var actual = await sut.SolveAsync(captchaRequest);
