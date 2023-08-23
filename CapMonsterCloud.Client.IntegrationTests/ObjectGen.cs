@@ -1,3 +1,4 @@
+using System.Linq;
 using Zennolab.CapMonsterCloud.Requests;
 using Zennolab.CapMonsterCloud.Responses;
 
