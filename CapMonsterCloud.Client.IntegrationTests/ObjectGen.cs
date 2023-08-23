@@ -1,34 +1,35 @@
 using Zennolab.CapMonsterCloud.Requests;
 using Zennolab.CapMonsterCloud.Responses;
 
-namespace CapMonsterCloud.Client.IntegrationTests;
-
-public static class ObjectGen
+namespace CapMonsterCloud.Client.IntegrationTests
 {
-    public static class HCaptchaProxyless
+    public static class ObjectGen
     {
-        public static HCaptchaProxylessRequest CreateRequest()
+        public static class HCaptchaProxyless
         {
-            return new HCaptchaProxylessRequest
+            public static HCaptchaProxylessRequest CreateRequest()
             {
-                WebsiteUrl = Gen.RandomUri().ToString(),
-                WebsiteKey = Gen.RandomGuid(),
-                Invisible = Gen.RandomBool(),
-                Data = Gen.RandomString(),
-                UserAgent = Gen.UserAgent(),
-                Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
-                NoCache = Gen.RandomBool()
-            };
-        }
+                return new HCaptchaProxylessRequest
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    WebsiteKey = Gen.RandomGuid(),
+                    Invisible = Gen.RandomBool(),
+                    Data = Gen.RandomString(),
+                    UserAgent = Gen.UserAgent(),
+                    Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
+                    NoCache = Gen.RandomBool()
+                };
+            }
 
-        public static HCaptchaResponse CreateResponse()
-        {
-            return new HCaptchaResponse
+            public static HCaptchaResponse CreateResponse()
             {
-                RespKey = Gen.RandomString(),
-                UserAgent = Gen.UserAgent(),
-                Value = Gen.RandomString(),
-            };
+                return new HCaptchaResponse
+                {
+                    RespKey = Gen.RandomString(),
+                    UserAgent = Gen.UserAgent(),
+                    Value = Gen.RandomString(),
+                };
+            }
         }
     }
 }

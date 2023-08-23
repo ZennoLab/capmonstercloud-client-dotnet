@@ -1,8 +1,9 @@
-namespace CapMonsterCloud.Client.IntegrationTests;
-
-public enum RequestType
+namespace CapMonsterCloud.Client.IntegrationTests
 {
-    GetBalance,
-    CreateTask,
-    GetTaskResult
+    public enum RequestType
+    {
+        GetBalance,
+        CreateTask,
+        GetTaskResult
+    }
 }
