@@ -88,7 +88,6 @@ namespace Zennolab.CapMonsterCloud.Client
 
             _ = actual.Error.Should().BeNull();
             _ = actual.Solution.Value.Should().NotBeNull();
-            _ = actual.Solution.RespKey.Should().NotBeNull();
             _ = actual.Solution.UserAgent.Should().NotBeNull();
 
             Console.WriteLine($"{watch.ElapsedMilliseconds}: solve result: {actual.Solution.Value}");

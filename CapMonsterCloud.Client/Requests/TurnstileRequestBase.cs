@@ -38,6 +38,7 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// token - if token is needed
         /// </summary>
         /// <example>token</example>
+        [JsonProperty("cloudflareTaskType")]
         public string CloudflareTaskType { get; set; }
         
         /// <summary>
@@ -45,20 +46,30 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// Usually "managed" or "non-interactive"
         /// </summary>
         /// <example>managed</example>
+        [JsonProperty("pageAction")]
         public string PageAction{ get; set; }
 
         /// <summary>
         /// cData
         /// </summary>
         /// <example>7ea32c865ef0b936</example>
+        [JsonProperty("data")]
         public string Data { get; set; }
 
         /// <summary>
         /// chlPageData
         /// </summary>
         /// <example>3gAFo2l2MbhCQ3F...Ua3pPVFkzTnk0Mk1ERT0=</example>
+        [JsonProperty("pageData")]
         public string PageData { get; set; }
-        
+
+        /// <summary>
+        /// A base64 encoded html page with a captcha.
+        /// </summary>
+        /// <example>PCFET0NUWVBFIGh0...vYm9keT48L2h0bWw+</example>
+        [JsonProperty("htmlPageBase64")]
+        public string HtmlPageBase64 { get; set; }
+
         /// <summary>
         /// Browser's User-Agent which is used in emulation.
         /// </summary>
