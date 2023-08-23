@@ -18,5 +18,11 @@ namespace Zennolab.CapMonsterCloud.Responses
         /// </example>
         [JsonProperty("token")]
         public string Value { get; set; }
+        
+        /// <summary>
+        /// Special cloudflare cookies that can be set in the browser
+        /// </summary>
+        [JsonProperty("cf_clearance")]
+        public string Clearance { get; set; }
     }
 }

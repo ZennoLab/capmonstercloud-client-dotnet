@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.6.0</Version>
-    <PackageReleaseNotes>Add GeeTest V4</PackageReleaseNotes>
+    <Version>1.7.0</Version>
+    <PackageReleaseNotes>Add Turnstile challenge bot 5s</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
