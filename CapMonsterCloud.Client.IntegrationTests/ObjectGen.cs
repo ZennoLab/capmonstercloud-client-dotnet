@@ -1,4 +1,5 @@
 using System.Linq;
+using Zennolab.CapMonsterCloud;
 using Zennolab.CapMonsterCloud.Requests;
 using Zennolab.CapMonsterCloud.Responses;
 
@@ -6,6 +7,34 @@ namespace CapMonsterCloud.Client.IntegrationTests
 {
     public static class ObjectGen
     {
+        public static class RecaptchaV2Proxyless
+        {
+            public static RecaptchaV2ProxylessRequest CreateRequest()
+            {
+                return new RecaptchaV2ProxylessRequest
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    WebsiteKey = Gen.RandomGuid(),
+                    DataSValue = Gen.RandomString(),
+                    UserAgent = Gen.UserAgent(),
+                    Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
+                    NoCache = Gen.RandomBool()
+                };
+            }
+
+            public static CaptchaResult<RecaptchaV2Response> CreateResponse()
+            {
+                return new CaptchaResult<RecaptchaV2Response>
+                {
+                    Error = null,
+                    Solution = new RecaptchaV2Response
+                    {
+                        Value = Gen.RandomString(),
+                    }
+                };
+            }
+        }
+        
         public static class HCaptchaProxyless
         {
             public static HCaptchaProxylessRequest CreateRequest()
@@ -22,13 +51,17 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
 
-            public static HCaptchaResponse CreateResponse()
+            public static CaptchaResult<HCaptchaResponse> CreateResponse()
             {
-                return new HCaptchaResponse
+                return new CaptchaResult<HCaptchaResponse>
                 {
-                    RespKey = Gen.RandomString(),
-                    UserAgent = Gen.UserAgent(),
-                    Value = Gen.RandomString(),
+                    Error = null,
+                    Solution = new HCaptchaResponse
+                    {
+                        RespKey = Gen.RandomString(),
+                        UserAgent = Gen.UserAgent(),
+                        Value = Gen.RandomString(),
+                    }
                 };
             }
         }

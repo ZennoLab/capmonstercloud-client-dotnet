@@ -17,9 +17,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
     public class Sut
     {
         private Mock<HttpMessageHandler> httpMessageHandler;
-        private ICapMonsterCloudClient cloudClient;
-
-        public List<(RequestType, string)> actualRequests = new();
+        private ICapMonsterCloudClient _cloudClient;
+        private List<(RequestType, string)> _actualRequests = new();
 
         public Sut CreateSut(string clientKey)
         {
@@ -41,15 +40,25 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     httpClient.BaseAddress = clientOptions.ServiceUri;
                 });
 
-            cloudClient = cloudClientFactory.Create();
+            _cloudClient = cloudClientFactory.Create();
                 
             return this;
         }
 
-        public async Task<CaptchaResult<HCaptchaResponse>> SolveAsync(
-            HCaptchaProxylessRequest request)
+        public async Task<CaptchaResult<RecaptchaV2Response>> SolveAsync (
+            RecaptchaV2ProxylessRequest request) => await _cloudClient.SolveAsync(request);
+        
+        public async Task<CaptchaResult<HCaptchaResponse>> SolveAsync (
+            HCaptchaProxylessRequest request) => await _cloudClient.SolveAsync(request);
+
+        public async Task<decimal> GetBalanceAsync()
         {
-            return await cloudClient.SolveAsync(request, default);
+            return await _cloudClient.GetBalanceAsync();
+        }
+
+        public List<(RequestType, string)> GetActualRequests()
+        {
+            return _actualRequests;
         }
 
         public void SetupHttpServer(
@@ -76,7 +85,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
             var requestStringContent = request.Content.ReadAsStringAsync().Result;
 
-            actualRequests.Add(new(type, requestStringContent));
+            _actualRequests.Add(new(type, requestStringContent));
 
             return true;
         }
