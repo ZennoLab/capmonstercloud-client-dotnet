@@ -16,33 +16,32 @@ namespace CapMonsterCloud.Client.IntegrationTests
 {
     public class Sut
     {
-        private Mock<HttpMessageHandler> httpMessageHandler;
-        private ICapMonsterCloudClient _cloudClient;
-        private List<(RequestType, string)> _actualRequests = new();
+        private readonly Mock<HttpMessageHandler> _httpMessageHandler;
+        private readonly ICapMonsterCloudClient _cloudClient;
+        private readonly List<(RequestType, string)> _actualRequests = new();
 
-        public Sut CreateSut(string clientKey)
+        public Sut(string clientKey)
         {
+            _httpMessageHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+            
             var clientOptions = new ClientOptions
             {
                 ServiceUri = Gen.RandomUri(),
                 ClientKey = clientKey
             };
-
-            httpMessageHandler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
-            var httpClient = httpMessageHandler.CreateClient();
+            
+            var httpClient = _httpMessageHandler.CreateClient();
 
             var cloudClientFactory = new CapMonsterCloudClientFactory(
                 clientOptions,
-                () => httpMessageHandler.Object,
+                () => _httpMessageHandler.Object,
                 (_) =>
                 {
-                    httpMessageHandler.CreateClient();
+                    _httpMessageHandler.CreateClient();
                     httpClient.BaseAddress = clientOptions.ServiceUri;
                 });
-
+            
             _cloudClient = cloudClientFactory.Create();
-                
-            return this;
         }
 
         public async Task<CaptchaResult<RecaptchaV2Response>> SolveAsync (
@@ -64,7 +63,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
         public void SetupHttpServer(
             List<object> expectedResponses)
         {
-            var part = httpMessageHandler
+            var part = _httpMessageHandler
                 .Protected()
                 .SetupSequence<Task<HttpResponseMessage>>(
                     "SendAsync",
@@ -80,10 +79,13 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
         private bool SaveRequest(HttpRequestMessage request)
         {
-            var path = request.RequestUri.GetComponents(UriComponents.Path, UriFormat.Unescaped);
+            if (request.RequestUri == null && request.Content == null)
+                return false;
+            
+            var path = request.RequestUri!.GetComponents(UriComponents.Path, UriFormat.Unescaped);
             var type = Enum.Parse<RequestType>(path,true);
 
-            var requestStringContent = request.Content.ReadAsStringAsync().Result;
+            var requestStringContent = request.Content!.ReadAsStringAsync().Result;
 
             _actualRequests.Add(new(type, requestStringContent));
 

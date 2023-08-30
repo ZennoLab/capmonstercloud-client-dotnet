@@ -45,7 +45,9 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomGuid(),
                     Invisible = Gen.RandomBool(),
                     Data = Gen.RandomString(),
+#pragma warning disable CS0618
                     UserAgent = Gen.UserAgent(),
+#pragma warning restore CS0618
                     Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
                     NoCache = Gen.RandomBool()
                 };

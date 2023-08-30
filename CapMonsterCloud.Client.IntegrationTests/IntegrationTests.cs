@@ -27,7 +27,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 new { balance = balance, errorId = 0, errorCode = (string)null! },
             };
 
-            var sut = new Sut().CreateSut(clientKey);
+            var sut = new Sut(clientKey);
             sut.SetupHttpServer(actualResponses);
 
             var actual = await sut.GetBalanceAsync();
@@ -73,7 +73,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 }
             };
 
-            var sut = new Sut().CreateSut(clientKey);
+            var sut = new Sut(clientKey);
             sut.SetupHttpServer(captchaResults);
 
             var actual = await sut.SolveAsync(captchaRequest);
@@ -120,7 +120,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 }
             };
 
-            var sut = new Sut().CreateSut(clientKey);
+            var sut = new Sut(clientKey);
             sut.SetupHttpServer(captchaResults);
 
             var actual = await sut.SolveAsync(captchaRequest);
