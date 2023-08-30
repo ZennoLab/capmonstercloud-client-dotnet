@@ -7,7 +7,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
 {
     public static class Gen
     {
-        private static readonly Random Rnd = new Random();
+        private static readonly Random Rnd = new();
 
         public static int RandomInt()
         {
@@ -23,13 +23,6 @@ namespace CapMonsterCloud.Client.IntegrationTests
             return Rnd.Next(
                 minValue: minValue,
                 maxValue: maxValue);
-        }
-
-        public static long RandomLong()
-        {
-            return RandomLong(
-                minValue: long.MinValue,
-                maxValue: long.MaxValue);
         }
 
         public static long RandomLong(
@@ -69,13 +62,6 @@ namespace CapMonsterCloud.Client.IntegrationTests
             return Convert.ToDecimal(RandomDouble((double)minValue, (double)maxValue));
         }
 
-        public static double RandomDouble()
-        {
-            return RandomDouble(
-                minValue: double.MinValue / 2,
-                maxValue: double.MaxValue / 2);
-        }
-
         public static double RandomDouble(
             double minValue,
             double maxValue) =>
@@ -92,20 +78,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
             return string.Join(string.Empty, values).Substring(0, length);
         }
 
-        public static List<string> RandomStrings(int count) =>
-            Enumerable.Repeat(0, count).Select(x => RandomString()).ToList();
-
         public static T RandomElement<T>(this IEnumerable<T> elements) =>
             elements.OrderBy(x => RandomString()).First();
-
-        public static T RandomEnum<T>()
-        {
-            var enumValues = Enum.GetValues(typeof(T)).Cast<T>();
-            return enumValues.RandomElement();
-        }
-
-        public static string RandomEmail() =>
-            Guid.NewGuid().ToString("N") + "@zennolab.com";
 
         public static List<T> ListOfValues<T>(Func<T> createFunc) =>
             ListOfValues(createFunc, 5);
@@ -117,24 +91,6 @@ namespace CapMonsterCloud.Client.IntegrationTests
         }
 
         public static bool RandomBool() => Rnd.NextDouble() >= 0.5;
-
-        public static DateTime RandomDate(int samplingTicks = 10_000_000)
-        {
-            var randomTicks = RandomLong(
-                minValue: 0,
-                maxValue: 3155378975999999999);
-
-            return new DateTime(ticks: randomTicks / samplingTicks * samplingTicks);
-        }
-
-        public static DateTime RandomDateBetween(
-            DateTime firstDate,
-            DateTime secondDate)
-        {
-            var ticksBetween = Math.Abs((firstDate - secondDate).Ticks);
-            var minTicks = Math.Min(firstDate.Ticks, secondDate.Ticks);
-            return new DateTime(ticks: minTicks + RandomLong(0, ticksBetween));
-        }
         
         public static string RandomGuid()
         {
