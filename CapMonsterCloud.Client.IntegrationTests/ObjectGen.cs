@@ -9,7 +9,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
     {
         public static class RecaptchaV2Proxyless
         {
-            public static RecaptchaV2ProxylessRequest CreateRequest()
+            public static RecaptchaV2ProxylessRequest CreateTask()
             {
                 return new RecaptchaV2ProxylessRequest
                 {
@@ -22,7 +22,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
 
-            public static CaptchaResult<RecaptchaV2Response> CreateResponse()
+            public static CaptchaResult<RecaptchaV2Response> CreateSolution()
             {
                 return new CaptchaResult<RecaptchaV2Response>
                 {
@@ -37,7 +37,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
         
         public static class HCaptchaProxyless
         {
-            public static HCaptchaProxylessRequest CreateRequest()
+            public static HCaptchaProxylessRequest CreateTask()
             {
                 return new HCaptchaProxylessRequest
                 {
@@ -51,7 +51,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
 
-            public static CaptchaResult<HCaptchaResponse> CreateResponse()
+            public static CaptchaResult<HCaptchaResponse> CreateSolution()
             {
                 return new CaptchaResult<HCaptchaResponse>
                 {

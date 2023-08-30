@@ -14,7 +14,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
             var clientKey = Gen.RandomApiKey();
             var balance = Gen.RandomDecimal();
 
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
+            var captchaResults = new List<(RequestType Type, string ExpectedRequest)>
             {
                 (
                     Type: RequestType.GetBalance,
@@ -32,7 +32,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
             var actual = await sut.GetBalanceAsync();
 
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
+            sut.GetActualRequests().Should().BeEquivalentTo(captchaResults);
             actual.Should().Be(balance);
         }
 
@@ -42,8 +42,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
             var clientKey = Gen.RandomApiKey();
             var taskId = Gen.RandomInt();
 
-            var captchaRequest = ObjectGen.RecaptchaV2Proxyless.CreateRequest();
-            var expectedResult = ObjectGen.RecaptchaV2Proxyless.CreateResponse();
+            var captchaRequest = ObjectGen.RecaptchaV2Proxyless.CreateTask();
+            var expectedResult = ObjectGen.RecaptchaV2Proxyless.CreateSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {
@@ -58,7 +58,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 ),
             };
 
-            var actualResponses = new List<object>
+            var captchaResults = new List<object>
             {
                 new { taskId = taskId, errorId = 0, errorCode = (string)null! },
                 new
@@ -74,7 +74,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
             };
 
             var sut = new Sut().CreateSut(clientKey);
-            sut.SetupHttpServer(actualResponses);
+            sut.SetupHttpServer(captchaResults);
 
             var actual = await sut.SolveAsync(captchaRequest);
 
@@ -88,8 +88,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
             var clientKey = Gen.RandomApiKey();
             var taskId = Gen.RandomInt();
 
-            var captchaRequest = ObjectGen.HCaptchaProxyless.CreateRequest();
-            var expectedResult = ObjectGen.HCaptchaProxyless.CreateResponse();
+            var captchaRequest = ObjectGen.HCaptchaProxyless.CreateTask();
+            var expectedResult = ObjectGen.HCaptchaProxyless.CreateSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {
@@ -104,7 +104,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 ),
             };
 
-            var actualResponses = new List<object>
+            var captchaResults = new List<object>
             {
                 new { taskId = taskId, errorId = 0, errorCode = (string)null! },
                 new
@@ -121,7 +121,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
             };
 
             var sut = new Sut().CreateSut(clientKey);
-            sut.SetupHttpServer(actualResponses);
+            sut.SetupHttpServer(captchaResults);
 
             var actual = await sut.SolveAsync(captchaRequest);
 

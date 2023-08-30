@@ -81,7 +81,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
         private bool SaveRequest(HttpRequestMessage request)
         {
             var path = request.RequestUri.GetComponents(UriComponents.Path, UriFormat.Unescaped);
-            var type = (RequestType)Enum.Parse(typeof(RequestType), path, true);
+            var type = Enum.Parse<RequestType>(path,true);
 
             var requestStringContent = request.Content.ReadAsStringAsync().Result;
 
