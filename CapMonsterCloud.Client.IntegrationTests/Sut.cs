@@ -67,7 +67,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 .Protected()
                 .SetupSequence<Task<HttpResponseMessage>>(
                     "SendAsync",
-                    ItExpr.Is<HttpRequestMessage>(request => SaveRequest(request)),
+                    ItExpr.Is<HttpRequestMessage>(request => SaveRequest(request).Result),
                     ItExpr.IsAny<CancellationToken>()
                 );
 
@@ -77,7 +77,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
             }
         }
 
-        private bool SaveRequest(HttpRequestMessage request)
+        private async Task<bool> SaveRequest(HttpRequestMessage request)
         {
             if (request.RequestUri == null && request.Content == null)
                 return false;
@@ -85,7 +85,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
             var path = request.RequestUri!.GetComponents(UriComponents.Path, UriFormat.Unescaped);
             var type = Enum.Parse<RequestType>(path,true);
 
-            var requestStringContent = request.Content!.ReadAsStringAsync().Result;
+            var requestStringContent = await request.Content!.ReadAsStringAsync();
 
             _actualRequests.Add(new(type, requestStringContent));
 
