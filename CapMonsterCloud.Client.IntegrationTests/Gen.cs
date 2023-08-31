@@ -97,19 +97,6 @@ namespace CapMonsterCloud.Client.IntegrationTests
             return Guid.NewGuid().ToString();
         }
         
-        public static string RandomApiKey()
-        {
-            return RandomApiKey(Guid.NewGuid());
-        }
-        
-        public static string RandomApiKey(Guid guid)
-        {
-            var key = guid.ToByteArray();
-            using var hmac = new MD5CryptoServiceProvider();
-            var h = hmac.ComputeHash(key);
-            return BitConverter.ToString(h).Replace("-", string.Empty).ToLower();
-        }
-        
         public static string UserAgent()
         {
             return "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36";

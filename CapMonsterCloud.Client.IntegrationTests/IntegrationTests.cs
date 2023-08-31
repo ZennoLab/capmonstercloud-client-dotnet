@@ -11,7 +11,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
         [Test]
         public async Task GetBalance_ShouldReturn()
         {
-            var clientKey = Gen.RandomApiKey();
+            var clientKey = Gen.RandomString();
             var balance = Gen.RandomDecimal();
 
             var captchaResults = new List<(RequestType Type, string ExpectedRequest)>
@@ -39,7 +39,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
         [Test]
         public async Task RecaptchaV2Proxyless_ShouldSolve()
         {
-            var clientKey = Gen.RandomApiKey();
+            var clientKey = Gen.RandomString();
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.RecaptchaV2Proxyless.CreateTask();
@@ -85,7 +85,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
         [Test]
         public async Task HCaptchaProxyless_ShouldSolve()
         {
-            var clientKey = Gen.RandomApiKey();
+            var clientKey = Gen.RandomString();
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.HCaptchaProxyless.CreateTask();
