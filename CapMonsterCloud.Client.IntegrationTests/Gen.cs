@@ -81,6 +81,12 @@ namespace CapMonsterCloud.Client.IntegrationTests
         public static T RandomElement<T>(this IEnumerable<T> elements) =>
             elements.OrderBy(x => RandomString()).First();
 
+        public static T RandomEnum<T>()
+        {
+            var enumValues = Enum.GetValues(typeof(T)).Cast<T>();
+            return enumValues.RandomElement();
+        }
+
         public static List<T> ListOfValues<T>(Func<T> createFunc) =>
             ListOfValues(createFunc, 5);
 
