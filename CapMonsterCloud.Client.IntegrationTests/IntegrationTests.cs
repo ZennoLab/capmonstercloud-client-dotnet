@@ -761,7 +761,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
             Func<Task> actual = () => sut.SolveAsync(captchaRequest);
             
             _ = await actual.Should().ThrowAsync<System.ComponentModel.DataAnnotations.ValidationException>()
-                .WithMessage("*The field MinScore must be between 0,1 and 0,9*");
+                .WithMessage("*The field MinScore must be between 0?1 and 0?9*");
         }
         
         [Test]
