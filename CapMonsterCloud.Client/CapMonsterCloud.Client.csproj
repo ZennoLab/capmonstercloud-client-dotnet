@@ -46,4 +46,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="CapMonsterCloud.Client.IntegrationTests" />
+  </ItemGroup>
+
 </Project>
