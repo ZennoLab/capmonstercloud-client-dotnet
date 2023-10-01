@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.7.0</Version>
-    <PackageReleaseNotes>Add Turnstile challenge bot 5s</PackageReleaseNotes>
+    <Version>1.7.1</Version>
+    <PackageReleaseNotes>Turnstile challenge bot 5s htmlPageBase64 property add</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
@@ -44,6 +44,10 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="CapMonsterCloud.Client.IntegrationTests" />
   </ItemGroup>
 
 </Project>
