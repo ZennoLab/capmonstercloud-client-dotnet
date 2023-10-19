@@ -128,6 +128,52 @@ namespace CapMonsterCloud.Client.IntegrationTests
             sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
             actual.Should().BeEquivalentTo(expectedResult);
         }
+        
+        [Test]
+        public async Task RecaptchaV2Enterprise_ShouldSolve()
+        {
+            var clientKey = Gen.RandomString();
+            var taskId = Gen.RandomInt();
+
+            var captchaRequest = ObjectGen.RecaptchaV2Enterprise.CreateTask();
+            var expectedResult = ObjectGen.RecaptchaV2Enterprise.CreateSolution();
+
+            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
+            {
+                (
+                    Type: RequestType.CreateTask,
+                    ExpectedRequest: JsonConvert.SerializeObject(new
+                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
+                ),
+                (
+                    Type: RequestType.GetTaskResult,
+                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
+                ),
+            };
+
+            var captchaResults = new List<object>
+            {
+                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
+                new
+                {
+                    status = "ready",
+                    solution = new
+                    {
+                        gRecaptchaResponse = expectedResult.Solution.Value
+                    },
+                    errorId = 0,
+                    errorCode = (string)null!
+                }
+            };
+
+            var sut = new Sut(clientKey);
+            sut.SetupHttpServer(captchaResults);
+
+            var actual = await sut.SolveAsync(captchaRequest);
+
+            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
+            actual.Should().BeEquivalentTo(expectedResult);
+        }
 
         [Test]
         public async Task RecaptchaV2Proxyless_ShouldSolve()
@@ -137,6 +183,52 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
             var captchaRequest = ObjectGen.RecaptchaV2.CreateProxylessTask();
             var expectedResult = ObjectGen.RecaptchaV2.CreateSolution();
+
+            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
+            {
+                (
+                    Type: RequestType.CreateTask,
+                    ExpectedRequest: JsonConvert.SerializeObject(new
+                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
+                ),
+                (
+                    Type: RequestType.GetTaskResult,
+                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
+                ),
+            };
+
+            var captchaResults = new List<object>
+            {
+                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
+                new
+                {
+                    status = "ready",
+                    solution = new
+                    {
+                        gRecaptchaResponse = expectedResult.Solution.Value
+                    },
+                    errorId = 0,
+                    errorCode = (string)null!
+                }
+            };
+
+            var sut = new Sut(clientKey);
+            sut.SetupHttpServer(captchaResults);
+
+            var actual = await sut.SolveAsync(captchaRequest);
+
+            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
+            actual.Should().BeEquivalentTo(expectedResult);
+        }
+        
+        [Test]
+        public async Task RecaptchaV2EnterpriseProxyless_ShouldSolve()
+        {
+            var clientKey = Gen.RandomString();
+            var taskId = Gen.RandomInt();
+
+            var captchaRequest = ObjectGen.RecaptchaV2Enterprise.CreateProxylessTask();
+            var expectedResult = ObjectGen.RecaptchaV2Enterprise.CreateSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {
