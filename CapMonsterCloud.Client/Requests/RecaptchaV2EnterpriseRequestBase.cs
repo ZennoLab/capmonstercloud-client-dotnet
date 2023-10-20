@@ -37,7 +37,7 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// Send it to the API, so that we render the Recaptcha widget with this parameter properly.
         /// </summary>
         [JsonProperty("enterprisePayload")]
-        [StringLength(int.MaxValue, MinimumLength = 1)]
+        [StringLength(int.MaxValue)]
         public string EnterprisePayload { get; set; }
 
         /// <summary>
