@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.7.1</Version>
-    <PackageReleaseNotes>Turnstile challenge bot 5s htmlPageBase64 property add</PackageReleaseNotes>
+    <Version>1.7.2</Version>
+    <PackageReleaseNotes>RecaptchaV2Enterprise.EnterprisePayload is not required</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

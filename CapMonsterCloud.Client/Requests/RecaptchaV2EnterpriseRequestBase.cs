@@ -36,7 +36,7 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// In this example, you will notice a parameter "s" which is not documented, but obviously required.
         /// Send it to the API, so that we render the Recaptcha widget with this parameter properly.
         /// </summary>
-        [JsonProperty("enterprisePayload", Required = Required.Always)]
+        [JsonProperty("enterprisePayload")]
         [StringLength(int.MaxValue, MinimumLength = 1)]
         public string EnterprisePayload { get; set; }
 
