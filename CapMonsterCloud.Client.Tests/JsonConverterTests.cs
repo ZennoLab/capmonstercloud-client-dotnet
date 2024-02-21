@@ -29,7 +29,7 @@ namespace Zennolab.CapMonsterCloud.Client
             var actual = JsonConvert.DeserializeObject<ImageToTextRequest>(target);
 
             // Assert
-            _ = actual.Numeric.Should().Be(request.Numeric);
+            _ = actual!.Numeric.Should().Be(request.Numeric);
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace Zennolab.CapMonsterCloud.Client
             var actual = JsonConvert.DeserializeObject<HCaptchaProxylessRequest>(target);
 
             // Assert
-            _ = actual.Cookies.Should().ContainKeys(request.Cookies.Keys);
+            _ = actual!.Cookies.Should().ContainKeys(request.Cookies.Keys);
             _ = actual.Cookies.Should().ContainValues(request.Cookies.Values);
         }
 
@@ -76,7 +76,7 @@ namespace Zennolab.CapMonsterCloud.Client
                 });
 
             // Act
-            Func<HCaptchaProxylessRequest> act = () => JsonConvert.DeserializeObject<HCaptchaProxylessRequest>(target);
+            Func<HCaptchaProxylessRequest> act = () => JsonConvert.DeserializeObject<HCaptchaProxylessRequest>(target)!;
 
             // Assert
             _ = act.Should().Throw<JsonReaderException>();
