@@ -204,5 +204,27 @@ namespace Zennolab.CapMonsterCloud
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
         Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(FunCaptchaComplexImageTaskRequest task, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Solve <see cref="CustomTaskRequestBase.TaskType"/> task with 'DataDome' class
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 10 - 180 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<CustomTaskResponse>> SolveAsync(DataDomeCustomTaskRequest task, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Solve <see cref="CustomTaskRequestBase.TaskType"/> task with 'DataDome' class
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 10 - 180 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<CustomTaskResponse>> SolveAsync(DataDomeCustomTaskProxylessRequest task, CancellationToken cancellationToken = default);
     }
 }

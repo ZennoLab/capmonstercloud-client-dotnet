@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Zennolab.CapMonsterCloud;
 using Zennolab.CapMonsterCloud.Requests;
@@ -170,6 +171,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
 #pragma warning disable CS0618
                     UserAgent = Gen.UserAgent(),
 #pragma warning restore CS0618
+                    FallbackToActualUA = Gen.RandomBool(),
                     Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
                     NoCache = Gen.RandomBool(),
                     ProxyType = Gen.RandomEnum<ProxyType>(),
@@ -191,6 +193,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
 #pragma warning disable CS0618
                     UserAgent = Gen.UserAgent(),
 #pragma warning restore CS0618
+                    FallbackToActualUA = Gen.RandomBool(),
                     Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
                     NoCache = Gen.RandomBool()
                 };
@@ -373,6 +376,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     },
                     ImageUrls = Gen.ListOfValues(Gen.RandomUri().ToString),
                     ImagesBase64 = Gen.ListOfValues(Gen.RandomString),
+                    ExampleImageUrls = Gen.ListOfValues(Gen.RandomUri().ToString),
+                    ExampleImagesBase64 = Gen.ListOfValues(Gen.RandomString),
                     UserAgent = Gen.UserAgent()
                 };
             }
@@ -400,6 +405,59 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Solution = new GridComplexImageTaskResponse
                     {
                         Answer = Gen.ListOfValues(Gen.RandomBool),
+                    }
+                };
+            }
+        }
+
+        public static class CustomTask
+        {
+            public static DataDomeCustomTaskRequest CreateDataDomeTask()
+            {
+                return new DataDomeCustomTaskRequest(Gen.RandomUri().ToString())
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    UserAgent = Gen.UserAgent(),
+                    Domains = Gen.ListOfValues(Gen.RandomString),
+                    ProxyType = Gen.RandomEnum<ProxyType>(),
+                    ProxyAddress = Gen.RandomString(),
+                    ProxyPort = Gen.RandomInt(0, 65535),
+                    ProxyLogin = Gen.RandomString(),
+                    ProxyPassword = Gen.RandomString()
+                };
+            }
+
+            public static DataDomeCustomTaskProxylessRequest CreateDataDomeProxylessTask()
+            {
+                return new DataDomeCustomTaskProxylessRequest(Gen.RandomUri().ToString())
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    UserAgent = Gen.UserAgent(),
+                    Domains = Gen.ListOfValues(Gen.RandomString)
+                };
+            }
+
+            public static CaptchaResult<CustomTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<CustomTaskResponse>
+                {
+                    Error = null,
+                    Solution = new CustomTaskResponse
+                    {
+                        Domains = new Dictionary<string, CustomTaskResponse.DomainInfo>
+                        {
+                            {
+                                Gen.RandomString(),
+                                new CustomTaskResponse.DomainInfo()
+                                {
+                                    Cookies = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } },
+                                    LocalStorage = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
+                                }
+                            },
+                        },
+                        Url = Gen.RandomUri().ToString(),
+                        Fingerprint = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } },
+                        Headers = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
                     }
                 };
             }

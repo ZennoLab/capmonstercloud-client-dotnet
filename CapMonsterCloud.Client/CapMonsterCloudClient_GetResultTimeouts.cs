@@ -76,5 +76,12 @@ namespace Zennolab.CapMonsterCloud
             RequestsInterval = TimeSpan.FromSeconds(1),
             Timeout = TimeSpan.FromSeconds(80)
         };
+
+        private static readonly GetResultTimeouts DataDomeTimeouts = new GetResultTimeouts
+        {
+            FirstRequestDelay = TimeSpan.FromSeconds(1),
+            RequestsInterval = TimeSpan.FromSeconds(3),
+            Timeout = TimeSpan.FromSeconds(180)
+        };
     }
 }
