@@ -8,6 +8,7 @@ namespace Zennolab.CapMonsterCloud.Responses
     /// </summary>
     public class CustomTaskResponse
     {
+        /// <inheritdoc/>
         public sealed class DomainInfo
         {
             /// <inheritdoc/>
