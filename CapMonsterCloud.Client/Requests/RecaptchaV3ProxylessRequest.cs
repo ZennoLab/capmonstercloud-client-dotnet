@@ -7,7 +7,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// Recaptcha V3 recognition request (without proxy).
     /// </summary>
     /// <example>
-    /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/566853650/RecaptchaV3TaskProxyless+solving+Google+ReCaptcha+v.3
+    /// https://zenno.link/doc-recaptcha3-en
     /// </example>
     public sealed class RecaptchaV3ProxylessRequest : CaptchaRequestBase
     {
@@ -58,7 +58,7 @@ namespace Zennolab.CapMonsterCloud.Requests
 
         /// <summary>
         /// Set true if the site only accepts a portion of the tokens from CapMonster Cloud.
-        /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/1832714243/What+if+the+site+only+accepts+a+portion+of+the+tokens+from+CapMonster+Cloud
+        /// https://zenno.link/doc-token-accept-en
         /// </summary>
         [JsonProperty("nocache", NullValueHandling = NullValueHandling.Ignore)]
         public bool? NoCache { get; set; }

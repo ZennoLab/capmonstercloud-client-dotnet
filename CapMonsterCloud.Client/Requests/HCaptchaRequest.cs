@@ -8,7 +8,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// HCaptcha recognition request (with proxy).
     /// </summary>
     /// <example>
-    /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/1203240988/HCaptchaTask+hCaptcha+puzzle+solving
+    /// https://zenno.link/doc-hcaptcha-proxy-en
     /// </example>
     public sealed class HCaptchaRequest : HCaptchaRequestBase, IProxyInfo
     {

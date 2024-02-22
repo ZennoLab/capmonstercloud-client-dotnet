@@ -7,7 +7,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// ImageToText recognition request
     /// </summary>
     /// <example>
-    /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/655469/ImageToTextTask+solve+image+captcha
+    /// https://zenno.link/doc-ImageToTextTask-en
     /// </example>
     public sealed class ImageToTextRequest : CaptchaRequestBase
     {
