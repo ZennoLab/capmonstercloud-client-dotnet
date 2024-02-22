@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.7.2</Version>
-    <PackageReleaseNotes>RecaptchaV2Enterprise.EnterprisePayload is not required</PackageReleaseNotes>
+	<Version>1.8.2</Version>
+	<PackageReleaseNotes>Added DataDome. HCaptcha CIT ref images. Fallback to actual UA</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
