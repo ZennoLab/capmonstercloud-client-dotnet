@@ -8,7 +8,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// Turnstile recognition request (with proxy).
     /// </summary>
     /// <example>
-    /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/2256797706/TurnstileTask+Turnstile
+    /// https://zenno.link/doc-turnstile-proxy-en
     /// </example>
     public sealed class TurnstileRequest : TurnstileRequestBase, IProxyInfo
     {

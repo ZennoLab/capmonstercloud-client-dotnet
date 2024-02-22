@@ -8,7 +8,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// GeeTest recognition request (with proxy).
     /// </summary>
     /// <example>
-    /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/1940357159/GeeTestTask+GeeTest+captcha+recognition
+    /// https://zenno.link/doc-geetest-proxy-en
     /// </example>
     public sealed class GeeTestRequest : GeeTestRequestBase, IProxyInfo
     {

@@ -7,9 +7,6 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <summary>
     /// FunCaptcha recognition request (with proxy).
     /// </summary>
-    /// <example>
-    /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/735805497/FunCaptchaTask+solving+FunCaptcha
-    /// </example>
     public sealed class FunCaptchaRequest : FunCaptchaRequestBase, IProxyInfo
     {
         /// <summary>
