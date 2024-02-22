@@ -15,7 +15,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-    <Version>1.7.2</Version>
+    <Version>1.7.3</Version>
     <PackageReleaseNotes>RecaptchaV2Enterprise.EnterprisePayload is not required</PackageReleaseNotes>
   </PropertyGroup>
 
