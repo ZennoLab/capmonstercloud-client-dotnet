@@ -15,7 +15,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-	<Version>1.8.2</Version>
+	<Version>1.8.0</Version>
 	<PackageReleaseNotes>Added DataDome. HCaptcha CIT ref images. Fallback to actual UA</PackageReleaseNotes>
   </PropertyGroup>
 
