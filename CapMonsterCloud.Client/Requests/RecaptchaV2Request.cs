@@ -8,7 +8,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// Recaptcha V2 recognition request (with proxy).
     /// </summary>
     /// <example>
-    /// https://zennolab.atlassian.net/wiki/spaces/APIS/pages/373161985/NoCaptchaTaskProxyless+solving+Google+recaptcha
+    /// https://zenno.link/doc-recaptcha2-proxy-en
     /// </example>
     public sealed class RecaptchaV2Request : RecaptchaV2RequestBase, IProxyInfo
     {
