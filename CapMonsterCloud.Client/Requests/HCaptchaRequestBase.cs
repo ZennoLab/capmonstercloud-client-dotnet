@@ -51,6 +51,21 @@ namespace Zennolab.CapMonsterCloud.Requests
         public string UserAgent { get; set; }
 
         /// <summary>
+        /// true - when specifying this parameter, we ignore the irrelevant User Agent
+        /// that users send in the request, and return our own (relevant) one with
+        /// getTaskResult. This will improve the acceptance of tokens.
+        ///
+        /// false - we insert the User Agent that is specified in the request. If the User
+        /// Agent is invalid, you will receive an error ERROR_WRONG_USERAGENT
+        /// (USERAGENT IS EXPIRED in the log).
+        ///
+        /// null - we insert the User Agent that is specified in the request,
+        /// but we don’t validate it
+        /// </summary>
+        [JsonProperty("fallbackToActualUA", NullValueHandling = NullValueHandling.Ignore)]
+        public bool? FallbackToActualUA { get; set; }
+
+        /// <summary>
         /// Additional cookies which we must use during interaction with target page.
         /// </summary>
         [JsonProperty("cookies")]

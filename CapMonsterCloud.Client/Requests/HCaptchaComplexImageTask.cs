@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
@@ -34,5 +35,17 @@ namespace Zennolab.CapMonsterCloud.Requests
         [JsonProperty("metadata")]
         [Required]
         public HCaptchaMetadata Metadata { get; set; }
+
+        /// <summary>
+        /// Collection with image urls. Number of elements depends on type of captcha. Must be populated if <see cref="ExampleImagesBase64"/> not.
+        /// </summary>
+        [JsonProperty("exampleImageUrls")]
+        public ICollection<string> ExampleImageUrls { get; set; }
+
+        /// <summary>
+        /// Collection with base64 encoded images. Number of elements depends on type of captcha. Must be populated if <see cref="ExampleImageUrls"/> not.
+        /// </summary>
+        [JsonProperty("exampleImagesBase64")]
+        public ICollection<string> ExampleImagesBase64 { get; set; }
     }
 }

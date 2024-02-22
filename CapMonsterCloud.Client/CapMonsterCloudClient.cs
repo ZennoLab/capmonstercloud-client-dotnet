@@ -198,6 +198,22 @@ namespace Zennolab.CapMonsterCloud
             CancellationToken cancellationToken)
             => Solve<GridComplexImageTaskResponse>(taskRequest, ImageToTextTimeouts, cancellationToken);
 
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            DataDomeCustomTaskRequest task,
+            CancellationToken cancellationToken)
+            => Solve<CustomTaskResponse>(task, DataDomeTimeouts, cancellationToken);
+
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            DataDomeCustomTaskProxylessRequest task,
+            CancellationToken cancellationToken)
+            => Solve<CustomTaskResponse>(task, DataDomeTimeouts, cancellationToken);
+
         private async Task<CaptchaResult<TSolution>> Solve<TSolution>(
             CaptchaRequestBase task,
             GetResultTimeouts getResultTimeouts,
