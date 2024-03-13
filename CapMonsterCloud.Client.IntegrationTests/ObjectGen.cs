@@ -414,7 +414,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
         {
             public static DataDomeCustomTaskRequest CreateDataDomeTask()
             {
-                return new DataDomeCustomTaskRequest(Gen.RandomUri().ToString())
+                return new DataDomeCustomTaskRequest(Gen.RandomString(), Gen.RandomUri().ToString(), Gen.RandomString())
                 {
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
@@ -429,7 +429,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
             public static DataDomeCustomTaskProxylessRequest CreateDataDomeProxylessTask()
             {
-                return new DataDomeCustomTaskProxylessRequest(Gen.RandomUri().ToString())
+                return new DataDomeCustomTaskProxylessRequest(Gen.RandomString(), Gen.RandomUri().ToString(), Gen.RandomString())
                 {
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
