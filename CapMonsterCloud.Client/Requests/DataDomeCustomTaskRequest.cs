@@ -9,11 +9,8 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// </summary>
     public sealed class DataDomeCustomTaskRequest : DataDomeCustomTaskRequestBase
     {
-        /// <summary>
-        /// captchaUrl - the value will be set to Metadata property
-        /// </summary>
-        /// <param name="captchaUrl"></param>
-        public DataDomeCustomTaskRequest(string captchaUrl) : base(captchaUrl) { }
+        /// <inheritdoc/>
+        public DataDomeCustomTaskRequest(string datadomeCookie, string captchaUrl = null, string htmlPageBase64 = null) : base(datadomeCookie, captchaUrl, htmlPageBase64) { }
 
         /// <inheritdoc/>
         [JsonProperty("proxyType", Required = Required.Always)]
