@@ -36,7 +36,7 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// You can take the link from the page with the captcha.
         /// Often it looks like https://geo.captcha-delivery.com/captcha/?initialCid=...
         /// </summary>
-        [JsonProperty("metadata", Required = Required.Always)]
+        [JsonProperty("metadata", Required = Required.Always, NullValueHandling = NullValueHandling.Ignore)]
         public object Metadata { get; set; }
 
         /// <summary>
