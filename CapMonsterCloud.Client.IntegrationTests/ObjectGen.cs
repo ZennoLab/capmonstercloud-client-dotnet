@@ -462,5 +462,37 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
         }
+
+        public static class AmazonWafProxyless
+        {
+            public static AmazonWafProxylessRequest CreateTask()
+            {
+                return new AmazonWafProxylessRequest()
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    WebsiteKey = Gen.RandomGuid(),
+                    CaptchaScript = Gen.RandomString(),
+                    ChallengeScript = Gen.RandomString(),
+                    Context = Gen.RandomString(),
+                    Iv = Gen.RandomString(),
+                    CookieSolution = Gen.RandomBool()
+                };
+            }
+
+            public static CaptchaResult<AmazonWafResponse> CreateSolution()
+            {
+                return new CaptchaResult<AmazonWafResponse>
+                {
+                    Error = null,
+                    Solution = new AmazonWafResponse
+                    {
+                        CaptchaVoucher = Gen.RandomString(),
+                        ExistingToken = Gen.RandomString(),
+                        UserAgent = Gen.UserAgent(),
+                        Cookies = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
+                    }
+                };
+            }
+        }
     }
 }
