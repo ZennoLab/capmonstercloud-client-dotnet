@@ -437,7 +437,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
 
-            public static CaptchaResult<CustomTaskResponse> CreateSolution()
+            public static CaptchaResult<CustomTaskResponse> CreateDataDomeSolution()
             {
                 return new CaptchaResult<CustomTaskResponse>
                 {
@@ -458,6 +458,82 @@ namespace CapMonsterCloud.Client.IntegrationTests
                         Url = Gen.RandomUri().ToString(),
                         Fingerprint = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } },
                         Headers = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
+                    }
+                };
+            }
+
+            public static TenDiCustomTaskRequest CreateTenDiTask()
+            {
+                return new TenDiCustomTaskRequest
+                {
+                    WebsiteKey = Gen.RandomGuid(),
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    UserAgent = Gen.UserAgent(),
+                    ProxyType = Gen.RandomEnum<ProxyType>(),
+                    ProxyAddress = Gen.RandomString(),
+                    ProxyPort = Gen.RandomInt(0, 65535),
+                    ProxyLogin = Gen.RandomString(),
+                    ProxyPassword = Gen.RandomString()
+                };
+            }
+
+            public static TenDiCustomTaskProxylessRequest CreateTenDiProxylessTask()
+            {
+                return new TenDiCustomTaskProxylessRequest
+                {
+                    WebsiteKey = Gen.RandomGuid(),
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    UserAgent = Gen.UserAgent(),
+                };
+            }
+
+            public static CaptchaResult<CustomTaskResponse> CreateTenDiSolution()
+            {
+                return new CaptchaResult<CustomTaskResponse>
+                {
+                    Error = null,
+                    Solution = new CustomTaskResponse
+                    {
+                        Headers = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } },
+                        Data = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
+                    }
+                };
+            }
+
+            public static BasiliskCustomTaskRequest CreateBasiliskTask()
+            {
+                return new BasiliskCustomTaskRequest
+                {
+                    WebsiteKey = Gen.RandomGuid(),
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    UserAgent = Gen.UserAgent(),
+                    ProxyType = Gen.RandomEnum<ProxyType>(),
+                    ProxyAddress = Gen.RandomString(),
+                    ProxyPort = Gen.RandomInt(0, 65535),
+                    ProxyLogin = Gen.RandomString(),
+                    ProxyPassword = Gen.RandomString()
+                };
+            }
+
+            public static BasiliskCustomTaskProxylessRequest CreateBasiliskProxylessTask()
+            {
+                return new BasiliskCustomTaskProxylessRequest()
+                {
+                    WebsiteKey = Gen.RandomGuid(),
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    UserAgent = Gen.UserAgent(),
+                };
+            }
+
+            public static CaptchaResult<CustomTaskResponse> CreateBasiliskSolution()
+            {
+                return new CaptchaResult<CustomTaskResponse>
+                {
+                    Error = null,
+                    Solution = new CustomTaskResponse
+                    {
+                        Headers = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } },
+                        Data = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
                     }
                 };
             }

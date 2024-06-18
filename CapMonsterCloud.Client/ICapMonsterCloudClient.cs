@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Zennolab.CapMonsterCloud.Requests;
 using Zennolab.CapMonsterCloud.Responses;
@@ -248,5 +250,49 @@ namespace Zennolab.CapMonsterCloud
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
         Task<CaptchaResult<AmazonWafResponse>> SolveAsync(AmazonWafRequest task, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Solve <see cref="CustomTaskRequestBase.TaskType"/> task with 'TenDi' class
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 10 - 180 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<CustomTaskResponse>> SolveAsync(TenDiCustomTaskRequest task, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Solve <see cref="CustomTaskRequestBase.TaskType"/> task with 'TenDi' class
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 10 - 180 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<CustomTaskResponse>> SolveAsync(TenDiCustomTaskProxylessRequest task, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Solve <see cref="CustomTaskRequestBase.TaskType"/> task with 'Basilisk' class
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 10 - 100 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<CustomTaskResponse>> SolveAsync(BasiliskCustomTaskRequest task, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Solve <see cref="CustomTaskRequestBase.TaskType"/> task with 'Basilisk' class
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 10 - 100 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<CustomTaskResponse>> SolveAsync(BasiliskCustomTaskProxylessRequest task, CancellationToken cancellationToken = default);
     }
 }

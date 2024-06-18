@@ -662,7 +662,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.CustomTask.CreateDataDomeTask();
-            var expectedResult = ObjectGen.CustomTask.CreateSolution();
+            var expectedResult = ObjectGen.CustomTask.CreateDataDomeSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {
@@ -711,7 +711,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.CustomTask.CreateDataDomeProxylessTask();
-            var expectedResult = ObjectGen.CustomTask.CreateSolution();
+            var expectedResult = ObjectGen.CustomTask.CreateDataDomeSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {
@@ -1070,6 +1070,194 @@ namespace CapMonsterCloud.Client.IntegrationTests
                         captcha_voucher = expectedResult.Solution.CaptchaVoucher,
                         userAgent = expectedResult.Solution.UserAgent,
                         cookies = expectedResult.Solution.Cookies
+                    },
+                    errorId = 0,
+                    errorCode = (string)null!
+                }
+            };
+
+            var sut = new Sut(clientKey);
+            sut.SetupHttpServer(captchaResults);
+
+            var actual = await sut.SolveAsync(captchaRequest);
+
+            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
+            actual.Should().BeEquivalentTo(expectedResult);
+        }
+
+        [Test]
+        public async Task TenDi_ShouldSolve()
+        {
+            var clientKey = Gen.RandomString();
+            var taskId = Gen.RandomInt();
+
+            var captchaRequest = ObjectGen.CustomTask.CreateTenDiTask();
+            var expectedResult = ObjectGen.CustomTask.CreateTenDiSolution();
+
+            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
+            {
+                (
+                    Type: RequestType.CreateTask,
+                    ExpectedRequest: JsonConvert.SerializeObject(new
+                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
+                ),
+                (
+                    Type: RequestType.GetTaskResult,
+                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
+                ),
+            };
+
+            var captchaResults = new List<object>
+            {
+                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
+                new
+                {
+                    status = "ready",
+                    solution = new
+                    {
+                        data = expectedResult.Solution.Data,
+                        headers = expectedResult.Solution.Headers
+                    },
+                    errorId = 0,
+                    errorCode = (string)null!
+                }
+            };
+
+            var sut = new Sut(clientKey);
+            sut.SetupHttpServer(captchaResults);
+
+            var actual = await sut.SolveAsync(captchaRequest);
+
+            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
+            actual.Should().BeEquivalentTo(expectedResult);
+        }
+
+        [Test]
+        public async Task TenDiProxyless_ShouldSolve()
+        {
+            var clientKey = Gen.RandomString();
+            var taskId = Gen.RandomInt();
+
+            var captchaRequest = ObjectGen.CustomTask.CreateTenDiProxylessTask();
+            var expectedResult = ObjectGen.CustomTask.CreateTenDiSolution();
+
+            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
+            {
+                (
+                    Type: RequestType.CreateTask,
+                    ExpectedRequest: JsonConvert.SerializeObject(new
+                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
+                ),
+                (
+                    Type: RequestType.GetTaskResult,
+                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
+                ),
+            };
+
+            var captchaResults = new List<object>
+            {
+                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
+                new
+                {
+                    status = "ready",
+                    solution = new
+                    {
+                        data = expectedResult.Solution.Data,
+                        headers = expectedResult.Solution.Headers
+                    },
+                    errorId = 0,
+                    errorCode = (string)null!
+                }
+            };
+
+            var sut = new Sut(clientKey);
+            sut.SetupHttpServer(captchaResults);
+
+            var actual = await sut.SolveAsync(captchaRequest);
+
+            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
+            actual.Should().BeEquivalentTo(expectedResult);
+        }
+
+        [Test]
+        public async Task Basilisk_ShouldSolve()
+        {
+            var clientKey = Gen.RandomString();
+            var taskId = Gen.RandomInt();
+
+            var captchaRequest = ObjectGen.CustomTask.CreateBasiliskTask();
+            var expectedResult = ObjectGen.CustomTask.CreateBasiliskSolution();
+
+            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
+            {
+                (
+                    Type: RequestType.CreateTask,
+                    ExpectedRequest: JsonConvert.SerializeObject(new
+                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
+                ),
+                (
+                    Type: RequestType.GetTaskResult,
+                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
+                ),
+            };
+
+            var captchaResults = new List<object>
+            {
+                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
+                new
+                {
+                    status = "ready",
+                    solution = new
+                    {
+                        data = expectedResult.Solution.Data,
+                        headers = expectedResult.Solution.Headers
+                    },
+                    errorId = 0,
+                    errorCode = (string)null!
+                }
+            };
+
+            var sut = new Sut(clientKey);
+            sut.SetupHttpServer(captchaResults);
+
+            var actual = await sut.SolveAsync(captchaRequest);
+
+            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
+            actual.Should().BeEquivalentTo(expectedResult);
+        }
+
+        [Test]
+        public async Task BasiliskProxyless_ShouldSolve()
+        {
+            var clientKey = Gen.RandomString();
+            var taskId = Gen.RandomInt();
+
+            var captchaRequest = ObjectGen.CustomTask.CreateBasiliskProxylessTask();
+            var expectedResult = ObjectGen.CustomTask.CreateBasiliskSolution();
+
+            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
+            {
+                (
+                    Type: RequestType.CreateTask,
+                    ExpectedRequest: JsonConvert.SerializeObject(new
+                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
+                ),
+                (
+                    Type: RequestType.GetTaskResult,
+                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
+                ),
+            };
+
+            var captchaResults = new List<object>
+            {
+                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
+                new
+                {
+                    status = "ready",
+                    solution = new
+                    {
+                        data = expectedResult.Solution.Data,
+                        headers = expectedResult.Solution.Headers
                     },
                     errorId = 0,
                     errorCode = (string)null!

@@ -107,6 +107,18 @@ namespace CapMonsterCloud.Client.IntegrationTests
         public async Task<CaptchaResult<AmazonWafResponse>> SolveAsync(
             AmazonWafRequest request) => await _cloudClient.SolveAsync(request);
 
+        public async Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            TenDiCustomTaskRequest request) => await _cloudClient.SolveAsync(request);
+
+        public async Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            TenDiCustomTaskProxylessRequest request) => await _cloudClient.SolveAsync(request);
+
+        public async Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            BasiliskCustomTaskRequest request) => await _cloudClient.SolveAsync(request);
+
+        public async Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            BasiliskCustomTaskProxylessRequest request) => await _cloudClient.SolveAsync(request);
+
         public async Task<decimal> GetBalanceAsync()
         {
             return await _cloudClient.GetBalanceAsync();

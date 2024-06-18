@@ -230,6 +230,38 @@ namespace Zennolab.CapMonsterCloud
             CancellationToken cancellationToken)
             => Solve<AmazonWafResponse>(task, AmazonWafTimeouts, cancellationToken);
 
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            TenDiCustomTaskRequest task,
+            CancellationToken cancellationToken)
+            => Solve<CustomTaskResponse>(task, TenDiTimeouts, cancellationToken);
+
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            TenDiCustomTaskProxylessRequest task,
+            CancellationToken cancellationToken)
+            => Solve<CustomTaskResponse>(task, TenDiTimeouts, cancellationToken);
+
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            BasiliskCustomTaskRequest task,
+            CancellationToken cancellationToken)
+            => Solve<CustomTaskResponse>(task, BasiliskTimeouts, cancellationToken);
+
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            BasiliskCustomTaskProxylessRequest task,
+            CancellationToken cancellationToken)
+            => Solve<CustomTaskResponse>(task, BasiliskTimeouts, cancellationToken);
+
         private async Task<CaptchaResult<TSolution>> Solve<TSolution>(
             CaptchaRequestBase task,
             GetResultTimeouts getResultTimeouts,
