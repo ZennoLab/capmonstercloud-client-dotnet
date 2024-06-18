@@ -237,5 +237,16 @@ namespace Zennolab.CapMonsterCloud
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
         Task<CaptchaResult<AmazonWafResponse>> SolveAsync(AmazonWafProxylessRequest task, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Solve <see cref="AmazonWafRequest.TaskType"/> task
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 10 - 180 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<AmazonWafResponse>> SolveAsync(AmazonWafRequest task, CancellationToken cancellationToken = default);
     }
 }

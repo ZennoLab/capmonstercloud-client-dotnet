@@ -218,6 +218,14 @@ namespace Zennolab.CapMonsterCloud
         /// <exception cref="ValidationException">malformed task object</exception>
         /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
         public Task<CaptchaResult<AmazonWafResponse>> SolveAsync(
+            AmazonWafRequest task,
+            CancellationToken cancellationToken)
+            => Solve<AmazonWafResponse>(task, AmazonWafTimeouts, cancellationToken);
+
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<AmazonWafResponse>> SolveAsync(
             AmazonWafProxylessRequest task,
             CancellationToken cancellationToken)
             => Solve<AmazonWafResponse>(task, AmazonWafTimeouts, cancellationToken);
