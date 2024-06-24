@@ -51,7 +51,7 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// <summary>
         /// For the specified domains the corresponding cookies will be returned in the response.
         /// </summary>
-        [JsonProperty("domains")]
+        [JsonProperty("domains", NullValueHandling = NullValueHandling.Ignore)]
         public ICollection<string> Domains { get; set; }
     }
 }
