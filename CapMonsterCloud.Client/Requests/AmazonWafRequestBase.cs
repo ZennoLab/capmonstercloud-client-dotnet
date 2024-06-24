@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
+    /// <summary>
+    /// Base AmazonWaf recognition request
+    /// </summary>
     public abstract class AmazonWafRequestBase : CaptchaRequestBase
     {
         /// <summary>
