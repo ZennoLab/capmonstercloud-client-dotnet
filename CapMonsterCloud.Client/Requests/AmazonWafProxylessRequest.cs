@@ -13,7 +13,7 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// <summary>
         /// Recognition task type
         /// </summary>
-        public const string TaskType = "AmazonTask";
+        public const string TaskType = "AmazonTaskProxyless";
 
         /// <inheritdoc/>
         [JsonProperty("type", Required = Required.Always)]
