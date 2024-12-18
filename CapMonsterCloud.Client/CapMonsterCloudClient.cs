@@ -262,6 +262,22 @@ namespace Zennolab.CapMonsterCloud
             CancellationToken cancellationToken)
             => Solve<CustomTaskResponse>(task, BasiliskTimeouts, cancellationToken);
 
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<BinanceTaskResponse>> SolveAsync(
+            BinanceTaskRequest task,
+            CancellationToken cancellationToken)
+            => Solve<BinanceTaskResponse>(task, BinanceTimeouts, cancellationToken);
+
+        /// <inheritdoc/>
+        /// <exception cref="ValidationException">malformed task object</exception>
+        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
+        public Task<CaptchaResult<BinanceTaskResponse>> SolveAsync(
+            BinanceTaskProxylessRequest task,
+            CancellationToken cancellationToken)
+            => Solve<BinanceTaskResponse>(task, BinanceTimeouts, cancellationToken);
+
         private async Task<CaptchaResult<TSolution>> Solve<TSolution>(
             CaptchaRequestBase task,
             GetResultTimeouts getResultTimeouts,

@@ -78,5 +78,9 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// </remarks>
         [JsonProperty("userAgent")]
         public string UserAgent { get; set; }
+
+        /// <inheritdoc/>
+        [JsonProperty("apiJsUrl")]
+        public string ApiJsUrl { get; set; }
     }
 }
