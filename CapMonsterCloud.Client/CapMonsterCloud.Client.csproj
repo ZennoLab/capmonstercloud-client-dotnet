@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-	  <Version>1.9.0</Version>
-	  <PackageReleaseNotes>Added DataDome metadata datadomeCookie and htmlPageBase64</PackageReleaseNotes>
+	  <Version>1.10.1</Version>
+	  <PackageReleaseNotes>Fixed AmazonWafProxyless task type</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

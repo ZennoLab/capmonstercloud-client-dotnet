@@ -35,5 +35,9 @@ namespace Zennolab.CapMonsterCloud.Responses
         /// <inheritdoc/>
         [JsonProperty("headers")]
         public Dictionary<string, string> Headers { get; set; }
+
+        /// <inheritdoc/>
+        [JsonProperty("data")]
+        public Dictionary<string, string> Data;
     }
 }
