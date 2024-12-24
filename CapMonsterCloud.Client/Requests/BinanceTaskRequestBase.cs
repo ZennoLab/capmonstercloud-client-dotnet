@@ -23,7 +23,7 @@ namespace Zennolab.CapMonsterCloud.Requests
         public string WebsiteKey { get; set; }
 
         /// <summary>
-        /// A dynamic key. The value of the parameter validateId, securityId, or securityCheckResponseValidateId. It can be taken from the traffic (see the description below).
+        /// A dynamic key. The value of the parameter validateId, securityId, or securityCheckResponseValidateId. It can be taken from the traffic.
         /// </summary>
         [JsonProperty("validateId", Required = Required.Always)]
         public string ValidateId { get; set; }
