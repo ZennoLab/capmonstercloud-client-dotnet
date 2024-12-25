@@ -328,6 +328,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     PageData = Gen.RandomString(),
                     HtmlPageBase64 = Gen.RandomString(),
                     UserAgent = Gen.UserAgent(),
+                    ApiJsUrl = Gen.RandomUri().ToString(),
                     NoCache = Gen.RandomBool()
                 };
             }
