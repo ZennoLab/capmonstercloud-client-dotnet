@@ -294,5 +294,27 @@ namespace Zennolab.CapMonsterCloud
         /// </remarks>
         /// <returns>Captcha recognition result</returns>
         Task<CaptchaResult<CustomTaskResponse>> SolveAsync(BasiliskCustomTaskProxylessRequest task, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Solve <see cref="BinanceTaskProxylessRequest.TaskType"/> task
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 1 - 20 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<BinanceTaskResponse>> SolveAsync(BinanceTaskProxylessRequest task, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Solve <see cref="BinanceTaskRequest.TaskType"/> task
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="cancellationToken"></param>
+        /// <remarks>
+        /// You will get response within 1 - 20 secs period depending on service workload.
+        /// </remarks>
+        /// <returns>Captcha recognition result</returns>
+        Task<CaptchaResult<BinanceTaskResponse>> SolveAsync(BinanceTaskRequest task, CancellationToken cancellationToken = default);
     }
 }

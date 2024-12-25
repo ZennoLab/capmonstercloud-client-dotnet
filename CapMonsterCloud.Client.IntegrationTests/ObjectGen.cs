@@ -328,6 +328,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     PageData = Gen.RandomString(),
                     HtmlPageBase64 = Gen.RandomString(),
                     UserAgent = Gen.UserAgent(),
+                    ApiJsUrl = Gen.RandomUri().ToString(),
                     NoCache = Gen.RandomBool()
                 };
             }
@@ -601,6 +602,67 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     {
                         CaptchaVoucher = Gen.RandomString(),
                         ExistingToken = Gen.RandomString(),
+                        UserAgent = Gen.UserAgent(),
+                        Cookies = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
+                    }
+                };
+            }
+        }
+
+        public static class BinanceTask
+        {
+            public static BinanceTaskRequest CreateTask()
+            {
+                return new BinanceTaskRequest()
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    WebsiteKey = Gen.RandomGuid(),
+                    ValidateId = Gen.RandomString(),
+                    UserAgent = Gen.UserAgent(),
+                    ProxyType = Gen.RandomEnum<ProxyType>(),
+                    ProxyAddress = Gen.RandomString(),
+                    ProxyPort = Gen.RandomInt(0, 65535),
+                    ProxyLogin = Gen.RandomString(),
+                    ProxyPassword = Gen.RandomString()
+                };
+            }
+
+            public static CaptchaResult<BinanceTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<BinanceTaskResponse>
+                {
+                    Error = null,
+                    Solution = new BinanceTaskResponse
+                    {
+                        Value = Gen.RandomString(),
+                        UserAgent = Gen.UserAgent(),
+                        Cookies = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
+                    }
+                };
+            }
+        }
+
+        public static class BinanceTaskProxyless
+        {
+            public static BinanceTaskProxylessRequest CreateTask()
+            {
+                return new BinanceTaskProxylessRequest()
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    WebsiteKey = Gen.RandomGuid(),
+                    ValidateId = Gen.RandomString(),
+                    UserAgent = Gen.UserAgent()
+                };
+            }
+
+            public static CaptchaResult<BinanceTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<BinanceTaskResponse>
+                {
+                    Error = null,
+                    Solution = new BinanceTaskResponse
+                    {
+                        Value = Gen.RandomString(),
                         UserAgent = Gen.UserAgent(),
                         Cookies = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
                     }

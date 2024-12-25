@@ -78,5 +78,11 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// </remarks>
         [JsonProperty("userAgent")]
         public string UserAgent { get; set; }
+
+        /// <summary>
+        /// The string that contains a link to the captcha script.
+        /// </summary>
+        [JsonProperty("apiJsUrl")]
+        public string ApiJsUrl { get; set; }
     }
 }
