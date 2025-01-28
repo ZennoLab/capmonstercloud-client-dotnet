@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-	  <Version>1.10.1</Version>
-	  <PackageReleaseNotes>Fixed AmazonWafProxyless task type</PackageReleaseNotes>
+	  <Version>1.11.0</Version>
+	  <PackageReleaseNotes>Added BinanceTask. Added apiJsUrl parameter to Turnstile</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
