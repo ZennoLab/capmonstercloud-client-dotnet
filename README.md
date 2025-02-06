@@ -29,6 +29,15 @@ Via .NET CLI
     };
     var recaptchaV2Result = await cmCloudClient.SolveAsync(recaptchaV2Request);
 
+    // solve RecaptchaV2 (with proxy)
+    var recaptchaV2Request = new RecaptchaV2Request
+    {
+        WebsiteUrl = "https://lessons.zennolab.com/captchas/recaptcha/v2_simple.php?level=high",
+        WebsiteKey = "6Lcg7CMUAAAAANphynKgn9YAgA4tQ2KI_iqRyTwd",
+        Proxy = new ProxyContainer("203.0.113.45", 8080, ProxyType.Http, "login", "password")
+    };
+    var recaptchaV2Result = await cmCloudClient.SolveAsync(recaptchaV2Request);
+
     // solve HCaptcha (without proxy)
     var hcaptchaRequest = new HCaptchaRequest
     {

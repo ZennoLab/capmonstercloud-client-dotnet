@@ -642,7 +642,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 proxyPort: Gen.RandomInt(65535));
 
             _ = actual.Should().Throw<ArgumentException>()
-                .WithMessage("*Proxy port can not be less than 0 or more than 65535*");
+                .WithMessage("*Proxy port must be between 0 and 65535*");
         }
         
         [Test]

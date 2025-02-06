@@ -5,8 +5,20 @@ using Zennolab.CapMonsterCloud.Validation;
 
 namespace Zennolab.CapMonsterCloud
 {
+    /// <summary>
+    /// Represents a proxy configuration container with validation.
+    /// </summary>
     public class ProxyContainer
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProxyContainer"/> class.
+        /// </summary>
+        /// <param name="address">The proxy IP address (IPv4/IPv6). Must not be a transparent proxy, or from a local network.</param>
+        /// <param name="port">The proxy port number (0-65535).</param>
+        /// <param name="type">The type of the proxy.</param>
+        /// <param name="login">The login credential for proxies requiring authentication.</param>
+        /// <param name="password">The password credential for proxies requiring authentication.</param>
+        /// <exception cref="ArgumentException">Thrown when the port is out of range or the address is invalid.</exception>
         public ProxyContainer(
             string address,
             int port,
@@ -15,10 +27,10 @@ namespace Zennolab.CapMonsterCloud
             string password)
         {
             if (port < 0 || port > 65535)
-                throw new ArgumentException("Proxy port can not be less than 0 or more than 65535");
+                throw new ArgumentException("Proxy port must be between 0 and 65535");
 
             if (!ProxyValidator.IsValidProxy(address))
-                throw new ArgumentNullException("Proxy address is not valid");
+                throw new ArgumentException("Proxy address is not valid");
 
             ProxyAddress = address;
             ProxyPort = port;
@@ -48,7 +60,7 @@ namespace Zennolab.CapMonsterCloud
         public ProxyType ProxyType { get; private set; }
 
         /// <summary>
-        /// Login for proxy which requires authorizaiton (basic)
+        /// Login for proxy which requires authorization (basic)
         /// </summary>
         public string ProxyLogin { get; private set; }
 

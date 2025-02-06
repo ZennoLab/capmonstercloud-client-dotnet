@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Net;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
@@ -12,13 +11,6 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// </example>
     public sealed class GeeTestRequest : CaptchaRequestBaseWithProxy
     {
-        private WebProxy proxy = new WebProxy();
-
-        public GeeTestRequest()
-        {
-
-        }
-
         /// <summary>
         /// Recognition task type
         /// </summary>

@@ -6,9 +6,9 @@ using System.Reflection;
 
 namespace Zennolab.CapMonsterCloud.Validation
 {
-    public static class CustomValidator
+    internal static class TaskValidator
     {
-        public static void ValidateObjectIncludingInternals(object obj)
+        internal static void ValidateObjectIncludingInternals(object obj)
         {
             var results = new List<ValidationResult>();
 

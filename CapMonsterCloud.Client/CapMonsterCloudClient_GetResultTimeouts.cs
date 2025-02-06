@@ -17,6 +17,25 @@ namespace Zennolab.CapMonsterCloud
             public TimeSpan Timeout { get; set; }
         }
 
+        private static readonly GetResultTimeouts DefaultResultTimeouts = new GetResultTimeouts
+        {
+            FirstRequestDelay = TimeSpan.FromSeconds(1),
+            FirstRequestNoCacheDelay = TimeSpan.FromSeconds(10),
+            RequestsInterval = TimeSpan.FromSeconds(1),
+            Timeout = TimeSpan.FromSeconds(80)
+        };
+
+        private static GetResultTimeouts GetTimeouts(Type type)
+        {
+            if (!ResultTimeouts.TryGetValue(type, out var getResultTimeouts) &&
+                !ResultTimeouts.TryGetValue(type.BaseType, out getResultTimeouts))
+            {
+                getResultTimeouts = DefaultResultTimeouts;
+            }
+
+            return getResultTimeouts;
+        }
+
         private static readonly IReadOnlyDictionary<Type, GetResultTimeouts> ResultTimeouts =
             new Dictionary<Type, GetResultTimeouts>
             {

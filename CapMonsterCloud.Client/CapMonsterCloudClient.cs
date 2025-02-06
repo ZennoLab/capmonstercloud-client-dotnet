@@ -77,8 +77,7 @@ namespace Zennolab.CapMonsterCloud
                 return new CaptchaResult<TSolution> { Error = ToErrorType(createdTask.errorCode) };
             }
 
-            if (!ResultTimeouts.TryGetValue(task.GetType(), out var getResultTimeouts))
-                ResultTimeouts.TryGetValue(task.GetType().BaseType, out getResultTimeouts);
+            var getResultTimeouts = GetTimeouts(task.GetType());
 
             using (var getResultTimeoutCts = new CancellationTokenSource(getResultTimeouts.Timeout))
             using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, getResultTimeoutCts.Token))
@@ -121,7 +120,7 @@ namespace Zennolab.CapMonsterCloud
         }
 
         private void ValidateTask<TTask>(TTask task) where TTask : CaptchaRequestBase
-            => CustomValidator.ValidateObjectIncludingInternals(task);
+            => TaskValidator.ValidateObjectIncludingInternals(task);
 
         private async Task<CreateTaskResponse> CreateTask(CaptchaRequestBase task, CancellationToken cancellationToken)
         {
