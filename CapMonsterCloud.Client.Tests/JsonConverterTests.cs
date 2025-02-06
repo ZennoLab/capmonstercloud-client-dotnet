@@ -36,7 +36,7 @@ namespace Zennolab.CapMonsterCloud.Client
         public void DictionaryToSemicolonSplittedStringConverter_ShouldDeserialize()
         {
             // Arrange
-            var request = new HCaptchaProxylessRequest
+            var request = new HCaptchaRequest()
             {
                 WebsiteUrl = "https://lessons.zennolab.com/captchas/hcaptcha/?level=easy",
                 WebsiteKey = "472fc7af-86a4-4382-9a49-ca9090474471",
@@ -52,7 +52,7 @@ namespace Zennolab.CapMonsterCloud.Client
             var target = JsonConvert.SerializeObject(request);
 
             // Act
-            var actual = JsonConvert.DeserializeObject<HCaptchaProxylessRequest>(target);
+            var actual = JsonConvert.DeserializeObject<HCaptchaRequest>(target);
 
             // Assert
             _ = actual!.Cookies.Should().ContainKeys(request.Cookies.Keys);
@@ -66,7 +66,7 @@ namespace Zennolab.CapMonsterCloud.Client
             var target = JsonConvert.SerializeObject(
                 new
                 {
-                    type = "HCaptchaTaskProxyless",
+                    type = "HCaptchaTask",
                     websiteURL = "https://lessons.zennolab.com/captchas/hcaptcha/?level=easy",
                     websiteKey = "472fc7af-86a4-4382-9a49-ca9090474471",
                     isInvisible = false,
@@ -76,7 +76,7 @@ namespace Zennolab.CapMonsterCloud.Client
                 });
 
             // Act
-            Func<HCaptchaProxylessRequest> act = () => JsonConvert.DeserializeObject<HCaptchaProxylessRequest>(target)!;
+            Func<HCaptchaRequest> act = () => JsonConvert.DeserializeObject<HCaptchaRequest>(target)!;
 
             // Assert
             _ = act.Should().Throw<JsonReaderException>();

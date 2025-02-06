@@ -35,7 +35,7 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
     <None Update="logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

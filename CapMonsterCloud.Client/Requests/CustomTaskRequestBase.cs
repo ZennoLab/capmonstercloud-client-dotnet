@@ -7,7 +7,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <summary>
     /// CustomTask recognition request
     /// </summary>
-    public abstract class CustomTaskRequestBase : CaptchaRequestBase
+    public abstract class CustomTaskRequestBase : CaptchaRequestBaseWithProxy
     {
         /// <summary>
         /// Recognition task type

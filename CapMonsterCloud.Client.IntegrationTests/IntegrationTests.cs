@@ -175,98 +175,6 @@ namespace CapMonsterCloud.Client.IntegrationTests
             sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
             actual.Should().BeEquivalentTo(expectedResult);
         }
-
-        [Test]
-        public async Task RecaptchaV2Proxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.RecaptchaV2.CreateProxylessTask();
-            var expectedResult = ObjectGen.RecaptchaV2.CreateSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        gRecaptchaResponse = expectedResult.Solution.Value
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
-        
-        [Test]
-        public async Task RecaptchaV2EnterpriseProxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.RecaptchaV2Enterprise.CreateProxylessTask();
-            var expectedResult = ObjectGen.RecaptchaV2Enterprise.CreateSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        gRecaptchaResponse = expectedResult.Solution.Value
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
         
         [Test]
         public async Task RecaptchaV3Proxyless_ShouldSolve()
@@ -361,106 +269,12 @@ namespace CapMonsterCloud.Client.IntegrationTests
         }
         
         [Test]
-        public async Task FunCaptchaProxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.FunCaptcha.CreateProxylessTask();
-            var expectedResult = ObjectGen.FunCaptcha.CreateSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        token = expectedResult.Solution.Value
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
-        
-        [Test]
         public async Task HCaptcha_ShouldSolve()
         {
             var clientKey = Gen.RandomString();
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.HCaptcha.CreateHCaptchaTask();
-            var expectedResult = ObjectGen.HCaptcha.CreateSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        respKey = expectedResult.Solution.RespKey,
-                        userAgent = expectedResult.Solution.UserAgent,
-                        gRecaptchaResponse = expectedResult.Solution.Value
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
-
-        [Test]
-        public async Task HCaptchaProxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.HCaptcha.CreateHCaptchaProxylessTask();
             var expectedResult = ObjectGen.HCaptcha.CreateSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
@@ -554,68 +368,15 @@ namespace CapMonsterCloud.Client.IntegrationTests
             sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
             actual.Should().BeEquivalentTo(expectedResult);
         }
-        
+
         [Test]
-        public async Task GeeTestProxyless_ShouldSolve()
+        public async Task Turnstile_ShouldSolve()
         {
             var clientKey = Gen.RandomString();
             var taskId = Gen.RandomInt();
 
-            var captchaRequest = ObjectGen.GeeTest.CreateProxylessTask();
-            var expectedResult = ObjectGen.GeeTest.CreateSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        challenge = expectedResult.Solution.Challenge,
-                        validate = expectedResult.Solution.Validate,
-                        seccode = expectedResult.Solution.SecCode,
-                        captcha_id = expectedResult.Solution.CaptchaId,
-                        lot_number = expectedResult.Solution.LotNumber,
-                        pass_token = expectedResult.Solution.PassToken,
-                        gen_time = expectedResult.Solution.GenTime,
-                        captcha_output = expectedResult.Solution.CaptchaOutput
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
-
-        [Test]
-        public async Task TurnstileProxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.TurnstileProxyless.CreateTask();
-            var expectedResult = ObjectGen.TurnstileProxyless.CreateSolution();
+            var captchaRequest = ObjectGen.Turnstile.CreateTask();
+            var expectedResult = ObjectGen.Turnstile.CreateSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {
@@ -662,55 +423,6 @@ namespace CapMonsterCloud.Client.IntegrationTests
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.CustomTask.CreateDataDomeTask();
-            var expectedResult = ObjectGen.CustomTask.CreateDataDomeSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        domains = expectedResult.Solution.Domains,
-                        url = expectedResult.Solution.Url,
-                        fingerprint = expectedResult.Solution.Fingerprint,
-                        headers = expectedResult.Solution.Headers
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
-
-        [Test]
-        public async Task DataDomeProxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.CustomTask.CreateDataDomeProxylessTask();
             var expectedResult = ObjectGen.CustomTask.CreateDataDomeSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
@@ -924,19 +636,13 @@ namespace CapMonsterCloud.Client.IntegrationTests
         }
         
         [Test]
-        public async Task RecaptchaV2_IncorrectProxyPort_ShouldThrowValidationException()
+        public async Task RecaptchaV2_IncorrectProxyPort_ShouldThrowArgumentException()
         {
-            var clientKey = Gen.RandomString();
-            var captchaRequest = ObjectGen.RecaptchaV2.CreateTask(
+            Action actual = () => ObjectGen.RecaptchaV2.CreateTask(
                 proxyPort: Gen.RandomInt(65535));
-            
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(new List<object>());
 
-            Func<Task> actual = () => sut.SolveAsync(captchaRequest);
-            
-            _ = await actual.Should().ThrowAsync<System.ComponentModel.DataAnnotations.ValidationException>()
-                .WithMessage("*The field ProxyPort must be between 0 and 65535*");
+            _ = actual.Should().Throw<ArgumentException>()
+                .WithMessage("*Proxy port can not be less than 0 or more than 65535*");
         }
         
         [Test]
@@ -1037,108 +743,12 @@ namespace CapMonsterCloud.Client.IntegrationTests
         }
 
         [Test]
-        public async Task AmazonWafProxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.AmazonWafProxyless.CreateTask();
-            var expectedResult = ObjectGen.AmazonWafProxyless.CreateSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        existing_token = expectedResult.Solution.ExistingToken,
-                        captcha_voucher = expectedResult.Solution.CaptchaVoucher,
-                        userAgent = expectedResult.Solution.UserAgent,
-                        cookies = expectedResult.Solution.Cookies
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
-
-        [Test]
         public async Task TenDi_ShouldSolve()
         {
             var clientKey = Gen.RandomString();
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.CustomTask.CreateTenDiTask();
-            var expectedResult = ObjectGen.CustomTask.CreateTenDiSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        data = expectedResult.Solution.Data,
-                        headers = expectedResult.Solution.Headers
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
-
-        [Test]
-        public async Task TenDiProxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.CustomTask.CreateTenDiProxylessTask();
             var expectedResult = ObjectGen.CustomTask.CreateTenDiSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
@@ -1227,53 +837,6 @@ namespace CapMonsterCloud.Client.IntegrationTests
         }
 
         [Test]
-        public async Task BasiliskProxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.CustomTask.CreateBasiliskProxylessTask();
-            var expectedResult = ObjectGen.CustomTask.CreateBasiliskSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        data = expectedResult.Solution.Data,
-                        headers = expectedResult.Solution.Headers
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
-
-        [Test]
         public async Task Binance_ShouldSolve()
         {
             var clientKey = Gen.RandomString();
@@ -1281,54 +844,6 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
             var captchaRequest = ObjectGen.BinanceTask.CreateTask();
             var expectedResult = ObjectGen.BinanceTask.CreateSolution();
-
-            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
-            {
-                (
-                    Type: RequestType.CreateTask,
-                    ExpectedRequest: JsonConvert.SerializeObject(new
-                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
-                ),
-                (
-                    Type: RequestType.GetTaskResult,
-                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
-                ),
-            };
-
-            var captchaResults = new List<object>
-            {
-                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
-                new
-                {
-                    status = "ready",
-                    solution = new
-                    {
-                        token = expectedResult.Solution.Value,
-                        userAgent = expectedResult.Solution.UserAgent,
-                        cookies = expectedResult.Solution.Cookies
-                    },
-                    errorId = 0,
-                    errorCode = (string)null!
-                }
-            };
-
-            var sut = new Sut(clientKey);
-            sut.SetupHttpServer(captchaResults);
-
-            var actual = await sut.SolveAsync(captchaRequest);
-
-            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
-            actual.Should().BeEquivalentTo(expectedResult);
-        }
-
-        [Test]
-        public async Task BinanceProxyless_ShouldSolve()
-        {
-            var clientKey = Gen.RandomString();
-            var taskId = Gen.RandomInt();
-
-            var captchaRequest = ObjectGen.BinanceTaskProxyless.CreateTask();
-            var expectedResult = ObjectGen.BinanceTaskProxyless.CreateSolution();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {

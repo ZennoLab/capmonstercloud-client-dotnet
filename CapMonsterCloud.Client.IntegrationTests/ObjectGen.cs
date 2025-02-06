@@ -52,24 +52,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     UserAgent = Gen.UserAgent(),
                     Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
                     NoCache = Gen.RandomBool(),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = proxyPort ?? Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-            
-            public static RecaptchaV2ProxylessRequest CreateProxylessTask()
-            {
-                return new RecaptchaV2ProxylessRequest
-                {
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    WebsiteKey = Gen.RandomGuid(),
-                    DataSValue = Gen.RandomString(),
-                    UserAgent = Gen.UserAgent(),
-                    Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
-                    NoCache = Gen.RandomBool()
+                    Proxy = new ProxyContainer(Gen.RandomString(), proxyPort ?? Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -125,23 +108,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Subdomain = Gen.RandomString(),
                     Data = Gen.RandomString(),
                     NoCache = Gen.RandomBool(),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-            
-            public static FunCaptchaProxylessRequest CreateProxylessTask()
-            {
-                return new FunCaptchaProxylessRequest
-                {
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    WebsiteKey = Gen.RandomGuid(),
-                    Subdomain = Gen.RandomString(),
-                    Data = Gen.RandomString(),
-                    NoCache = Gen.RandomBool()
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -174,28 +141,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     FallbackToActualUA = Gen.RandomBool(),
                     Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
                     NoCache = Gen.RandomBool(),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-
-            public static HCaptchaProxylessRequest CreateHCaptchaProxylessTask()
-            {
-                return new HCaptchaProxylessRequest
-                {
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    WebsiteKey = Gen.RandomGuid(),
-                    Invisible = Gen.RandomBool(),
-                    Data = Gen.RandomString(),
-#pragma warning disable CS0618
-                    UserAgent = Gen.UserAgent(),
-#pragma warning restore CS0618
-                    FallbackToActualUA = Gen.RandomBool(),
-                    Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
-                    NoCache = Gen.RandomBool()
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -229,26 +175,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Subdomain = Gen.RandomString(),
                     GetLib = Gen.RandomString(),
                     UserAgent = Gen.UserAgent(),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-            
-            public static GeeTestProxylessRequest CreateProxylessTask()
-            {
-                return new GeeTestProxylessRequest()
-                {
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    Gt = Gen.RandomString(),
-                    Version = Gen.RandomInt(3, 4),
-                    InitParameters = new { riskType = "slide" },
-                    Challenge = Gen.RandomString(),
-                    Subdomain = Gen.RandomString(),
-                    GetLib = Gen.RandomString(),
-                    UserAgent = Gen.UserAgent()
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -282,22 +209,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomString(),
                     EnterprisePayload = Gen.RandomString(),
                     DataSValue = Gen.RandomString(),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-            
-            public static RecaptchaV2EnterpriseProxylessRequest CreateProxylessTask()
-            {
-                return new RecaptchaV2EnterpriseProxylessRequest()
-                {
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    WebsiteKey = Gen.RandomString(),
-                    EnterprisePayload = Gen.RandomString(),
-                    DataSValue = Gen.RandomString()
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -314,11 +226,11 @@ namespace CapMonsterCloud.Client.IntegrationTests
             }
         }
             
-        public static class TurnstileProxyless
+        public static class Turnstile
         {
-            public static TurnstileProxylessRequest CreateTask()
+            public static TurnstileRequest CreateTask()
             {
-                return new TurnstileProxylessRequest
+                return new TurnstileRequest
                 {
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     WebsiteKey = Gen.RandomGuid(),
@@ -329,7 +241,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     HtmlPageBase64 = Gen.RandomString(),
                     UserAgent = Gen.UserAgent(),
                     ApiJsUrl = Gen.RandomUri().ToString(),
-                    NoCache = Gen.RandomBool()
+                    NoCache = Gen.RandomBool(),
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -420,21 +333,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
                     Domains = Gen.ListOfValues(Gen.RandomString),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-
-            public static DataDomeCustomTaskProxylessRequest CreateDataDomeProxylessTask()
-            {
-                return new DataDomeCustomTaskProxylessRequest(Gen.RandomString(), Gen.RandomUri().ToString(), Gen.RandomString())
-                {
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    UserAgent = Gen.UserAgent(),
-                    Domains = Gen.ListOfValues(Gen.RandomString)
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -470,21 +369,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomGuid(),
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-
-            public static TenDiCustomTaskProxylessRequest CreateTenDiProxylessTask()
-            {
-                return new TenDiCustomTaskProxylessRequest
-                {
-                    WebsiteKey = Gen.RandomGuid(),
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    UserAgent = Gen.UserAgent(),
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -508,21 +393,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomGuid(),
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-
-            public static BasiliskCustomTaskProxylessRequest CreateBasiliskProxylessTask()
-            {
-                return new BasiliskCustomTaskProxylessRequest()
-                {
-                    WebsiteKey = Gen.RandomGuid(),
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    UserAgent = Gen.UserAgent(),
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -553,43 +424,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Context = Gen.RandomString(),
                     Iv = Gen.RandomString(),
                     CookieSolution = Gen.RandomBool(),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-
-            public static CaptchaResult<AmazonWafResponse> CreateSolution()
-            {
-                return new CaptchaResult<AmazonWafResponse>
-                {
-                    Error = null,
-                    Solution = new AmazonWafResponse
-                    {
-                        CaptchaVoucher = Gen.RandomString(),
-                        ExistingToken = Gen.RandomString(),
-                        UserAgent = Gen.UserAgent(),
-                        Cookies = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
-                    }
-                };
-            }
-        }
-
-        public static class AmazonWafProxyless
-        {
-            public static AmazonWafProxylessRequest CreateTask()
-            {
-                return new AmazonWafProxylessRequest()
-                {
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    WebsiteKey = Gen.RandomGuid(),
-                    CaptchaScript = Gen.RandomString(),
-                    ChallengeScript = Gen.RandomString(),
-                    Context = Gen.RandomString(),
-                    Iv = Gen.RandomString(),
-                    CookieSolution = Gen.RandomBool()
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -619,39 +454,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomGuid(),
                     ValidateId = Gen.RandomString(),
                     UserAgent = Gen.UserAgent(),
-                    ProxyType = Gen.RandomEnum<ProxyType>(),
-                    ProxyAddress = Gen.RandomString(),
-                    ProxyPort = Gen.RandomInt(0, 65535),
-                    ProxyLogin = Gen.RandomString(),
-                    ProxyPassword = Gen.RandomString()
-                };
-            }
-
-            public static CaptchaResult<BinanceTaskResponse> CreateSolution()
-            {
-                return new CaptchaResult<BinanceTaskResponse>
-                {
-                    Error = null,
-                    Solution = new BinanceTaskResponse
-                    {
-                        Value = Gen.RandomString(),
-                        UserAgent = Gen.UserAgent(),
-                        Cookies = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } }
-                    }
-                };
-            }
-        }
-
-        public static class BinanceTaskProxyless
-        {
-            public static BinanceTaskProxylessRequest CreateTask()
-            {
-                return new BinanceTaskProxylessRequest()
-                {
-                    WebsiteUrl = Gen.RandomUri().ToString(),
-                    WebsiteKey = Gen.RandomGuid(),
-                    ValidateId = Gen.RandomString(),
-                    UserAgent = Gen.UserAgent()
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 

@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Zennolab.CapMonsterCloud.Requests;
-using Zennolab.CapMonsterCloud.Responses;
+using Zennolab.CapMonsterCloud.Validation;
 
 namespace Zennolab.CapMonsterCloud
 {
@@ -65,222 +65,8 @@ namespace Zennolab.CapMonsterCloud
         /// <inheritdoc/>
         /// <exception cref="ValidationException">malformed task object</exception>
         /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<ImageToTextResponse>> SolveAsync(
-            ImageToTextRequest task,
-            CancellationToken cancellationToken = default)
-            => Solve<ImageToTextResponse>(task, ImageToTextTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<RecaptchaV2Response>> SolveAsync(
-            RecaptchaV2Request task,
-            CancellationToken cancellationToken = default)
-            => Solve<RecaptchaV2Response>(task, RecaptchaV2Timeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<RecaptchaV2Response>> SolveAsync(
-            RecaptchaV2ProxylessRequest task,
-            CancellationToken cancellationToken = default)
-            => Solve<RecaptchaV2Response>(task, RecaptchaV2Timeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<RecaptchaV3Response>> SolveAsync(
-            RecaptchaV3ProxylessRequest task,
-            CancellationToken cancellationToken = default)
-            => Solve<RecaptchaV3Response>(task, RecaptchaV3Timeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<FunCaptchaResponse>> SolveAsync(
-            FunCaptchaRequest task,
-            CancellationToken cancellationToken = default)
-            => Solve<FunCaptchaResponse>(task, FunCaptchaTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<FunCaptchaResponse>> SolveAsync(
-            FunCaptchaProxylessRequest task,
-            CancellationToken cancellationToken = default)
-            => Solve<FunCaptchaResponse>(task, FunCaptchaTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<HCaptchaResponse>> SolveAsync(
-            HCaptchaRequest task,
-            CancellationToken cancellationToken = default)
-            => Solve<HCaptchaResponse>(task, HCaptchaTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<HCaptchaResponse>> SolveAsync(
-            HCaptchaProxylessRequest task,
-            CancellationToken cancellationToken = default)
-            => Solve<HCaptchaResponse>(task, HCaptchaTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<GeeTestResponse>> SolveAsync(
-            GeeTestRequest task,
-            CancellationToken cancellationToken = default)
-            => Solve<GeeTestResponse>(task, GeeTestTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<GeeTestResponse>> SolveAsync(
-            GeeTestProxylessRequest task,
-            CancellationToken cancellationToken = default)
-            => Solve<GeeTestResponse>(task, GeeTestTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<RecaptchaV2EnterpriseResponse>> SolveAsync(
-            RecaptchaV2EnterpriseRequest task,
-            CancellationToken cancellationToken)
-            => Solve<RecaptchaV2EnterpriseResponse>(task, RecaptchaV2EnterpriseTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<RecaptchaV2EnterpriseResponse>> SolveAsync(
-            RecaptchaV2EnterpriseProxylessRequest task,
-            CancellationToken cancellationToken)
-            => Solve<RecaptchaV2EnterpriseResponse>(task, RecaptchaV2EnterpriseTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<TurnstileResponse>> SolveAsync(
-            TurnstileRequest task,
-            CancellationToken cancellationToken)
-            => Solve<TurnstileResponse>(task, TurnstileTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<TurnstileResponse>> SolveAsync(
-            TurnstileProxylessRequest task,
-            CancellationToken cancellationToken)
-            => Solve<TurnstileResponse>(task, TurnstileTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(
-            RecaptchaComplexImageTaskRequest taskRequest,
-            CancellationToken cancellationToken)
-            => Solve<GridComplexImageTaskResponse>(taskRequest, ImageToTextTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(
-            HCaptchaComplexImageTaskRequest taskRequest,
-            CancellationToken cancellationToken)
-            => Solve<GridComplexImageTaskResponse>(taskRequest, ImageToTextTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync(
-            FunCaptchaComplexImageTaskRequest taskRequest,
-            CancellationToken cancellationToken)
-            => Solve<GridComplexImageTaskResponse>(taskRequest, ImageToTextTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
-            DataDomeCustomTaskRequest task,
-            CancellationToken cancellationToken)
-            => Solve<CustomTaskResponse>(task, DataDomeTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
-            DataDomeCustomTaskProxylessRequest task,
-            CancellationToken cancellationToken)
-            => Solve<CustomTaskResponse>(task, DataDomeTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<AmazonWafResponse>> SolveAsync(
-            AmazonWafRequest task,
-            CancellationToken cancellationToken)
-            => Solve<AmazonWafResponse>(task, AmazonWafTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<AmazonWafResponse>> SolveAsync(
-            AmazonWafProxylessRequest task,
-            CancellationToken cancellationToken)
-            => Solve<AmazonWafResponse>(task, AmazonWafTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
-            TenDiCustomTaskRequest task,
-            CancellationToken cancellationToken)
-            => Solve<CustomTaskResponse>(task, TenDiTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
-            TenDiCustomTaskProxylessRequest task,
-            CancellationToken cancellationToken)
-            => Solve<CustomTaskResponse>(task, TenDiTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
-            BasiliskCustomTaskRequest task,
-            CancellationToken cancellationToken)
-            => Solve<CustomTaskResponse>(task, BasiliskTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
-            BasiliskCustomTaskProxylessRequest task,
-            CancellationToken cancellationToken)
-            => Solve<CustomTaskResponse>(task, BasiliskTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<BinanceTaskResponse>> SolveAsync(
-            BinanceTaskRequest task,
-            CancellationToken cancellationToken)
-            => Solve<BinanceTaskResponse>(task, BinanceTimeouts, cancellationToken);
-
-        /// <inheritdoc/>
-        /// <exception cref="ValidationException">malformed task object</exception>
-        /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
-        public Task<CaptchaResult<BinanceTaskResponse>> SolveAsync(
-            BinanceTaskProxylessRequest task,
-            CancellationToken cancellationToken)
-            => Solve<BinanceTaskResponse>(task, BinanceTimeouts, cancellationToken);
-
-        private async Task<CaptchaResult<TSolution>> Solve<TSolution>(
+        public async Task<CaptchaResult<TSolution>> SolveAsync<TSolution>(
             CaptchaRequestBase task,
-            GetResultTimeouts getResultTimeouts,
             CancellationToken cancellationToken)
         {
             ValidateTask(task);
@@ -290,6 +76,9 @@ namespace Zennolab.CapMonsterCloud
             {
                 return new CaptchaResult<TSolution> { Error = ToErrorType(createdTask.errorCode) };
             }
+
+            if (!ResultTimeouts.TryGetValue(task.GetType(), out var getResultTimeouts))
+                ResultTimeouts.TryGetValue(task.GetType().BaseType, out getResultTimeouts);
 
             using (var getResultTimeoutCts = new CancellationTokenSource(getResultTimeouts.Timeout))
             using (var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken, getResultTimeoutCts.Token))
@@ -332,7 +121,7 @@ namespace Zennolab.CapMonsterCloud
         }
 
         private void ValidateTask<TTask>(TTask task) where TTask : CaptchaRequestBase
-            => Validator.ValidateObject(task, new ValidationContext(task), validateAllProperties: true);
+            => CustomValidator.ValidateObjectIncludingInternals(task);
 
         private async Task<CreateTaskResponse> CreateTask(CaptchaRequestBase task, CancellationToken cancellationToken)
         {
