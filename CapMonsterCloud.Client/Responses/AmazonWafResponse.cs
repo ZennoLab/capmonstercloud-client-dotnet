@@ -6,7 +6,7 @@ namespace Zennolab.CapMonsterCloud.Responses
     /// <summary>
     /// AmazonWaf recognition response
     /// </summary>
-    public sealed class AmazonWafResponse
+    public sealed class AmazonWafResponse : CaptchaResponseBase
     {
         /// <inheritdoc/>
         [JsonProperty("captcha_voucher")]

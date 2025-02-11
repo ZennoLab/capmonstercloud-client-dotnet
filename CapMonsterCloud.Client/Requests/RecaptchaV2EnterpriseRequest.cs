@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
     /// Recaptcha V2 Enterprise recognition request.
     /// </summary>
-    public sealed class RecaptchaV2EnterpriseRequest : CaptchaRequestBaseWithProxy
+    public sealed class RecaptchaV2EnterpriseRequest : CaptchaRequestBaseWithProxy<RecaptchaV2EnterpriseResponse>
     {
         /// <summary>
         /// Recognition task type

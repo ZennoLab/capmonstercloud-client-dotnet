@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
 
 namespace Zennolab.CapMonsterCloud.Responses
 {
     /// <summary>
     /// Response for grid-like tasks
     /// </summary>
-    public class GridComplexImageTaskResponse
+    public class GridComplexImageTaskResponse : CaptchaResponseBase
     {
         /// <summary>
         /// Collection with answers. Click on images with 'true'

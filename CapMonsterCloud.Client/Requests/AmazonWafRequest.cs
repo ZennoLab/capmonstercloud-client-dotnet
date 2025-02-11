@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
@@ -10,7 +10,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <example>
     /// https://docs.capmonster.cloud/docs/captchas/amazon-task
     /// </example>
-    public class AmazonWafRequest : CaptchaRequestBaseWithProxy
+    public class AmazonWafRequest : CaptchaRequestBaseWithProxy<AmazonWafResponse>
     { 
         /// <summary>
         /// Recognition task type

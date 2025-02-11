@@ -12,7 +12,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <example>
     /// https://zenno.link/doc-hcaptcha-proxy-en
     /// </example>
-    public sealed class HCaptchaRequest : CaptchaRequestBaseWithProxy
+    public sealed class HCaptchaRequest : CaptchaRequestBaseWithProxy<HCaptchaResponse>
     {
         /// <summary>
         /// Recognition task type

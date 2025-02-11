@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
@@ -9,7 +10,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <example>
     /// https://zenno.link/doc-turnstile-proxy-en
     /// </example>
-    public sealed class TurnstileRequest : CaptchaRequestBaseWithProxy
+    public sealed class TurnstileRequest : CaptchaRequestBaseWithProxy<TurnstileResponse>
     {
         /// <summary>
         /// Recognition task type

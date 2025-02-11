@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
@@ -9,7 +10,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <example>
     /// https://docs.capmonster.cloud/docs/captchas/binance
     /// </example>
-    public sealed class BinanceTaskRequest : CaptchaRequestBaseWithProxy
+    public sealed class BinanceTaskRequest : CaptchaRequestBaseWithProxy<BinanceTaskResponse>
     {
         /// <summary>
         /// Recognition task type

@@ -1,13 +1,14 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
     /// Base captcha recognition request
     /// </summary>
-    public abstract class CaptchaRequestBaseWithProxy : CaptchaRequestBase, IProxyInfo
+    public abstract class CaptchaRequestBaseWithProxy<TResponse> : CaptchaRequestBase<TResponse>, IProxyInfo where TResponse : CaptchaResponseBase
     {
         /// <inheritdoc/>
         [JsonIgnore]

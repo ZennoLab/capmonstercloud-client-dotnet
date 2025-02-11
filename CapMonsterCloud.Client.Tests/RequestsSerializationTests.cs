@@ -25,7 +25,7 @@ namespace Zennolab.CapMonsterCloud.Client
                     { "cookieA", "value#A" },
                     { "cookieB", "value#B" }
                 },
-                Proxy = new ProxyContainer("https://proxy.com", 6045, proxyType, "login", "p@ssword")
+                Proxy = new ProxyContainer("proxy.com", 6045, proxyType, "login", "p@ssword")
             };
 
             // Act
@@ -121,7 +121,7 @@ namespace Zennolab.CapMonsterCloud.Client
                 WebsiteKey = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
                 Data = "{\"blob\":\"dyXvXANMbHj1iDyz.Qj97JtSqR2n%2BuoY1V%2FbdgbrG7p%2FmKiqdU9AwJ6MifEt0np4vfYn6TTJDJEfZDlcz9Q1XMn9przeOV%2FCr2%2FIpi%2FC1s%3D\"}",
                 Subdomain = "mywebsite-api.funcaptcha.com",
-                Proxy = new ProxyContainer("https://proxy.com", 6045, proxyType, "login", "p@ssword")
+                Proxy = new ProxyContainer("proxy.com", 6045, proxyType, "login", "p@ssword")
             };
 
             // Act
@@ -158,7 +158,7 @@ namespace Zennolab.CapMonsterCloud.Client
                     { "cookieA", "value#A" },
                     { "cookieB", "value#B" }
                 },
-                Proxy = new ProxyContainer("https://proxy.com", 6045, proxyType, "login", "p@ssword")
+                Proxy = new ProxyContainer("proxy.com", 6045, proxyType, "login", "p@ssword")
             };
 
             // Act

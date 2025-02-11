@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
     /// FunCaptcha recognition request.
     /// </summary>
-    public sealed class FunCaptchaRequest : CaptchaRequestBaseWithProxy
+    public sealed class FunCaptchaRequest : CaptchaRequestBaseWithProxy<FunCaptchaResponse>
     {
         /// <summary>
         /// Recognition task type

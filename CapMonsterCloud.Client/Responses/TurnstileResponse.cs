@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace Zennolab.CapMonsterCloud.Responses
 {
     /// <summary>
     /// Turnstile recognition response
     /// </summary>
-    public sealed class TurnstileResponse
+    public sealed class TurnstileResponse : CaptchaResponseBase
     {
         /// <summary>
         /// Turnstile token

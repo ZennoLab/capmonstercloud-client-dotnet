@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Zennolab.CapMonsterCloud.Requests;
+using Zennolab.CapMonsterCloud.Responses;
 using Zennolab.CapMonsterCloud.Validation;
 
 namespace Zennolab.CapMonsterCloud
@@ -66,10 +67,10 @@ namespace Zennolab.CapMonsterCloud
         /// <exception cref="ValidationException">malformed task object</exception>
         /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
         public async Task<CaptchaResult<TSolution>> SolveAsync<TSolution>(
-            CaptchaRequestBase task,
-            CancellationToken cancellationToken)
+            CaptchaRequestBase<TSolution> task,
+            CancellationToken cancellationToken) where TSolution : CaptchaResponseBase
         {
-            ValidateTask(task);
+            ValidateTask<CaptchaRequestBase<TSolution>, TSolution>(task);
 
             var createdTask = await CreateTask(task, cancellationToken);
             if (createdTask.errorId != 0)
@@ -119,13 +120,13 @@ namespace Zennolab.CapMonsterCloud
             return new CaptchaResult<TSolution> { Error = ErrorType.Timeout };
         }
 
-        private void ValidateTask<TTask>(TTask task) where TTask : CaptchaRequestBase
+        private void ValidateTask<TTask, TSolution>(TTask task) where TTask : CaptchaRequestBase<TSolution> where TSolution : CaptchaResponseBase
             => TaskValidator.ValidateObjectIncludingInternals(task);
 
-        private async Task<CreateTaskResponse> CreateTask(CaptchaRequestBase task, CancellationToken cancellationToken)
+        private async Task<CreateTaskResponse> CreateTask<TSolution>(CaptchaRequestBase<TSolution> task, CancellationToken cancellationToken) where TSolution : CaptchaResponseBase
         {
             var body = ToJson(
-                new CreateTaskRequest
+                new CreateTaskRequest<TSolution>
                 {
                     clientKey = _options.ClientKey,
                     task = task,

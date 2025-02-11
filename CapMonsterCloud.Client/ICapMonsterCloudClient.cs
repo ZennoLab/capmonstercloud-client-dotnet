@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
 using Zennolab.CapMonsterCloud.Requests;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud
 {
@@ -28,7 +30,7 @@ namespace Zennolab.CapMonsterCloud
         /// <exception cref="ValidationException">malformed task object</exception>
         /// <exception cref="HttpRequestException">exception on processing HTTP request to capmonster.cloud</exception>
         Task<CaptchaResult<TSolution>> SolveAsync<TSolution>(
-            CaptchaRequestBase task,
-            CancellationToken cancellationToken = default);
+            CaptchaRequestBase<TSolution> task,
+            CancellationToken cancellationToken = default) where TSolution : CaptchaResponseBase;
     }
 }

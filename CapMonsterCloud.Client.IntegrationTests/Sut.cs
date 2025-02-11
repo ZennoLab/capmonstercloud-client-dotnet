@@ -45,16 +45,16 @@ namespace CapMonsterCloud.Client.IntegrationTests
         }
 
         public async Task<CaptchaResult<ImageToTextResponse>> SolveAsync (
-            ImageToTextRequest request) => await _cloudClient.SolveAsync<ImageToTextResponse>(request);
+            ImageToTextRequest request) => await _cloudClient.SolveAsync(request);
         
         public async Task<CaptchaResult<RecaptchaV2Response>> SolveAsync (
-            RecaptchaV2Request request) => await _cloudClient.SolveAsync<RecaptchaV2Response>(request);
+            RecaptchaV2Request request) => await _cloudClient.SolveAsync(request);
 
         public async Task<CaptchaResult<RecaptchaV3Response>> SolveAsync (
-            RecaptchaV3ProxylessRequest request) => await _cloudClient.SolveAsync<RecaptchaV3Response>(request);
+            RecaptchaV3ProxylessRequest request) => await _cloudClient.SolveAsync(request);
         
         public async Task<CaptchaResult<FunCaptchaResponse>> SolveAsync (
-            FunCaptchaRequest request) => await _cloudClient.SolveAsync<FunCaptchaResponse>(request);
+            FunCaptchaRequest request) => await _cloudClient.SolveAsync(request);
         
         public async Task<CaptchaResult<HCaptchaResponse>> SolveAsync (
             HCaptchaRequest request) => await _cloudClient.SolveAsync<HCaptchaResponse>(request);

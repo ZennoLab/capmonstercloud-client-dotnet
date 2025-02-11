@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
@@ -9,7 +10,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <example>
     /// https://zenno.link/doc-geetest-proxy-en
     /// </example>
-    public sealed class GeeTestRequest : CaptchaRequestBaseWithProxy
+    public sealed class GeeTestRequest : CaptchaRequestBaseWithProxy<GeeTestResponse>
     {
         /// <summary>
         /// Recognition task type
