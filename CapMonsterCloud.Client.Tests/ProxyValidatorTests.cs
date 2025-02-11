@@ -14,13 +14,13 @@ namespace Zennolab.CapMonsterCloud.Client.Tests
         [TestCase("localhost", false)]
         [TestCase("256.256.256.256", false)]
         [TestCase("google.com", true)]
-        public void ProxyValidation__GetValidationResult(string address, bool isValid)
+        public void IsValidProxy__ReturnsExpectedResult(string address, bool expectedResult)
         {
             // Act
             var actual = ProxyValidator.IsValidProxy(address);
 
             // Assert
-            actual.Should().Be(isValid);
+            actual.Should().Be(expectedResult);
         }
     }
 }
