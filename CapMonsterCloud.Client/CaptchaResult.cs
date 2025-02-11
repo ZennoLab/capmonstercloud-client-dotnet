@@ -1,10 +1,12 @@
-﻿namespace Zennolab.CapMonsterCloud
+﻿using Zennolab.CapMonsterCloud.Responses;
+
+namespace Zennolab.CapMonsterCloud
 {
     /// <summary>
     /// General captcha recognition result
     /// </summary>
     /// <typeparam name="TSolution">Concrete captcha result type</typeparam>
-    public class CaptchaResult<TSolution>
+    public class CaptchaResult<TSolution> where TSolution : CaptchaResponseBase
     {
         /// <summary>
         /// Error code

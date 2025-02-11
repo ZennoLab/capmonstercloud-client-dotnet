@@ -6,7 +6,7 @@ namespace Zennolab.CapMonsterCloud.Responses
     /// GeeTest recognition response
     /// </summary>
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public class GeeTestResponse
+    public class GeeTestResponse : CaptchaResponseBase
     {
         /// <summary>
         /// </summary>

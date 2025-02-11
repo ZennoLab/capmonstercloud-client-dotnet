@@ -1,16 +1,16 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
-    /// AmazonWaf recognition request (with proxy).
+    /// AmazonWaf recognition request.
     /// </summary>
     /// <example>
     /// https://docs.capmonster.cloud/docs/captchas/amazon-task
     /// </example>
-    public class AmazonWafRequest : AmazonWafRequestBase, IProxyInfo
+    public class AmazonWafRequest : CaptchaRequestBaseWithProxy<AmazonWafResponse>
     { 
         /// <summary>
         /// Recognition task type
@@ -21,26 +21,52 @@ namespace Zennolab.CapMonsterCloud.Requests
         [JsonProperty("type", Required = Required.Always)]
         public override sealed string Type => TaskType;
 
-        /// <inheritdoc/>
-        [JsonProperty("proxyType", Required = Required.Always)]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ProxyType ProxyType { get; set; }
+        /// <summary>
+        /// The address of the main page where captcha is solved.
+        /// </summary>
+        [JsonProperty("websiteURL", Required = Required.Always)]
+        [Url]
+        public string WebsiteUrl { get; set; }
 
-        /// <inheritdoc/>
-        [JsonProperty("proxyAddress", Required = Required.Always)]
-        public string ProxyAddress { get; set; }
+        /// <summary>
+        /// A string that can be retrieved from an html page with a captcha or with javascript by executing the window.gokuProps.key
+        /// </summary>
+        [JsonProperty("websiteKey", Required = Required.Always)]
+        [StringLength(int.MaxValue, MinimumLength = 1)]
+        public string WebsiteKey { get; set; }
 
-        /// <inheritdoc/>
-        [JsonProperty("proxyPort", Required = Required.Always)]
-        [Range(0, 65535)]
-        public int ProxyPort { get; set; }
+        /// <summary>
+        /// Link to challenge.js (see description below the table)
+        /// </summary>
+        [JsonProperty("challengeScript", Required = Required.Always)]
+        [StringLength(int.MaxValue, MinimumLength = 1)]
+        public string ChallengeScript { get; set; }
 
-        /// <inheritdoc/>
-        [JsonProperty("proxyLogin")]
-        public string ProxyLogin { get; set; }
+        /// <summary>
+        /// Link to captcha.js (see description below the table)
+        /// </summary>
+        [JsonProperty("captchaScript", Required = Required.Always)]
+        [StringLength(int.MaxValue, MinimumLength = 1)]
+        public string CaptchaScript { get; set; }
 
-        /// <inheritdoc/>
-        [JsonProperty("proxyPassword")]
-        public string ProxyPassword { get; set; }
+        /// <summary>
+        /// A string that can be retrieved from an html page with a captcha or with javascript by executing the window.gokuProps.context
+        /// </summary>
+        [JsonProperty("context", Required = Required.Always)]
+        [StringLength(int.MaxValue, MinimumLength = 1)]
+        public string Context { get; set; }
+
+        /// <summary>
+        /// A string that can be retrieved from an html page with a captcha or with javascript by executing the window.gokuProps.iv
+        /// </summary>
+        [JsonProperty("iv", Required = Required.Always)]
+        [StringLength(int.MaxValue, MinimumLength = 1)]
+        public string Iv { get; set; }
+
+        /// <summary>
+        /// By default false. If you need to use cookies "aws-waf-token", specify the value true. Otherwise, what you will get in return is "captcha_voucher" and "existing_token".
+        /// </summary>
+        [JsonProperty("cookieSolution")]
+        public bool CookieSolution { get; set; }
     }
 }

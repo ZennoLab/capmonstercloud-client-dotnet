@@ -6,7 +6,7 @@ namespace Zennolab.CapMonsterCloud.Responses
     /// <summary>
     /// BinanceTask recognition response
     /// </summary>
-    public sealed class BinanceTaskResponse
+    public sealed class BinanceTaskResponse : CaptchaResponseBase
     {
         /// <summary>
         /// BinanceTask token

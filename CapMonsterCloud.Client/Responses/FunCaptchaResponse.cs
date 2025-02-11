@@ -5,7 +5,7 @@ namespace Zennolab.CapMonsterCloud.Responses
     /// <summary>
     /// FunCaptcha recognition response
     /// </summary>
-    public class FunCaptchaResponse
+    public class FunCaptchaResponse : CaptchaResponseBase
     {
         /// <summary>
         /// FunCaptcha token that needs to be substituted into the form.

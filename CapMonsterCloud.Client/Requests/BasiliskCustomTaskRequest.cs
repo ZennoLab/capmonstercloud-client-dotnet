@@ -1,37 +1,22 @@
-﻿using Newtonsoft.Json.Converters;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
-    /// Basilisk CustomTask recognition request with proxy
+    /// Basilisk CustomTask recognition request
     /// </summary>
-    public class BasiliskCustomTaskRequest : BasiliskCustomTaskRequestBase
+    public class BasiliskCustomTaskRequest : CustomTaskRequestBase
     {
         /// <inheritdoc/>
-        [JsonProperty("proxyType", Required = Required.Always)]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public ProxyType ProxyType { get; set; }
+        public override string Class => "Basilisk";
 
-        /// <inheritdoc/>
-        [JsonProperty("proxyAddress", Required = Required.Always)]
-        public string ProxyAddress { get; set; }
-
-        /// <inheritdoc/>
-        [JsonProperty("proxyPort", Required = Required.Always)]
-        [Range(0, 65535)]
-        public int ProxyPort { get; set; }
-
-        /// <inheritdoc/>
-        [JsonProperty("proxyLogin")]
-        public string ProxyLogin { get; set; }
-
-        /// <inheritdoc/>
-        [JsonProperty("proxyPassword")]
-        public string ProxyPassword { get; set; }
+        /// <summary>
+        /// Can be found in the html code in the attribute data-sitekey of the captcha container or in the payload of a POST request to the https://basiliskcaptcha.com/challenge/check-site in the field site_key
+        /// </summary>
+        /// <example>b7890hre5cf2544b2759c19fb2600897</example>
+        [JsonProperty("websiteKey", Required = Required.Always)]
+        [StringLength(int.MaxValue, MinimumLength = 1)]
+        public string WebsiteKey { get; set; }
     }
 }
