@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud
 {
@@ -70,12 +71,12 @@ namespace Zennolab.CapMonsterCloud
             public static TaskCompleted Completed(object solution) => new TaskCompleted(solution);
         }
 
-        private class CreateTaskRequest
+        private class CreateTaskRequest<TSolution> where TSolution : CaptchaResponseBase
         {
 #pragma warning disable IDE1006 // Naming Styles
             public string clientKey { get; set; }
 
-            public Requests.CaptchaRequestBase task { get; set; }
+            public Requests.CaptchaRequestBase<TSolution> task { get; set; }
 
             [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
             public int? softId { get; set; }

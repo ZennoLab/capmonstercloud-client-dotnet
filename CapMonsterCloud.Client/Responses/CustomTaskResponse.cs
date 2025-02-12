@@ -6,7 +6,7 @@ namespace Zennolab.CapMonsterCloud.Responses
     /// <summary>
     /// Response for custom tasks
     /// </summary>
-    public class CustomTaskResponse
+    public class CustomTaskResponse : CaptchaResponseBase
     {
         /// <inheritdoc/>
         public sealed class DomainInfo

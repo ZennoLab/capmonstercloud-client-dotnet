@@ -5,7 +5,7 @@ namespace Zennolab.CapMonsterCloud.Responses
     /// <summary>
     /// ImageToText recognition response
     /// </summary>
-    public class ImageToTextResponse
+    public class ImageToTextResponse : CaptchaResponseBase
     {
         /// <summary>
         /// Captcha answer

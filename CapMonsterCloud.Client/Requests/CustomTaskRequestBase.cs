@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
     /// CustomTask recognition request
     /// </summary>
-    public abstract class CustomTaskRequestBase : CaptchaRequestBase
+    public abstract class CustomTaskRequestBase : CaptchaRequestBaseWithProxy<CustomTaskResponse>
     {
         /// <summary>
         /// Recognition task type

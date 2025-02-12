@@ -5,7 +5,7 @@ namespace Zennolab.CapMonsterCloud.Responses
     /// <summary>
     /// Recaptcha recognition response base
     /// </summary>
-    public abstract class RecaptchaResponseBase
+    public abstract class RecaptchaResponseBase : CaptchaResponseBase
     {
         /// <summary>
         /// Hash which should be inserted into Recaptcha2 submit form in
