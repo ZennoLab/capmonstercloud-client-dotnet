@@ -92,6 +92,9 @@ namespace CapMonsterCloud.Client.IntegrationTests
         public async Task<CaptchaResult<BinanceTaskResponse>> SolveAsync(
             BinanceTaskRequest request) => await _cloudClient.SolveAsync<BinanceTaskResponse>(request);
 
+        public async Task<CaptchaResult<DynamicGridComplexImageTaskResponse>> SolveAsync(
+            RecognitionComplexImageTaskRequest request) => await _cloudClient.SolveAsync(request);
+
         public async Task<decimal> GetBalanceAsync()
         {
             return await _cloudClient.GetBalanceAsync();
