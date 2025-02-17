@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Zennolab.CapMonsterCloud.Requests;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud
 {
@@ -78,7 +79,7 @@ namespace Zennolab.CapMonsterCloud
                     }
                 },
                 {
-                    typeof(ComplexImageTaskRequestBase),
+                    typeof(ComplexImageTaskRequestBase<>),
                     new GetResultTimeouts
                     {
                         FirstRequestDelay = TimeSpan.FromMilliseconds(350),

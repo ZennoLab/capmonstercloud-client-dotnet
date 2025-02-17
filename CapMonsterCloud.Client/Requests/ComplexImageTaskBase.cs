@@ -8,7 +8,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <summary>
     /// ComplexImageTask recognition request
     /// </summary>
-    public abstract class ComplexImageTaskRequestBase : CaptchaRequestBase<GridComplexImageTaskResponse>
+    public abstract class ComplexImageTaskRequestBase<TResponse> : CaptchaRequestBase<TResponse> where TResponse : CaptchaResponseBase
     {
         /// <summary>
         /// Recognition task type
