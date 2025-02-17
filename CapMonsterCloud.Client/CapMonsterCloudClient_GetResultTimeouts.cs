@@ -178,8 +178,8 @@ namespace Zennolab.CapMonsterCloud
                     new GetResultTimeouts
                     {
                         FirstRequestDelay = TimeSpan.FromSeconds(1),
-                        RequestsInterval = TimeSpan.FromSeconds(3),
-                        Timeout = TimeSpan.FromSeconds(180)
+                        RequestsInterval = TimeSpan.FromSeconds(1),
+                        Timeout = TimeSpan.FromSeconds(15)
                     }
                 },
             };
