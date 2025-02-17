@@ -6,7 +6,7 @@ using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Json
 {
-    public class RecognitionAnswerJsonConverter : JsonConverter<RecognitionAnswer>
+    internal class RecognitionAnswerJsonConverter : JsonConverter<RecognitionAnswer>
     {
         public override RecognitionAnswer ReadJson(JsonReader reader, Type objectType, RecognitionAnswer existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
