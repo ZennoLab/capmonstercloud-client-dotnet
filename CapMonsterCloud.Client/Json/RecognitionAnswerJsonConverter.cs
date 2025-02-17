@@ -22,14 +22,14 @@ namespace Zennolab.CapMonsterCloud.Json
                 JObject obj = (JObject)token;
                 JToken innerToken = obj["DecimalValues"];
 
-                if (innerToken == null)
+                if (innerToken == null || !innerToken.HasValues)
                     innerToken = obj["BoolValues"];
 
                 if (innerToken == null)
-                    throw new JsonSerializationException("Expected an array in the object, but could not find an 'answer' (or 'data') property.");
+                    throw new JsonSerializationException("Expected an array in the object, but could not find an 'DecimalValues' (or 'BoolValues') property.");
 
                 if (innerToken.Type != JTokenType.Array)
-                    throw new JsonSerializationException("Expected the 'answer' (or 'data') property to be an array.");
+                    throw new JsonSerializationException("Expected the 'DecimalValues' (or 'BoolValues') property to be an array.");
 
                 array = (JArray)innerToken;
             }
