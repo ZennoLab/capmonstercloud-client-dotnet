@@ -340,26 +340,26 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
 
-            public static CaptchaResult<DynamicGridComplexImageTaskResponse> CreateDynamicGridComplexImageTaskSolutionWithBoolValues()
+            public static CaptchaResult<DynamicComplexImageTaskResponse> CreateDynamicComplexImageTaskSolutionWithGridAnswer()
             {
-                return new CaptchaResult<DynamicGridComplexImageTaskResponse>
+                return new CaptchaResult<DynamicComplexImageTaskResponse>
                 {
                     Error = null,
-                    Solution = new DynamicGridComplexImageTaskResponse
+                    Solution = new DynamicComplexImageTaskResponse
                     {
-                        Answer = new RecognitionAnswer{ BoolValues = Gen.ArrayOfValues(Gen.RandomBool) }
+                        Answer = new RecognitionAnswer{ GridAnswer = Gen.ArrayOfValues(Gen.RandomBool) }
                     }
                 };
             }
 
-            public static CaptchaResult<DynamicGridComplexImageTaskResponse> CreateDynamicGridComplexImageTaskSolutionWithDecimalValues()
+            public static CaptchaResult<DynamicComplexImageTaskResponse> CreateDynamicComplexImageTaskSolutionWithNumericAnswer()
             {
-                return new CaptchaResult<DynamicGridComplexImageTaskResponse>
+                return new CaptchaResult<DynamicComplexImageTaskResponse>
                 {
                     Error = null,
-                    Solution = new DynamicGridComplexImageTaskResponse
+                    Solution = new DynamicComplexImageTaskResponse
                     {
-                        Answer = new RecognitionAnswer { DecimalValues = Gen.ArrayOfValues(Gen.RandomDecimal) }
+                        Answer = new RecognitionAnswer { NumericAnswer = Gen.ArrayOfValues(Gen.RandomDecimal) }
                     }
                 };
             }

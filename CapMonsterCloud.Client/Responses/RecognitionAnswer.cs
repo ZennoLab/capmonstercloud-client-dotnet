@@ -8,17 +8,17 @@
         /// <summary>
         /// Decimal answer
         /// </summary>
-        public decimal[] DecimalValues { get; set; }
+        public decimal[] NumericAnswer { get; set; }
 
         /// <summary>
         /// Bool answer
         /// </summary>
-        public bool[] BoolValues { get; set; }
+        public bool[] GridAnswer { get; set; }
 
         /// <inheritdoc/>
-        public bool IsDecimal => DecimalValues != null;
+        public bool IsNumeric => NumericAnswer != null;
 
         /// <inheritdoc/>
-        public bool IsBool => BoolValues != null;
+        public bool IsGrid => NumericAnswer != null;
     }
 }

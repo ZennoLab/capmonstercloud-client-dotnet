@@ -512,13 +512,13 @@ namespace CapMonsterCloud.Client.IntegrationTests
         }      
         
         [Test]
-        public async Task HCaptchaComplexImageTask_ShouldSolve()
+        public async Task HCaptchaComplexImageTaskWithNumericAnswer_ShouldSolve()
         {
             var clientKey = Gen.RandomString();
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.ComplexImageTask.CreateHCaptchaComplexImageTask();
-            var expectedResult = ObjectGen.ComplexImageTask.CreateGridComplexImageTaskSolution();
+            var expectedResult = ObjectGen.ComplexImageTask.CreateDynamicComplexImageTaskSolutionWithNumericAnswer();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {
@@ -541,7 +541,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     status = "ready",
                     solution = new
                     {
-                        answer = expectedResult.Solution.Answer
+                        answer = expectedResult.Solution.Answer.NumericAnswer
                     },
                     errorId = 0,
                     errorCode = (string)null!
@@ -555,8 +555,54 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
             sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
             actual.Should().BeEquivalentTo(expectedResult);
-        }   
-        
+        }
+
+        [Test]
+        public async Task HCaptchaComplexImageTaskWithGridAnswer_ShouldSolve()
+        {
+            var clientKey = Gen.RandomString();
+            var taskId = Gen.RandomInt();
+
+            var captchaRequest = ObjectGen.ComplexImageTask.CreateHCaptchaComplexImageTask();
+            var expectedResult = ObjectGen.ComplexImageTask.CreateDynamicComplexImageTaskSolutionWithGridAnswer();
+
+            var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
+            {
+                (
+                    Type: RequestType.CreateTask,
+                    ExpectedRequest: JsonConvert.SerializeObject(new
+                        { clientKey = clientKey, task = captchaRequest, softId = 53 })
+                ),
+                (
+                    Type: RequestType.GetTaskResult,
+                    ExpectedRequest: JsonConvert.SerializeObject(new { clientKey = clientKey, taskId = taskId })
+                ),
+            };
+
+            var captchaResults = new List<object>
+            {
+                new { taskId = taskId, errorId = 0, errorCode = (string)null! },
+                new
+                {
+                    status = "ready",
+                    solution = new
+                    {
+                        answer = expectedResult.Solution.Answer.GridAnswer
+                    },
+                    errorId = 0,
+                    errorCode = (string)null!
+                }
+            };
+
+            var sut = new Sut(clientKey);
+            sut.SetupHttpServer(captchaResults);
+
+            var actual = await sut.SolveAsync(captchaRequest);
+
+            sut.GetActualRequests().Should().BeEquivalentTo(expectedRequests);
+            actual.Should().BeEquivalentTo(expectedResult);
+        }
+
         [Test]
         public async Task FunCaptchaComplexImageTask_ShouldSolve()
         {
@@ -604,13 +650,13 @@ namespace CapMonsterCloud.Client.IntegrationTests
         }
 
         [Test]
-        public async Task RecognitionComplexImageTaskWithBoolValues_ShouldSolve()
+        public async Task RecognitionComplexImageTaskWithGridAnswer_ShouldSolve()
         {
             var clientKey = Gen.RandomString();
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.ComplexImageTask.CreateRecognitionComplexImageTask();
-            var expectedResult = ObjectGen.ComplexImageTask.CreateDynamicGridComplexImageTaskSolutionWithBoolValues();
+            var expectedResult = ObjectGen.ComplexImageTask.CreateDynamicComplexImageTaskSolutionWithGridAnswer();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {
@@ -633,7 +679,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     status = "ready",
                     solution = new
                     {
-                        answer = expectedResult.Solution.Answer
+                        answer = expectedResult.Solution.Answer.GridAnswer
                     },
                     errorId = 0,
                     errorCode = (string)null!
@@ -650,13 +696,13 @@ namespace CapMonsterCloud.Client.IntegrationTests
         }
 
         [Test]
-        public async Task RecognitionComplexImageTaskWithDecimalValues_ShouldSolve()
+        public async Task RecognitionComplexImageTaskWithNumericAnswer_ShouldSolve()
         {
             var clientKey = Gen.RandomString();
             var taskId = Gen.RandomInt();
 
             var captchaRequest = ObjectGen.ComplexImageTask.CreateRecognitionComplexImageTask();
-            var expectedResult = ObjectGen.ComplexImageTask.CreateDynamicGridComplexImageTaskSolutionWithDecimalValues();
+            var expectedResult = ObjectGen.ComplexImageTask.CreateDynamicComplexImageTaskSolutionWithNumericAnswer();
 
             var expectedRequests = new List<(RequestType Type, string ExpectedRequest)>
             {
@@ -679,7 +725,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     status = "ready",
                     solution = new
                     {
-                        answer = expectedResult.Solution.Answer
+                        answer = expectedResult.Solution.Answer.NumericAnswer
                     },
                     errorId = 0,
                     errorCode = (string)null!

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Json
@@ -12,86 +11,44 @@ namespace Zennolab.CapMonsterCloud.Json
         {
             JToken token = JToken.Load(reader);
 
-            JArray array;
-            if (token.Type == JTokenType.Array)
+            if (token.Type != JTokenType.Array)
+                throw new JsonSerializationException("Expected an array for answer field");
+
+            if (!token.HasValues)
+                throw new JsonSerializationException("Empty answer array");
+
+            RecognitionAnswer answer = new RecognitionAnswer();
+
+            if (token.First.Type == JTokenType.Boolean)
             {
-                array = (JArray)token;
+                answer.GridAnswer = token.ToObject<bool[]>();
             }
-            else if (token.Type == JTokenType.Object)
+            else if (token.First.Type == JTokenType.Integer || token.First.Type == JTokenType.Float)
             {
-                JObject obj = (JObject)token;
-                JToken innerToken = obj["DecimalValues"];
-
-                if (innerToken == null || !innerToken.HasValues)
-                    innerToken = obj["BoolValues"];
-
-                if (innerToken == null)
-                    throw new JsonSerializationException("Expected an array in the object, but could not find an 'DecimalValues' (or 'BoolValues') property.");
-
-                if (innerToken.Type != JTokenType.Array)
-                    throw new JsonSerializationException("Expected the 'DecimalValues' (or 'BoolValues') property to be an array.");
-
-                array = (JArray)innerToken;
+                answer.NumericAnswer = token.ToObject<decimal[]>();
             }
             else
             {
-                throw new JsonSerializationException("Unexpected token type. Expected an array or an object containing an array.");
+                throw new JsonSerializationException("Unexpected answer format");
             }
 
-            return ProcessArray(array);
-        }
-
-        private RecognitionAnswer ProcessArray(JArray array)
-        {
-            if (array.Count == 0)
-                return new RecognitionAnswer { DecimalValues = new decimal[0] };
-
-            bool isBoolArray = array[0].Type == JTokenType.Boolean;
-
-            var boolList = new List<bool>();
-            var decimalList = new List<decimal>();
-
-            foreach (var item in array)
-            {
-                if (isBoolArray)
-                {
-                    if (item.Type != JTokenType.Boolean)
-                        throw new JsonSerializationException("Inconsistent array types: Expected all booleans.");
-                    boolList.Add(item.Value<bool>());
-                }
-                else
-                {
-                    if (item.Type != JTokenType.Float && item.Type != JTokenType.Integer)
-                        throw new JsonSerializationException("Inconsistent array types: Expected all numbers.");
-                    decimalList.Add(item.Value<decimal>());
-                }
-            }
-
-            return isBoolArray
-                ? new RecognitionAnswer { BoolValues = boolList.ToArray() }
-                : new RecognitionAnswer { DecimalValues = decimalList.ToArray() };
+            return answer;
         }
 
         public override void WriteJson(JsonWriter writer, RecognitionAnswer value, JsonSerializer serializer)
         {
-            writer.WriteStartArray();
-
-            if (value.IsBool)
+            if (value.IsGrid)
             {
-                foreach (var item in value.BoolValues)
-                {
-                    writer.WriteValue(item);
-                }
+                JToken.FromObject(value.GridAnswer).WriteTo(writer);
             }
-            else if (value.IsDecimal)
+            else if (value.IsNumeric)
             {
-                foreach (var item in value.DecimalValues)
-                {
-                    writer.WriteValue(item);
-                }
+                JToken.FromObject(value.NumericAnswer).WriteTo(writer);
             }
-
-            writer.WriteEndArray();
+            else
+            {
+                throw new JsonSerializationException("Invalid RecognitionAnswer state");
+            }
         }
     }
 }

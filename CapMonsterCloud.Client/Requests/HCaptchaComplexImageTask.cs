@@ -8,7 +8,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <summary>
     /// ComplexImageTask recognition request for hcaptcha images
     /// </summary>
-    public sealed class HCaptchaComplexImageTaskRequest : ComplexImageTaskRequestBase<GridComplexImageTaskResponse>
+    public sealed class HCaptchaComplexImageTaskRequest : ComplexImageTaskRequestBase<DynamicComplexImageTaskResponse>
     {
         /// <summary>
         /// Metadata for recognition

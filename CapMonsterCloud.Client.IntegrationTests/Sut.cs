@@ -71,8 +71,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
         public async Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync (
             RecaptchaComplexImageTaskRequest request) => await _cloudClient.SolveAsync<GridComplexImageTaskResponse>(request); 
         
-        public async Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync (
-            HCaptchaComplexImageTaskRequest request) => await _cloudClient.SolveAsync<GridComplexImageTaskResponse>(request);
+        public async Task<CaptchaResult<DynamicComplexImageTaskResponse>> SolveAsync (
+            HCaptchaComplexImageTaskRequest request) => await _cloudClient.SolveAsync<DynamicComplexImageTaskResponse>(request);
 
         public async Task<CaptchaResult<GridComplexImageTaskResponse>> SolveAsync (
             FunCaptchaComplexImageTaskRequest request) => await _cloudClient.SolveAsync<GridComplexImageTaskResponse>(request);
@@ -92,7 +92,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
         public async Task<CaptchaResult<BinanceTaskResponse>> SolveAsync(
             BinanceTaskRequest request) => await _cloudClient.SolveAsync<BinanceTaskResponse>(request);
 
-        public async Task<CaptchaResult<DynamicGridComplexImageTaskResponse>> SolveAsync(
+        public async Task<CaptchaResult<DynamicComplexImageTaskResponse>> SolveAsync(
             RecognitionComplexImageTaskRequest request) => await _cloudClient.SolveAsync(request);
 
         public async Task<decimal> GetBalanceAsync()

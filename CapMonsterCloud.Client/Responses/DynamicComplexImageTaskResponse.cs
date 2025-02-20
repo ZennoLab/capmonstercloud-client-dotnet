@@ -6,7 +6,7 @@ namespace Zennolab.CapMonsterCloud.Responses
     /// <summary>
     /// Response for Recognition grid-like tasks
     /// </summary>
-    public class DynamicGridComplexImageTaskResponse : CaptchaResponseBase
+    public class DynamicComplexImageTaskResponse : CaptchaResponseBase
     {
         /// <summary>
         /// Bool or decimal collection with answers

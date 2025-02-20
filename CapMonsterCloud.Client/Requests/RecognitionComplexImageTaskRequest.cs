@@ -7,7 +7,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <summary>
     /// ComplexImageTask recognition request for Recognition images
     /// </summary>
-    public sealed class RecognitionComplexImageTaskRequest : ComplexImageTaskRequestBase<DynamicGridComplexImageTaskResponse>
+    public sealed class RecognitionComplexImageTaskRequest : ComplexImageTaskRequestBase<DynamicComplexImageTaskResponse>
     {
         /// <inheritdoc/>
         public override string Class => "recognition";
