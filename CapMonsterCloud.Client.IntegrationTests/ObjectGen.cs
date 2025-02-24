@@ -347,7 +347,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Error = null,
                     Solution = new DynamicComplexImageTaskResponse
                     {
-                        Answer = new RecognitionAnswer{ GridAnswer = Gen.ArrayOfValues(Gen.RandomBool) }
+                        Answer = new RecognitionAnswer{ GridAnswer = Gen.ArrayOfValues(Gen.RandomBool) },
+                        Metadata = new DynamicComplexImageTaskResponse.RecognitionMetadata { AnswerType = "Grid" }
                     }
                 };
             }
@@ -359,7 +360,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Error = null,
                     Solution = new DynamicComplexImageTaskResponse
                     {
-                        Answer = new RecognitionAnswer { NumericAnswer = Gen.ArrayOfValues(Gen.RandomDecimal) }
+                        Answer = new RecognitionAnswer { NumericAnswer = Gen.ArrayOfValues(Gen.RandomDecimal) },
+                        Metadata = new DynamicComplexImageTaskResponse.RecognitionMetadata { AnswerType = "NumericArray" }
                     }
                 };
             }
