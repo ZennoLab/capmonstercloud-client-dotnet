@@ -1,13 +1,24 @@
 ﻿using Newtonsoft.Json;
 using Zennolab.CapMonsterCloud.Json;
+using static Zennolab.CapMonsterCloud.Requests.RecognitionComplexImageTaskRequest;
 
 namespace Zennolab.CapMonsterCloud.Responses
-{    
+{
     /// <summary>
     /// Response for Recognition grid-like tasks
     /// </summary>
+    [JsonConverter(typeof(RecognitionAnswerJsonConverter))]
     public class DynamicComplexImageTaskResponse : CaptchaResponseBase
     {
+        /// <summary>
+        /// Metadata class containing AnswerType
+        /// </summary>
+        public class RecognitionMetadata
+        {
+            [JsonProperty("AnswerType")]
+            public string AnswerType { get; set; }
+        }
+
         /// <summary>
         /// Bool or decimal collection with answers
         /// </summary>
@@ -17,7 +28,12 @@ namespace Zennolab.CapMonsterCloud.Responses
         /// [130.90909]
         /// </example>
         [JsonProperty("answer")]
-        [JsonConverter(typeof(RecognitionAnswerJsonConverter))]
         public RecognitionAnswer Answer { get; set; }
+
+        /// <summary>
+        /// Metadata containing the answer type
+        /// </summary>
+        [JsonProperty("metadata")]
+        public RecognitionMetadata Metadata { get; set; }
     }
 }

@@ -19,6 +19,6 @@
         public bool IsNumeric => NumericAnswer != null;
 
         /// <inheritdoc/>
-        public bool IsGrid => NumericAnswer != null;
+        public bool IsGrid => GridAnswer != null;
     }
 }

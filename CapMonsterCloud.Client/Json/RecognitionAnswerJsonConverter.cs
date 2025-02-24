@@ -5,50 +5,78 @@ using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Json
 {
-    internal class RecognitionAnswerJsonConverter : JsonConverter<RecognitionAnswer>
+    internal class RecognitionAnswerJsonConverter : JsonConverter<DynamicComplexImageTaskResponse>
     {
-        public override RecognitionAnswer ReadJson(JsonReader reader, Type objectType, RecognitionAnswer existingValue, bool hasExistingValue, JsonSerializer serializer)
+        public override DynamicComplexImageTaskResponse ReadJson(JsonReader reader, Type objectType, DynamicComplexImageTaskResponse existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            JToken token = JToken.Load(reader);
+            JObject obj = JObject.Load(reader);
 
-            if (token.Type != JTokenType.Array)
-                throw new JsonSerializationException("Expected an array for answer field");
+            if (!obj.ContainsKey("metadata") || !obj.ContainsKey("answer"))
+                throw new JsonSerializationException("Missing 'metadata' or 'answer' field in response");
 
-            if (!token.HasValues)
-                throw new JsonSerializationException("Empty answer array");
+            string answerType = obj["metadata"]?["AnswerType"]?.ToString();
+            if (string.IsNullOrEmpty(answerType))
+                throw new JsonSerializationException("AnswerType is missing in metadata");
 
-            RecognitionAnswer answer = new RecognitionAnswer();
-
-            if (token.First.Type == JTokenType.Boolean)
+            JToken answerToken = obj["answer"];
+            DynamicComplexImageTaskResponse response = new DynamicComplexImageTaskResponse
             {
-                answer.GridAnswer = token.ToObject<bool[]>();
-            }
-            else if (token.First.Type == JTokenType.Integer || token.First.Type == JTokenType.Float)
+                Metadata = new DynamicComplexImageTaskResponse.RecognitionMetadata
+                {
+                    AnswerType = answerType
+                }
+            };
+
+            switch (answerType)
             {
-                answer.NumericAnswer = token.ToObject<decimal[]>();
-            }
-            else
-            {
-                throw new JsonSerializationException("Unexpected answer format");
+                case "NumericArray":
+                    response.Answer = new RecognitionAnswer
+                    {
+                        NumericAnswer = answerToken.ToObject<decimal[]>()
+                    };
+                    break;
+                case "Grid":
+                    response.Answer = new RecognitionAnswer
+                    {
+                        GridAnswer = answerToken.ToObject<bool[]>()
+                    };
+                    break;
+                default:
+                    throw new JsonSerializationException($"Unknown AnswerType: {answerType}");
             }
 
-            return answer;
+            return response;
         }
 
-        public override void WriteJson(JsonWriter writer, RecognitionAnswer value, JsonSerializer serializer)
+        public override void WriteJson(JsonWriter writer, DynamicComplexImageTaskResponse value, JsonSerializer serializer)
         {
-            if (value.IsGrid)
+            if (value == null)
             {
-                JToken.FromObject(value.GridAnswer).WriteTo(writer);
+                writer.WriteNull();
+                return;
             }
-            else if (value.IsNumeric)
+
+            writer.WriteStartObject();
+
+            writer.WritePropertyName("answer");
+
+            if (value.Metadata?.AnswerType == "Grid" && value.Answer?.GridAnswer != null)
             {
-                JToken.FromObject(value.NumericAnswer).WriteTo(writer);
+                serializer.Serialize(writer, value.Answer.GridAnswer);
+            }
+            else if (value.Metadata?.AnswerType == "NumericArray" && value.Answer?.NumericAnswer != null)
+            {
+                serializer.Serialize(writer, value.Answer.NumericAnswer);
             }
             else
             {
-                throw new JsonSerializationException("Invalid RecognitionAnswer state");
+                throw new JsonSerializationException("Invalid or missing answer data for the specified AnswerType.");
             }
+
+            writer.WritePropertyName("metadata");
+            serializer.Serialize(writer, value.Metadata);
+
+            writer.WriteEndObject();
         }
     }
 }
