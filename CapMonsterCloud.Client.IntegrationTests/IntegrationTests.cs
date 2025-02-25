@@ -541,7 +541,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     status = "ready",
                     solution = new
                     {
-                        answer = expectedResult.Solution.Answer.NumericAnswer
+                        answer = expectedResult.Solution.Answer.NumericAnswer,
+                        metadata = new { AnswerType = "NumericArray" }
                     },
                     errorId = 0,
                     errorCode = (string)null!
@@ -587,7 +588,8 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     status = "ready",
                     solution = new
                     {
-                        answer = expectedResult.Solution.Answer.GridAnswer
+                        answer = expectedResult.Solution.Answer.GridAnswer,
+                        metadata = new { AnswerType = "Grid" }
                     },
                     errorId = 0,
                     errorCode = (string)null!
