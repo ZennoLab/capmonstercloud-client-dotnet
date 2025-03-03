@@ -96,6 +96,15 @@ namespace CapMonsterCloud.Client.IntegrationTests
             return Enumerable.Repeat(0, count).Select(x => createFunc()).ToList();
         }
 
+        public static T[] ArrayOfValues<T>(Func<T> createFunc) =>
+            ArrayOfValues(createFunc, 5);
+
+        public static T[] ArrayOfValues<T>(Func<T> createFunc, int count)
+        {
+            if (count <= 0) throw new ArgumentOutOfRangeException(nameof(count));
+            return Enumerable.Repeat(0, count).Select(x => createFunc()).ToArray();
+        }
+
         public static bool RandomBool() => Rnd.NextDouble() >= 0.5;
         
         public static string RandomGuid()
