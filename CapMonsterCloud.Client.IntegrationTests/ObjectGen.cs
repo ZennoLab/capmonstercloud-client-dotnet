@@ -409,6 +409,37 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     }
                 };
             }
+
+            public static ImpervaCustomTaskRequest CreateImpervaTask()
+            {
+                return new ImpervaCustomTaskRequest(Gen.RandomString(), Gen.RandomString(), Gen.RandomString())
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    UserAgent = Gen.UserAgent(),
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                };
+            }
+
+            public static CaptchaResult<CustomTaskResponse> CreateImpervaSolution()
+            {
+                return new CaptchaResult<CustomTaskResponse>
+                {
+                    Error = null,
+                    Solution = new CustomTaskResponse
+                    {
+                        Domains = new Dictionary<string, CustomTaskResponse.DomainInfo>
+                        {
+                            {
+                                Gen.RandomString(),
+                                new CustomTaskResponse.DomainInfo()
+                                {
+                                    Cookies = new Dictionary<string, string> { { Gen.RandomString(), Gen.RandomString() } },
+                                }
+                            }
+                        }
+                    }
+                };
+            }
         }
 
         public static class AmazonWaf
