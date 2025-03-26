@@ -15,7 +15,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-	  <Version>3.1.0</Version>
+	  <Version>3.0.1</Version>
 	  <PackageReleaseNotes>Fixed DataDome request parameters</PackageReleaseNotes>
   </PropertyGroup>
 
