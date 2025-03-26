@@ -1,13 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
+using Zennolab.CapMonsterCloud.Responses;
 
 namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
     /// ComplexImageTask recognition request for recaptcha images
     /// </summary>
-    public sealed class RecaptchaComplexImageTaskRequest : ComplexImageTaskRequestBase
+    public sealed class RecaptchaComplexImageTaskRequest : ComplexImageTaskRequestBase<GridComplexImageTaskResponse>
     {
         /// <summary>
         /// Metadata for recognition

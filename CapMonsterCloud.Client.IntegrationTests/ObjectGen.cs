@@ -311,7 +311,24 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
 
-            public static CaptchaResult<GridComplexImageTaskResponse> CreateSolution()
+
+            public static RecognitionComplexImageTaskRequest CreateRecognitionComplexImageTask()
+            {
+                return new RecognitionComplexImageTaskRequest
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    Metadata = new RecognitionComplexImageTaskRequest.RecognitionMetadata
+                    {
+                        Task = Gen.RandomString(),
+                        TaskArgument = Gen.RandomString()
+                    },
+                    ImageUrls = Gen.ListOfValues(Gen.RandomUri().ToString),
+                    ImagesBase64 = Gen.ListOfValues(Gen.RandomString),
+                    UserAgent = Gen.UserAgent()
+                };
+            }
+
+            public static CaptchaResult<GridComplexImageTaskResponse> CreateGridComplexImageTaskSolution()
             {
                 return new CaptchaResult<GridComplexImageTaskResponse>
                 {
@@ -319,6 +336,32 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Solution = new GridComplexImageTaskResponse
                     {
                         Answer = Gen.ListOfValues(Gen.RandomBool),
+                    }
+                };
+            }
+
+            public static CaptchaResult<DynamicComplexImageTaskResponse> CreateDynamicComplexImageTaskSolutionWithGridAnswer()
+            {
+                return new CaptchaResult<DynamicComplexImageTaskResponse>
+                {
+                    Error = null,
+                    Solution = new DynamicComplexImageTaskResponse
+                    {
+                        Answer = new RecognitionAnswer{ GridAnswer = Gen.ArrayOfValues(Gen.RandomBool) },
+                        Metadata = new DynamicComplexImageTaskResponse.RecognitionMetadata { AnswerType = "Grid" }
+                    }
+                };
+            }
+
+            public static CaptchaResult<DynamicComplexImageTaskResponse> CreateDynamicComplexImageTaskSolutionWithNumericAnswer()
+            {
+                return new CaptchaResult<DynamicComplexImageTaskResponse>
+                {
+                    Error = null,
+                    Solution = new DynamicComplexImageTaskResponse
+                    {
+                        Answer = new RecognitionAnswer { NumericAnswer = Gen.ArrayOfValues(Gen.RandomDecimal) },
+                        Metadata = new DynamicComplexImageTaskResponse.RecognitionMetadata { AnswerType = "NumericArray" }
                     }
                 };
             }
