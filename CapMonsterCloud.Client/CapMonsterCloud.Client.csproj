@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-	  <Version>2.1.0</Version>
-	  <PackageReleaseNotes>Added Imperva CustomTask</PackageReleaseNotes>
+	  <Version>2.2.0</Version>
+	  <PackageReleaseNotes>Fixed DataDome request parameters</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
