@@ -25,6 +25,6 @@
         /// Field is required. Your cookies from datadome. You can get it on the page using "document.cookie" or in the Set-Cookie request header: "datadome=..."
         /// 
         /// </summary>
-        public DataDomeCustomTaskRequest(string datadomeCookie, string captchaUrl, string htmlPageBase64) => Metadata = new { datadomeCookie, captchaUrl, htmlPageBase64 };
+        public DataDomeCustomTaskRequest(string datadomeCookie, string captchaUrl = null, string htmlPageBase64 = null) => Metadata = new { datadomeCookie, captchaUrl, htmlPageBase64 };
     }
 }
