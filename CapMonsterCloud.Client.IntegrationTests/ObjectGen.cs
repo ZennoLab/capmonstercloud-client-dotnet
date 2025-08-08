@@ -624,7 +624,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     WebsiteKey = Gen.RandomString(),
                     UserAgent  = Gen.UserAgent(),
-                    // Enterprise РїРѕР»СЏ РїРѕ Р¶РµР»Р°РЅРёСЋ:
+                    // Enterprise поля по желанию:
                     YidunGetLib = Gen.RandomUri().ToString(),
                     YidunApiServerSubdomain = Gen.RandomString(),
                     Challenge = Gen.RandomString(),
@@ -642,6 +642,31 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 {
                     Error = null,
                     Solution = new YidunTaskResponse
+                    {
+                        Value = Gen.RandomString(),
+                    }
+                };
+            }
+        }
+        
+        public static class ProsopoTask
+        {
+            public static ProsopoTaskRequest CreateTask()
+            {
+                return new ProsopoTaskRequest
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    WebsiteKey = Gen.RandomString(),
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                };
+            }
+
+            public static CaptchaResult<ProsopoTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<ProsopoTaskResponse>
+                {
+                    Error = null,
+                    Solution = new ProsopoTaskResponse
                     {
                         Value = Gen.RandomString(),
                     }
