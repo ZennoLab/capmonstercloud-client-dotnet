@@ -546,5 +546,36 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
         }
+        
+        public static class MTCaptchaTask
+        {
+            public static MTCaptchaTaskRequest CreateTask()
+            {
+                return new MTCaptchaTaskRequest
+                {
+                    WebsiteUrl  = Gen.RandomUri().ToString(),
+                    WebsiteKey  = Gen.RandomString(),
+                    Invisible   = Gen.RandomBool(),
+                    PageAction  = Gen.RandomString(),
+                    UserAgent   = Gen.UserAgent(),
+                    Proxy = new ProxyContainer(
+                        Gen.RandomString(), Gen.RandomInt(0, 65535),
+                        Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                };
+            }
+
+            public static CaptchaResult<MTCaptchaTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<MTCaptchaTaskResponse>
+                {
+                    Error = null,
+                    Solution = new MTCaptchaTaskResponse
+                    {
+                        Value = Gen.RandomString()
+                    }
+                };
+            }
+        }
+
     }
 }
