@@ -192,6 +192,15 @@ namespace Zennolab.CapMonsterCloud
                         Timeout           = TimeSpan.FromSeconds(180)
                     }
                 },
-            };
+                {
+                    typeof(MTCaptchaTaskRequest),
+                    new GetResultTimeouts
+                    {
+                        FirstRequestDelay = TimeSpan.FromSeconds(1),
+                        FirstRequestNoCacheDelay = TimeSpan.FromSeconds(10),
+                        RequestsInterval = TimeSpan.FromSeconds(3),
+                        Timeout = TimeSpan.FromSeconds(180)
+                    }
+                },            };
     }
 }
