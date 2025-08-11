@@ -614,5 +614,39 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
         }
+        
+        public static class YidunTask
+        {
+            public static YidunTaskRequest CreateTask()
+            {
+                return new YidunTaskRequest
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    WebsiteKey = Gen.RandomString(),
+                    UserAgent  = Gen.UserAgent(),
+                    // Enterprise поля по желанию:
+                    YidunGetLib = Gen.RandomUri().ToString(),
+                    YidunApiServerSubdomain = Gen.RandomString(),
+                    Challenge = Gen.RandomString(),
+                    Hcg = Gen.RandomString(),
+                    Hct = Gen.RandomLong(1, long.MaxValue),
+                    Proxy = new ProxyContainer(
+                        Gen.RandomString(), Gen.RandomInt(0, 65535),
+                        Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                };
+            }
+
+            public static CaptchaResult<YidunTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<YidunTaskResponse>
+                {
+                    Error = null,
+                    Solution = new YidunTaskResponse
+                    {
+                        Value = Gen.RandomString(),
+                    }
+                };
+            }
+        }
     }
 }
