@@ -546,5 +546,44 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
         }
+
+        public static class TemuTask
+        {
+            public static TemuCustomTaskRequest CreateTask()
+            {
+                return new TemuCustomTaskRequest(Gen.RandomString())
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    UserAgent  = Gen.UserAgent(),
+                    Proxy      = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                };
+            }
+
+            public static CaptchaResult<CustomTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<CustomTaskResponse>
+                {
+                    Error = null,
+                    Solution = new CustomTaskResponse
+                    {
+                        Domains = new Dictionary<string, CustomTaskResponse.DomainInfo>
+                        {
+                            {
+                                "www.temu.com",
+                                new CustomTaskResponse.DomainInfo
+                                {
+                                    Cookies = new Dictionary<string, string>
+                                    {
+                                        { "verifyAuthToken", Gen.RandomString() },
+                                        { "api_uid",         Gen.RandomString() }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+            }
+
+        }
     }
 }
