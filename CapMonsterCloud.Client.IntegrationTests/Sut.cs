@@ -97,6 +97,18 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
         public async Task<CaptchaResult<DynamicComplexImageTaskResponse>> SolveAsync(
             RecognitionComplexImageTaskRequest request) => await _cloudClient.SolveAsync(request);
+        
+        public async Task<CaptchaResult<ProsopoTaskResponse>> SolveAsync(
+            ProsopoTaskRequest request) => await _cloudClient.SolveAsync<ProsopoTaskResponse>(request);
+
+        public async Task<CaptchaResult<CustomTaskResponse>> SolveAsync(
+            TemuCustomTaskRequest request) => await _cloudClient.SolveAsync<CustomTaskResponse>(request);
+
+        public async Task<CaptchaResult<MTCaptchaTaskResponse>> SolveAsync(
+            MTCaptchaTaskRequest request) => await _cloudClient.SolveAsync<MTCaptchaTaskResponse>(request);
+        
+        public async Task<CaptchaResult<YidunTaskResponse>> SolveAsync(
+            YidunTaskRequest request) => await _cloudClient.SolveAsync<YidunTaskResponse>(request);
 
         public async Task<decimal> GetBalanceAsync()
         {

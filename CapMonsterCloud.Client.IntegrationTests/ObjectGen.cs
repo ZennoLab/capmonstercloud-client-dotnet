@@ -546,5 +546,132 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 };
             }
         }
+
+        public static class TemuTask
+        {
+            public static TemuCustomTaskRequest CreateTask()
+            {
+                return new TemuCustomTaskRequest(Gen.RandomString())
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    UserAgent  = Gen.UserAgent(),
+                    Proxy      = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                };
+            }
+
+            public static CaptchaResult<CustomTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<CustomTaskResponse>
+                {
+                    Error = null,
+                    Solution = new CustomTaskResponse
+                    {
+                        Domains = new Dictionary<string, CustomTaskResponse.DomainInfo>
+                        {
+                            {
+                                "www.temu.com",
+                                new CustomTaskResponse.DomainInfo
+                                {
+                                    Cookies = new Dictionary<string, string>
+                                    {
+                                        { "verifyAuthToken", Gen.RandomString() },
+                                        { "api_uid",         Gen.RandomString() }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                };
+            }
+        }
+        
+        public static class MTCaptchaTask
+        {
+            public static MTCaptchaTaskRequest CreateTask()
+            {
+                return new MTCaptchaTaskRequest
+                {
+                    WebsiteUrl  = Gen.RandomUri().ToString(),
+                    WebsiteKey  = Gen.RandomString(),
+                    Invisible   = Gen.RandomBool(),
+                    PageAction  = Gen.RandomString(),
+                    UserAgent   = Gen.UserAgent(),
+                    Proxy = new ProxyContainer(
+                        Gen.RandomString(), Gen.RandomInt(0, 65535),
+                        Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                };
+            }
+
+            public static CaptchaResult<MTCaptchaTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<MTCaptchaTaskResponse>
+                {
+                    Error = null,
+                    Solution = new MTCaptchaTaskResponse
+                    {
+                        Value = Gen.RandomString()
+                    }
+                };
+            }
+        }
+        
+        public static class YidunTask
+        {
+            public static YidunTaskRequest CreateTask()
+            {
+                return new YidunTaskRequest
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    WebsiteKey = Gen.RandomString(),
+                    UserAgent  = Gen.UserAgent(),
+                    // Enterprise поля по желанию:
+                    YidunGetLib = Gen.RandomUri().ToString(),
+                    YidunApiServerSubdomain = Gen.RandomString(),
+                    Challenge = Gen.RandomString(),
+                    Hcg = Gen.RandomString(),
+                    Hct = Gen.RandomLong(1, long.MaxValue),
+                    Proxy = new ProxyContainer(
+                        Gen.RandomString(), Gen.RandomInt(0, 65535),
+                        Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                };
+            }
+
+            public static CaptchaResult<YidunTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<YidunTaskResponse>
+                {
+                    Error = null,
+                    Solution = new YidunTaskResponse
+                    {
+                        Value = Gen.RandomString(),
+                    }
+                };
+            }
+        }
+        
+        public static class ProsopoTask
+        {
+            public static ProsopoTaskRequest CreateTask()
+            {
+                return new ProsopoTaskRequest
+                {
+                    WebsiteUrl = Gen.RandomUri().ToString(),
+                    WebsiteKey = Gen.RandomString(),
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                };
+            }
+
+            public static CaptchaResult<ProsopoTaskResponse> CreateSolution()
+            {
+                return new CaptchaResult<ProsopoTaskResponse>
+                {
+                    Error = null,
+                    Solution = new ProsopoTaskResponse
+                    {
+                        Value = Gen.RandomString(),
+                    }
+                };
+            }
+        }
     }
 }
