@@ -557,7 +557,8 @@ namespace Zennolab.CapMonsterCloud.Client
                     websiteURL = target.WebsiteUrl,
                     metadata = new
                     {
-                        captchaUrl = default(string)
+                        captchaUrl = default(string),
+                        aidEncrypted = default(string)
                     },
                     userAgent = default(string),
                     proxyAddress = target.ProxyAddress,
