@@ -14,7 +14,7 @@ namespace Zennolab.CapMonsterCloud
         /// Initializes a new instance of the <see cref="ProxyContainer"/> class.
         /// </summary>
         /// <param name="address">The proxy IP address (IPv4/IPv6). Must not be a transparent proxy, or from a local network.</param>
-        /// <param name="port">The proxy port number (0-65535).</param>
+        /// <param name="port">The proxy port number (1-65535).</param>
         /// <param name="type">The type of the proxy.</param>
         /// <param name="login">The login credential for proxies requiring authentication.</param>
         /// <param name="password">The password credential for proxies requiring authentication.</param>
@@ -26,8 +26,8 @@ namespace Zennolab.CapMonsterCloud
             string login,
             string password)
         {
-            if (port < 0 || port > 65535)
-                throw new ArgumentException("Proxy port must be between 0 and 65535");
+            if (port < 1 || port > 65535)
+                throw new ArgumentException("Proxy port must be between 1 and 65535");
 
             if (!ProxyValidator.IsValidProxy(address))
                 throw new ArgumentException("Proxy address is not valid");
@@ -51,7 +51,7 @@ namespace Zennolab.CapMonsterCloud
         /// <summary>
         /// Proxy port
         /// </summary>
-        [Range(0, 65535)]
+        [Range(1, 65535)]
         public int ProxyPort { get; private set; }
 
         /// <summary>

@@ -53,7 +53,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
                     NoCache = Gen.RandomBool(),
                     IsInvisible = Gen.RandomBool(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), proxyPort ?? Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), proxyPort ?? Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -178,7 +178,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     FallbackToActualUA = Gen.RandomBool(),
                     Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
                     NoCache = Gen.RandomBool(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -212,7 +212,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Subdomain = Gen.RandomString(),
                     GetLib = Gen.RandomString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -250,7 +250,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     PageAction = Gen.RandomString(),
                     Cookies = Gen.ListOfValues(Gen.RandomString).ToDictionary(_ => Gen.RandomString(), value => value),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -284,7 +284,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     ApiJsUrl = Gen.RandomUri().ToString(),
                     Action = Gen.RandomString(),
                     NoCache = Gen.RandomBool(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -426,7 +426,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 {
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -452,7 +452,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomString(),
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -478,7 +478,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
                     Domains = Gen.ListOfValues(Gen.RandomString),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -509,12 +509,12 @@ namespace CapMonsterCloud.Client.IntegrationTests
 
             public static TenDiCustomTaskRequest CreateTenDiTask()
             {
-                return new TenDiCustomTaskRequest(Gen.RandomUri().ToString())
+                return new TenDiCustomTaskRequest(Gen.RandomUri().ToString(), Gen.RandomString())
                 {
                     WebsiteKey = Gen.RandomGuid(),
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -538,7 +538,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomGuid(),
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -561,7 +561,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 {
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -593,7 +593,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomGuid(),
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -620,7 +620,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomGuid(),
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -655,7 +655,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 {
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -694,7 +694,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 {
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -728,7 +728,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Iv = Gen.RandomString(),
                     CookieSolution = Gen.RandomBool(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -758,7 +758,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteKey = Gen.RandomGuid(),
                     ValidateId = Gen.RandomString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -785,7 +785,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                 {
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     UserAgent  = Gen.UserAgent(),
-                    Proxy      = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy      = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
@@ -827,7 +827,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     PageAction  = Gen.RandomString(),
                     UserAgent   = Gen.UserAgent(),
                     Proxy = new ProxyContainer(
-                        Gen.RandomString(), Gen.RandomInt(0, 65535),
+                        Gen.RandomString(), Gen.RandomInt(1, 65535),
                         Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
@@ -860,7 +860,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     Hcg = Gen.RandomString(),
                     Hct = Gen.RandomLong(1, long.MaxValue),
                     Proxy = new ProxyContainer(
-                        Gen.RandomString(), Gen.RandomInt(0, 65535),
+                        Gen.RandomString(), Gen.RandomInt(1, 65535),
                         Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
@@ -887,7 +887,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     WebsiteUrl = Gen.RandomUri().ToString(),
                     WebsiteKey = Gen.RandomString(),
                     UserAgent = Gen.UserAgent(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 

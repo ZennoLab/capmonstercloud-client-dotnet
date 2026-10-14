@@ -16,7 +16,7 @@
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
 	  <Version>4.0.0</Version>
-	  <PackageReleaseNotes>FunCaptchaRequest now requires a custom proxy (type, address, port); added optional aidEncrypted to TenDI.</PackageReleaseNotes>
+	  <PackageReleaseNotes>FunCaptchaRequest now requires a proxy (login and password stay optional). ProxyContainer no longer accepts port 0. Added optional aidEncrypted to TenDI.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

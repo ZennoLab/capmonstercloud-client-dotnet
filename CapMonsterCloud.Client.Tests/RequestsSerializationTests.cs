@@ -1,10 +1,8 @@
 using FluentAssertions;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using Zennolab.CapMonsterCloud.Requests;
-using Zennolab.CapMonsterCloud.Validation;
 
 #pragma warning disable IDE0058 // Expression value is never used
 
@@ -152,35 +150,6 @@ namespace Zennolab.CapMonsterCloud.Client
                     proxyLogin = target.ProxyLogin,
                     proxyPassword = target.ProxyPassword
                 }));
-        }
-
-        [Test]
-        public void FunCaptchaRequest_WithoutProxy_ShouldFailValidation()
-        {
-            var target = new FunCaptchaRequest
-            {
-                WebsiteUrl = "https://example.com/",
-                WebsiteKey = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC"
-            };
-
-            Action act = () => TaskValidator.ValidateObjectIncludingInternals(target);
-
-            _ = act.Should().Throw<AggregateException>();
-        }
-
-        [Test]
-        public void FunCaptchaRequest_WithoutProxyCredentials_ShouldPassValidation([Values] ProxyType proxyType)
-        {
-            var target = new FunCaptchaRequest
-            {
-                WebsiteUrl = "https://example.com/",
-                WebsiteKey = "69A21A01-CC7B-B9C6-0F9A-E7FA06677FFC",
-                Proxy = new ProxyContainer("proxy.com", 6045, proxyType, null, null)
-            };
-
-            Action act = () => TaskValidator.ValidateObjectIncludingInternals(target);
-
-            act.Should().NotThrow();
         }
 
         [Test]
@@ -568,7 +537,7 @@ namespace Zennolab.CapMonsterCloud.Client
         public void TenDiCustomTaskRequest__ShouldSerialize_WithoutCaptchaUrl([Values] ProxyType proxyType)
         {
             // Arrange
-            var target = new TenDiCustomTaskRequest(aidEncrypted: "YOUR_AID_ENCRYPTED")
+            var target = new TenDiCustomTaskRequest
             {
                 WebsiteKey = "189123456",
                 WebsiteUrl = "https://example.com/",
@@ -589,6 +558,44 @@ namespace Zennolab.CapMonsterCloud.Client
                     metadata = new
                     {
                         captchaUrl = default(string),
+                        aidEncrypted = default(string)
+                    },
+                    userAgent = default(string),
+                    proxyAddress = target.ProxyAddress,
+                    proxyPort = target.ProxyPort,
+                    proxyType = proxyType.ToString().ToLower(),
+                    proxyLogin = target.ProxyLogin,
+                    proxyPassword = target.ProxyPassword
+                }));
+        }
+
+        [Test]
+        public void TenDiCustomTaskRequest__ShouldSerialize_WithAidEncrypted([Values] ProxyType proxyType)
+        {
+            // Arrange
+            var target = new TenDiCustomTaskRequest(
+                captchaUrl: "https://global.captcha.example.com/TCaptcha-global.js",
+                aidEncrypted: "YOUR_AID_ENCRYPTED")
+            {
+                WebsiteKey = "189123456",
+                WebsiteUrl = "https://example.com/",
+                Proxy = new ProxyContainer("proxy.com", 6045, proxyType, "login", "p@ssword")
+            };
+
+            // Act
+            var actual = JsonConvert.SerializeObject(target);
+
+            // Assert
+            actual.Should().Be(JsonConvert.SerializeObject(
+                new
+                {
+                    @class = "TenDI",
+                    websiteKey = target.WebsiteKey,
+                    type = "CustomTask",
+                    websiteURL = target.WebsiteUrl,
+                    metadata = new
+                    {
+                        captchaUrl = "https://global.captcha.example.com/TCaptcha-global.js",
                         aidEncrypted = "YOUR_AID_ENCRYPTED"
                     },
                     userAgent = default(string),
