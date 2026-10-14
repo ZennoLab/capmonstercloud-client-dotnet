@@ -15,8 +15,8 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/ZennoLab/capmonstercloud-client-dotnet</RepositoryUrl>
-	  <Version>3.5.0</Version>
-	  <PackageReleaseNotes>Added RecaptchaV3EnterpriseRequest (reCAPTCHA v3 Enterprise). New optional parameters: reCAPTCHA v2 Enterprise apiDomain/pageAction/cookies/userAgent, reCAPTCHA v2 isInvisible, reCAPTCHA v3 isEnterprise, Turnstile action, Prosopo userAgent, ComplexImageTask exampleImageUrls/exampleImagesBase64 and recognition metadata PayloadType, Hunt widgetUrl, Alibaba punishUrl/cookieRequired. Relaxed validation: Amazon WAF websiteKey/captchaScript/challengeScript/context/iv and ComplexImageTask websiteURL are optional; Imperva reese84UrlEndpoint and TenDI captchaUrl constructor parameters are optional. Responses now expose userAgent (FunCaptcha, reCAPTCHA v2/v3, Turnstile), cookies (reCAPTCHA v2) and metadata (grid ComplexImageTask).</PackageReleaseNotes>
+	  <Version>4.0.0</Version>
+	  <PackageReleaseNotes>FunCaptchaRequest now requires a custom proxy (type, address, port); added optional aidEncrypted to TenDI.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

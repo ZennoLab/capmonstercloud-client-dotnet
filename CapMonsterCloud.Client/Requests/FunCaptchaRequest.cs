@@ -6,6 +6,7 @@ namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
     /// FunCaptcha recognition request.
+    /// Own proxy (type, address, port) is required; login and password are optional.
     /// </summary>
     public sealed class FunCaptchaRequest : CaptchaRequestBaseWithProxy<FunCaptchaResponse>
     {
@@ -76,5 +77,24 @@ namespace Zennolab.CapMonsterCloud.Requests
         public bool? NoCache { get; set; }
 
         internal override bool UseNoCache => this.NoCache ?? false;
+
+        [JsonIgnore]
+        [RequiredProxy]
+        internal ProxyContainer RequiredProxy => Proxy;
+
+        [System.AttributeUsage(System.AttributeTargets.Property)]
+        private sealed class RequiredProxyAttribute : ValidationAttribute
+        {
+            protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+            {
+                if (!(value is ProxyContainer proxy) || string.IsNullOrEmpty(proxy.ProxyAddress))
+                    return new ValidationResult("Custom proxy (type, address, port) is required for FunCaptchaTask.");
+
+                if (proxy.ProxyPort < 1 || proxy.ProxyPort > 65535)
+                    return new ValidationResult("Proxy port must be in the range 1..65535 for FunCaptchaTask.");
+
+                return ValidationResult.Success;
+            }
+        }
     }
 }

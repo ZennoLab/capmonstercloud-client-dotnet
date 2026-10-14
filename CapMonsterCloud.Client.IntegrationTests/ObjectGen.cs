@@ -144,7 +144,7 @@ namespace CapMonsterCloud.Client.IntegrationTests
                     UserAgent = Gen.UserAgent(),
                     Cookies = Gen.RandomString(),
                     NoCache = Gen.RandomBool(),
-                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(0, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
+                    Proxy = new ProxyContainer(Gen.RandomString(), Gen.RandomInt(1, 65535), Gen.RandomEnum<ProxyType>(), Gen.RandomString(), Gen.RandomString())
                 };
             }
 
