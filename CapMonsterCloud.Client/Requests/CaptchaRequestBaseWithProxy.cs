@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Zennolab.CapMonsterCloud.Responses;
 
@@ -8,7 +9,7 @@ namespace Zennolab.CapMonsterCloud.Requests
     /// <summary>
     /// Base captcha recognition request
     /// </summary>
-    public abstract class CaptchaRequestBaseWithProxy<TResponse> : CaptchaRequestBase<TResponse>, IProxyInfo where TResponse : CaptchaResponseBase
+    public abstract class CaptchaRequestBaseWithProxy<TResponse> : CaptchaRequestBase<TResponse>, IProxyInfo, IValidatableObject where TResponse : CaptchaResponseBase
     {
         /// <inheritdoc/>
         [JsonIgnore]
@@ -55,5 +56,16 @@ namespace Zennolab.CapMonsterCloud.Requests
         /// <inheritdoc/>
         [JsonProperty("proxyPassword")]
         internal string ProxyPassword { get; set; }
+
+        /// <summary>
+        /// Whether the task cannot be solved without a proxy
+        /// </summary>
+        internal virtual bool IsProxyRequired => false;
+
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            if (IsProxyRequired && Proxy == null)
+                yield return new ValidationResult($"Proxy is required for {Type}", new[] { nameof(Proxy) });
+        }
     }
 }

@@ -557,7 +557,46 @@ namespace Zennolab.CapMonsterCloud.Client
                     websiteURL = target.WebsiteUrl,
                     metadata = new
                     {
-                        captchaUrl = default(string)
+                        captchaUrl = default(string),
+                        aidEncrypted = default(string)
+                    },
+                    userAgent = default(string),
+                    proxyAddress = target.ProxyAddress,
+                    proxyPort = target.ProxyPort,
+                    proxyType = proxyType.ToString().ToLower(),
+                    proxyLogin = target.ProxyLogin,
+                    proxyPassword = target.ProxyPassword
+                }));
+        }
+
+        [Test]
+        public void TenDiCustomTaskRequest__ShouldSerialize_WithAidEncrypted([Values] ProxyType proxyType)
+        {
+            // Arrange
+            var target = new TenDiCustomTaskRequest(
+                captchaUrl: "https://global.captcha.example.com/TCaptcha-global.js",
+                aidEncrypted: "YOUR_AID_ENCRYPTED")
+            {
+                WebsiteKey = "189123456",
+                WebsiteUrl = "https://example.com/",
+                Proxy = new ProxyContainer("proxy.com", 6045, proxyType, "login", "p@ssword")
+            };
+
+            // Act
+            var actual = JsonConvert.SerializeObject(target);
+
+            // Assert
+            actual.Should().Be(JsonConvert.SerializeObject(
+                new
+                {
+                    @class = "TenDI",
+                    websiteKey = target.WebsiteKey,
+                    type = "CustomTask",
+                    websiteURL = target.WebsiteUrl,
+                    metadata = new
+                    {
+                        captchaUrl = "https://global.captcha.example.com/TCaptcha-global.js",
+                        aidEncrypted = "YOUR_AID_ENCRYPTED"
                     },
                     userAgent = default(string),
                     proxyAddress = target.ProxyAddress,

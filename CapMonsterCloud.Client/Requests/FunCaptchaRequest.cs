@@ -6,6 +6,7 @@ namespace Zennolab.CapMonsterCloud.Requests
 {
     /// <summary>
     /// FunCaptcha recognition request.
+    /// Own proxy (type, address, port) is required; login and password are optional.
     /// </summary>
     public sealed class FunCaptchaRequest : CaptchaRequestBaseWithProxy<FunCaptchaResponse>
     {
@@ -76,5 +77,7 @@ namespace Zennolab.CapMonsterCloud.Requests
         public bool? NoCache { get; set; }
 
         internal override bool UseNoCache => this.NoCache ?? false;
+
+        internal override bool IsProxyRequired => true;
     }
 }

@@ -3,6 +3,11 @@
     /// <summary>
     /// Alibaba CustomTask recognition request.
     /// </summary>
+    /// <remarks>
+    /// Covers both Alibaba CAPTCHA and Alibaba WAF, including the invisible TRACELESS type
+    /// (no user challenge; the CAPTCHA load response contains "CaptchaType": "TRACELESS").
+    /// Websites behind Alibaba WAF set the ssxmod_itna and ssxmod_itna2 cookies; a regular Alibaba CAPTCHA does not.
+    /// </remarks>
     /// <example>
     /// https://docs.capmonster.cloud/docs/captchas/alibaba-task/
     /// </example>
@@ -49,7 +54,8 @@
         /// Full URL of the verification page for websites where Alibaba triggers verification through a separate /punish URL.
         ///
         /// - cookieRequired: "cookieRequired": true
-        /// Set to true to receive cookies together with the CAPTCHA solution (websites that require cookies after verification).
+        /// Set to true to receive cookies together with the CAPTCHA solution.
+        /// Use it for websites behind Alibaba WAF (they set the ssxmod_itna and ssxmod_itna2 cookies) that require cookies after verification.
         ///
         /// </summary>
         public AlibabaCustomTaskRequest(string sceneId,

@@ -38,6 +38,11 @@ namespace Zennolab.CapMonsterCloud.Validation
                 }
             }
 
+            if (obj is IValidatableObject validatable)
+            {
+                results.AddRange(validatable.Validate(new ValidationContext(obj)));
+            }
+
             if (results.Any())
             {
                 throw new AggregateException(results.Select(r => new ValidationException(r.ErrorMessage)));
